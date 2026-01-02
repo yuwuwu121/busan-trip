@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>釜山冬日之旅 - 行程助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap');
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            background-color: #F0F7FF; /* 冬日淡藍色背景 */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .banner-mask {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(240,247,255,1) 100%);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+        .custom-shadow {
+            box-shadow: 0 10px 25px -5px rgba(180, 200, 230, 0.3);
+        }
+    </style>
+</head>
+<body class="h-screen overflow-hidden">
+
+<div id="app" class="h-full flex flex-col relative">
+    
+    <div class="relative w-full h-[250px] flex-shrink-0 overflow-hidden">
+        <img src="https://r2.erweima.ai/i/DkK_qS7aT9it54C4H4_qYQ.png" 
+             alt="Busan Winter" 
+             class="w-full h-full object-cover">
+        <div class="absolute inset-0 banner-mask"></div>
+        
+        <div class="absolute bottom-6 left-6 text-slate-800">
+            <h1 class="text-2xl font-bold tracking-tight">釜山冬日漫遊</h1>
+            <p class="text-sm opacity-75">Busan Winter Trip · 2026</p>
+        </div>
+    </div>
+
+    <main class="flex-1 overflow-y-auto px-5 -mt-4 relative z-10 pb-32">
+        
+        <div class="bg-white rounded-[2rem] p-2 custom-shadow mb-6 border border-white">
+            <div class="rounded-[1.6rem] overflow-hidden h-48 relative">
+                <iframe
+                    class="w-full h-full grayscale-[0.2]"
+                    frameborder="0" style="border:0"
+                    :src="`https://www.google.com/maps/embed/v1/place?key=你的API金鑰&q=${encodeURIComponent(currentLocation)}`"
+                    allowfullscreen>
+                </iframe>
+                <div class="absolute bottom-3 right-3">
+                    <button @click="openNavigation" class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-2xl shadow-lg flex items-center space-x-2 transition-all active:scale-95">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        <span class="text-sm font-bold">導航</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="flex justify-between items-end px-1">
+                <h2 class="text-lg font-bold text-slate-700">今日行程</h2>
+                <span class="text-xs text-blue-400 font-medium">1月2日 星期五</span>
+            </div>
+            
+            <div v-for="(item, index) in schedule" :key="index" 
+                 @click="selectLocation(item)"
+                 :class="['p-5 rounded-[1.8rem] flex items-center space-x-4 transition-all duration-300', 
+                         currentLocation === item.location ? 'bg-white border-2 border-blue-200 custom-shadow scale-[1.02]' : 'bg-white/60 border-2 border-transparent shadow-sm']">
+                <div :class="['w-12 h-12 rounded-2xl flex items-center justify-center font-bold', 
+                             currentLocation === item.location ? 'bg-blue-500 text-white' : 'bg-blue-50 text-blue-400']">
+                    {{ item.time }}
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-slate-800">{{ item.title }}</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">{{ item.location }}</p>
+                </div>
+                <i data-lucide="heart" :class="['w-5 h-5 transition-colors', currentLocation === item.location ? 'text-pink-400 fill-pink-400' : 'text-slate-200']"></i>
+            </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-6 left-6 right-6 h-16 glass-nav rounded-3xl border border-white/50 flex justify-around items-center px-4 custom-shadow shadow-blue-900/10">
+        <button class="flex flex-col items-center text-blue-500">
+            <i data-lucide="compass" class="w-6 h-6"></i>
+            <span class="text-[10px] mt-1 font-bold">探索行程</span>
+        </button>
+        <button class="flex flex-col items-center text-slate-300 hover:text-blue-300 transition-colors">
+            <i data-lucide="camera" class="w-6 h-6"></i>
+            <span class="text-[10px] mt-1 font-medium">回憶相簿</span>
+        </button>
+        <button class="flex flex-col items-center text-slate-300 hover:text-blue-300 transition-colors">
+            <i data-lucide="user" class="w-6 h-6"></i>
+            <span class="text-[10px] mt-1 font-medium">個人中心</span>
+        </button>
+    </nav>
+</div>
+
+<script>
+    const { createApp, ref, onMounted } = Vue;
+
+    createApp({
+        setup() {
+            const currentLocation = ref('甘川洞文化村');
+            const schedule = ref([
+                { time: '09', title: '韓系早餐時刻', location: '釜山影島區' },
+                { time: '11', title: '甘川洞文化村', location: '甘川洞文化村' },
+                { time: '14', title: '海雲台藍線公園', location: '海雲台藍線公園' },
+                { time: '17', title: '廣安里大橋夜景', location: '廣安大橋' }
+            ]);
+
+            const selectLocation = (item) => {
+                currentLocation.value = item.location;
+            };
+
+            const openNavigation = () => {
+                const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(currentLocation.value)}`;
+                window.open(url, '_blank');
+            };
+
+            onMounted(() => {
+                lucide.createIcons();
+            });
+
+            return { schedule, currentLocation, selectLocation, openNavigation };
+        }
+    }).mount('#app');
+</script>
+</body>
+</html>
