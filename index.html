@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>釜山慶州 秋季自由行</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +32,20 @@
       perspective: 1500px;
     }
 
+    /* 💻 讓電腦版自動展開、限制最大閱讀寬度並置中，手機則維持 100% 滿版 */
+    .screen {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: var(--bg); overflow-y: auto; overflow-x: hidden;
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); z-index: 10;
+      max-width: 800px; /* 電腦版最大寬度限制，閱讀最舒適 */
+      margin: 0 auto;
+      box-shadow: 0 0 40px rgba(0,0,0,0.05);
+    }
+    
+    @media (max-width: 800px) {
+      .screen { max-width: 100%; box-shadow: none; }
+    }
+
     /* ================= 3D 翻書封面 ================= */
     .cover-screen {
       position: fixed; inset: 0; z-index: 9999;
@@ -58,12 +72,6 @@
     }
     .cover-btn:active { transform: scale(0.95); }
 
-    /* ================= 螢幕堆疊系統 ================= */
-    .screen {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background-color: var(--bg); overflow-y: auto; overflow-x: hidden;
-      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); z-index: 10;
-    }
     #screen-home { z-index: 1; transform: translateX(0); padding-bottom: 100px; }
     #screen-list { z-index: 2; transform: translateX(100%); background-color: var(--bg); padding-bottom: 100px;}
     #screen-detail { z-index: 3; transform: translateX(100%); background-color: var(--surface); padding-bottom: 100px;}
@@ -71,31 +79,32 @@
 
     /* ================= 首頁設計 ================= */
     .hero {
-      position: relative; height: 260px;
+      position: relative; height: 280px;
       background: linear-gradient(180deg, rgba(67, 36, 22, 0.4) 0%, rgba(67, 36, 22, 0.9) 100%), 
                   url('https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=1200&q=80') center/cover;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; color: white;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; color: white;
       border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg);
       box-shadow: 0 10px 30px rgba(194, 65, 12, 0.15);
     }
     .hero-badge {
       display: inline-block; background: rgba(255,255,255,0.25); backdrop-filter: blur(8px);
-      padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px;
+      padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; width: fit-content;
     }
-    .hero h1 { font-size: 1.7rem; font-weight: 800; margin: 0 0 4px 0; }
-    .hero p { margin: 0; font-size: 0.9rem; opacity: 0.9; }
+    .hero h1 { font-size: 2rem; font-weight: 800; margin: 0 0 4px 0; }
+    .hero p { margin: 0; font-size: 0.95rem; opacity: 0.9; }
 
-    .section-title { font-size: 1.1rem; font-weight: 800; color: var(--text); margin: 24px 20px 12px; display: flex; align-items: center; gap: 8px; }
-    .home-menu { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 12px; }
+    .section-title { font-size: 1.15rem; font-weight: 800; color: var(--text); margin: 30px 24px 12px; display: flex; align-items: center; gap: 8px; }
+    .home-menu { padding: 0 24px 20px; display: flex; flex-direction: column; gap: 12px; }
     .menu-card {
-      background: var(--surface); border-radius: var(--radius-md); padding: 18px;
+      background: var(--surface); border-radius: var(--radius-md); padding: 20px;
       display: flex; align-items: center; gap: 16px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.1); cursor: pointer; transition: 0.2s;
     }
+    .menu-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px -3px rgba(194, 65, 12, 0.15); }
     .menu-card:active { transform: scale(0.98); background: #f5f5f4; }
-    .menu-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .menu-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
     .menu-info { flex: 1; }
-    .menu-date { font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
-    .menu-title { font-size: 1.05rem; font-weight: 800; color: var(--text); }
+    .menu-date { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .menu-title { font-size: 1.1rem; font-weight: 800; color: var(--text); }
     .menu-arrow { color: #a8a29e; font-size: 1.2rem; }
 
     .menu-card.buy .menu-icon { background: #fefce8; color: #a16207; }
@@ -105,53 +114,54 @@
 
     /* ================= 列表頁 ================= */
     .header-bar {
-      position: sticky; top: 0; z-index: 50; background: rgba(250, 246, 240, 0.85); backdrop-filter: blur(16px);
-      padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; gap: 12px;
+      position: sticky; top: 0; z-index: 50; background: rgba(250, 246, 240, 0.9); backdrop-filter: blur(16px);
+      padding: 18px 24px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; gap: 12px;
     }
     .back-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; }
-    .back-btn:active { background: #e7e5e4; }
-    .header-title { font-size: 1.15rem; font-weight: 800; margin: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .list-container { padding: 20px; }
+    .back-btn:hover { background: #f5f5f4; }
+    .header-title { font-size: 1.2rem; font-weight: 800; margin: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .list-container { padding: 24px; }
 
     .alert-card {
       background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%); border: 1px solid #fde047; border-radius: var(--radius-md);
-      padding: 16px; margin-bottom: 24px; display: flex; gap: 12px; box-shadow: 0 4px 12px rgba(202, 138, 4, 0.1);
+      padding: 18px; margin-bottom: 24px; display: flex; gap: 14px; box-shadow: 0 4px 12px rgba(202, 138, 4, 0.1);
     }
-    .alert-icon { font-size: 1.5rem; color: #a16207; }
-    .alert-text { font-size: 0.85rem; color: #713f12; line-height: 1.5; }
+    .alert-icon { font-size: 1.5rem; color: #a16207; flex-shrink: 0; }
+    .alert-text { font-size: 0.9rem; color: #713f12; line-height: 1.5; }
     .alert-text b { color: #854d0e; }
 
-    .timeline { position: relative; padding-left: 28px; }
-    .timeline::before { content: ''; position: absolute; top: 20px; bottom: 20px; left: 10px; width: 2px; background: #e7e5e4; border-radius: 2px; }
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; top: 20px; bottom: 20px; left: 12px; width: 2px; background: #e7e5e4; border-radius: 2px; }
     .t-item { position: relative; margin-bottom: 16px; opacity: 0; transform: translateY(15px); animation: fadeInUp 0.4s forwards; }
     @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-    .t-dot { position: absolute; left: -23px; top: 24px; width: 12px; height: 12px; border-radius: 50%; background: white; border: 3px solid var(--primary); z-index: 2; }
-    .t-card { background: var(--surface); border-radius: var(--radius-md); padding: 16px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); cursor: pointer; display: flex; align-items: center; gap: 12px; border: 1px solid transparent; }
+    .t-dot { position: absolute; left: -27px; top: 24px; width: 12px; height: 12px; border-radius: 50%; background: white; border: 3px solid var(--primary); z-index: 2; }
+    .t-card { background: var(--surface); border-radius: var(--radius-md); padding: 18px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); cursor: pointer; display: flex; align-items: center; gap: 16px; border: 1px solid transparent; transition: 0.2s; }
+    .t-card:hover { border-color: var(--border); box-shadow: 0 6px 20px -3px rgba(120, 113, 108, 0.12); }
     .t-card:active { transform: scale(0.98); }
     .t-card.task { border-color: #fca5a5; box-shadow: 0 4px 15px -3px rgba(239, 68, 68, 0.15); }
     .t-time { font-size: 0.95rem; font-weight: 800; color: var(--primary); width: 55px; flex-shrink: 0; }
     .t-info { flex: 1; }
-    .t-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-    .t-sub { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}
+    .t-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+    .t-sub { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
     .t-card i.arrow { color: #d6d3d1; font-size: 1.2rem; }
 
     /* ================= 詳情頁 ================= */
-    .detail-cover { width: 100%; height: 300px; object-fit: cover; background: #e7e5e4; }
-    .detail-body { padding: 24px; background: var(--surface); border-top-left-radius: 24px; border-top-right-radius: 24px; margin-top: -24px; position: relative; z-index: 5; min-height: calc(100vh - 276px); }
-    .d-tag { display: inline-block; padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; margin-bottom: 12px; }
-    .d-title { font-size: 1.5rem; font-weight: 800; margin: 0 0 16px 0; line-height: 1.3; }
-    .d-desc { font-size: 0.95rem; color: #44403c; line-height: 1.7; margin-bottom: 24px; white-space: pre-line; }
+    .detail-cover { width: 100%; height: 320px; object-fit: cover; background: #e7e5e4; }
+    .detail-body { padding: 30px; background: var(--surface); border-top-left-radius: 24px; border-top-right-radius: 24px; margin-top: -24px; position: relative; z-index: 5; min-height: calc(100vh - 296px); }
+    .d-tag { display: inline-block; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px; }
+    .d-title { font-size: 1.6rem; font-weight: 800; margin: 0 0 16px 0; line-height: 1.3; }
+    .d-desc { font-size: 1rem; color: #44403c; line-height: 1.8; margin-bottom: 30px; white-space: pre-line; }
     
     .action-row { display: flex; flex-direction: column; gap: 12px; margin-top: auto; padding-bottom: 40px; }
-    .btn-large { width: 100%; padding: 16px; border-radius: 14px; font-size: 1rem; font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 8px; border: none; cursor: pointer; text-decoration: none; }
+    .btn-large { width: 100%; padding: 18px; border-radius: 14px; font-size: 1.05rem; font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 10px; border: none; cursor: pointer; text-decoration: none; transition: 0.2s; }
     .btn-nav { background: #047857; color: white; box-shadow: 0 4px 15px rgba(4, 120, 87, 0.3); }
-    .btn-nav:active { background: #065f46; }
+    .btn-nav:hover { background: #065f46; }
     .btn-web { background: #2563eb; color: white; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
-    .btn-web:active { background: #1d4ed8; }
+    .btn-web:hover { background: #1d4ed8; }
     .btn-cp { background: #f5f5f4; color: #44403c; border: 1px solid #d6d3d1; }
-    .btn-cp:active { background: #e7e5e4; }
+    .btn-cp:hover { background: #e7e5e4; }
 
-    #toast { position: fixed; top: 40px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(41, 37, 36, 0.95); color: white; padding: 12px 24px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 999; }
+    #toast { position: fixed; top: 40px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(41, 37, 36, 0.95); color: white; padding: 12px 24px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 8px; opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 999; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
@@ -240,7 +250,7 @@
 
   <!-- ================= 詳情頁 ================= -->
   <div id="screen-detail" class="screen">
-    <div class="header-bar" style="position: absolute; background: transparent; border: none;">
+    <div class="header-bar" style="position: absolute; background: transparent; border: none; z-index: 10;">
       <div class="back-btn" onclick="backToList()"><i class="ph-bold ph-arrow-left"></i></div>
     </div>
     <img id="detail-img" class="detail-cover" src="" alt="Cover">
@@ -300,7 +310,7 @@
       items: [
         { time: "08:40", title: "Aventree 辦理退房", sub: "準備換飯店", type: "traffic" },
         { time: "09:00", title: "換宿 NewCZ Nampo", sub: "寄放行李", type: "hotel", kr: "뉴씨즈 남포호텔", map: "https://map.naver.com/p/search/%EB%89%B4%EC%94%A8%EC%A6%88%20%EB%82%A8%ED%8F%AC%ED%98%B8%ED%85%94", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80", desc: "換到新飯店寄放行李後，搭 Uber 展開今日行程。" },
-        { time: "09:50", title: "釜田市場傳統小吃", sub: "【早餐】手工排骨餅、買水果", type: "spot", kr: "부전시장", map: "https://map.naver.com/p/search/%EB%B6%80%EC%82%B0%EC%8B%9C%EC%9E%A5", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=800&q=80", desc: "品嚐手工排骨豬肉餅、明卵紫菜包飯、大王鯛魚燒，順便買新鮮麝香葡萄。" },
+        { time: "09:50", title: "釜田市場傳統小吃", sub: "【早餐】手工排骨餅、買水果", type: "spot", kr: "부전시장", map: "https://map.naver.com/p/search/%EB%B6%80%EC%82%84%EC%8B%9C%EC%9E%A5", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=800&q=80", desc: "品嚐手工排骨豬肉餅、明卵紫菜包飯、大王鯛魚燒，順便買新鮮麝香葡萄。" },
         { time: "12:30", title: "三五亭蔘雞湯", sub: "【午餐】西面老字號溫補名店", type: "food", kr: "삼오정", map: "https://map.naver.com/p/search/%EC%82%BC%EC%98%A4%EC%A0%95", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "整隻童子雞燉至骨肉分離，內塞糯米與高麗蔘，秋季溫補首選。" },
         { time: "14:30", title: "ARTE MUSEUM BUSAN", sub: "【景點】影島沉浸式光影美術館", type: "spot", kr: "아르떼뮤지엄 부산", map: "https://map.naver.com/p/search/%EC%95%84%EB%A5%B4%EB%96%BC%EB%AE%A4%EC%A7%80%EC%97%84", img: "https://www.visitbusan.net/uploadImgs/files/cntnts/20240912162614628_oen", desc: "釜山最大數位沉浸式藝術展！巨型投影與香氛還原巨浪與極光花海。" },
         { time: "17:30", title: "NewCZ Nampo 辦理入住", sub: "提領行李進房休息", type: "hotel" },
@@ -317,7 +327,7 @@
         { time: "10:30", title: "冬柏島 ＆ APEC 世峰樓", sub: "【景點】絕美臨海懸崖木棧道", type: "spot", kr: "동백섬", map: "https://map.naver.com/p/search/%EB%8F%99%EB%B0%B1%EC%84%AC", img: "https://tong.visitkorea.or.kr/cms/resource/20/3334420_image2_1.jpg", desc: "一邊松林一邊大海的懸空木棧道，收納廣安大橋與海雲台美景。" },
         { time: "12:30", title: "尾浦散策", sub: "慢逛文創選物店與海岸村落", type: "spot", kr: "미포", map: "https://map.naver.com/p/search/%EB%AF%B8%ED%8F%AC", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80", desc: "復古漁村巷弄聚集了質感手天文創與濱海咖啡廳。" },
         { time: "13:30", title: "老虎冰淇淋大福", sub: "【排隊甜點】薄皮Q嫩冰淇淋", type: "food", kr: "호랑이젤라떡", map: "https://map.naver.com/p/search/%ED%98%B8%EB%9E%91%EC%9D%B4%EC%A0%A4%EB%9D%BC%EB%96%A1", img: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?auto=format&fit=crop&w=800&q=80", desc: "現包極薄Q彈麻糬皮包裹義式冰淇淋的人氣打卡名店。" },
-        { time: "14:00", title: "極東豬肉湯飯 (尾浦店)", sub: "【午餐】米其林推薦清湯派", type: "food", kr: "극동돼지국밥", map: "https://map.naver.com/p/search/%EA%B7%B9%EB%8F%99%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "清澈甘甜的清湯派白切肉湯飯，回甘不膩口。" },
+        { time: "14:00", title: "極東豬肉湯飯 (尾浦店)", sub: "【午餐】米其林推薦清湯派", type: "food", kr: "극동돼지국밥", map: "https://map.naver.com/p/search/%EA%B7%B9%EB%8F%99%EB%8F%BC%EC%A7%80%EA%B5%AD%EC%9D%B4", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "清澈甘甜的清湯派白切肉湯飯，回甘不膩口。" },
         { time: "15:30", title: "Emart 海雲台店大採購", sub: "【超市】零食伴手禮一次買齊", type: "shop", kr: "이마트 해운대점", map: "https://map.naver.com/p/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%20%ED%95%B4%EC%9A%B4%EB%8C%80", img: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80", desc: "現場出示護照辦理退稅，搭 Uber 載戰利品回南浦洞。" },
         { time: "19:00", title: "豆田裡 韓式吃到飽", sub: "【晚餐】南浦洞十幾種手作小菜", type: "food", kr: "콩밭에", map: "https://map.naver.com/p/search/%EC%BD%A9%EB%B0%AD%EC%97%90", img: "https://images.unsplash.com/photo-1580651315530-69c8e0026377?auto=format&fit=crop&w=800&q=80", desc: "點主餐即可無限享用手作韓式小菜、煎餅與甜湯。" },
         { time: "宵夜", title: "Puradak 炸雞", sub: "【宵夜】飯店享用奢華炸雞", type: "food" }
@@ -350,7 +360,7 @@
         { time: "12:15", title: "新東亞海鮮市場大啖松葉蟹", sub: "【午餐】現撈現蒸活松葉蟹 🦀", type: "spot", kr: "신동아수산물종합시장", map: "https://map.naver.com/p/search/%EC%8B%A0%EB%8F%99%EC%95%84%EC%88%98%EC%82%B0%EB%AC%BC", img: "https://english.visitkorea.or.kr/public/images/foodtrip/k-food-img/img_kfood_view_131.jpg", desc: "現挑生猛活蟹直送樓上清蒸！肉質爆汁鮮甜，必吃麻油海苔蟹膏炒飯。" },
         { time: "14:00", title: "南浦商圈購物散策", sub: "逛 BIFF、大創、Olive Young 補貨", type: "shop" },
         { time: "18:00", title: "李在模 Pizza (南浦總店)", sub: "【晚餐】傳奇起司瀑布手工披薩", type: "food", kr: "이재모피자 본점", map: "https://map.naver.com/p/search/%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%84%B0%EC%9E%90", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80", desc: "釜山無人不曉的披薩神店！頂級純鮮奶起司一拉開就是起司瀑布。" },
-        { time: "20:00", title: "富平罐頭夜市吃透透", sub: "【夜市】烤魷魚、肉捲、韓牛握壽司", type: "food", kr: "부평깡통야시장", map: "https://map.naver.com/p/search/%EB%B6%80%ED%8F%89%EA%B9%A1%EC%86%B5%EC%95%BC%EC%8B%9C%EC%9E%A5", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80", desc: "熱鬧傳統夜市，聚集各種鐵板小吃與韓國街頭美食。" },
+        { time: "20:00", title: "富平罐頭夜市吃透透", sub: "【夜市】烤魷魚、肉捲、韓牛握壽司", type: "food", kr: "부평깡통야시장", map: "https://map.naver.com/p/search/%EB%B6%80%ED%8F%89%EA%B9%A1%ED%86%B5%EC%95%BC%EC%8B%9C%EC%9E%A5", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80", desc: "熱鬧傳統夜市，聚集各種鐵板小吃與韓國街頭美食。" },
         { time: "宵夜", title: "南浦洞布帳馬車", sub: "【宵夜】辣炒盲鰻配燒酒", type: "food" }
       ]
     },
