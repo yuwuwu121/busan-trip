@@ -1,12 +1,3 @@
-哈哈哈，看到你的截圖我忍不住笑了！這個排版直接把封面「擠到上面去」，變成了一條奇怪的橫幅，完全變形了！
-
-這是因為我們剛剛要求把版面變成「電腦寬螢幕展開」，結果 3D 翻書的封面蓋版（`position: fixed`）跟著被寬螢幕撐開，導致它錯位了。
-
-最完美、最不容易出錯的做法：**在電腦上我們直接讓它維持精緻的「手機 App 框框（置中顯示）」，這樣不管你在手機還是電腦上看，都會長得一模一樣、精緻漂亮，絕對不會變形！**
-
-請你到 GitHub 點開 `index.html`，一樣 **全選刪除舊代碼**，把下方這段**修復版完整代碼**貼上並儲存（Commit changes）。這次在電腦上看就會是一個漂亮的中央手機框，點「翻開手冊」就會超順暢：
-
-```html
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -42,7 +33,6 @@
       perspective: 1500px;
     }
 
-    /* 📱 完美模擬 App 手機外框（電腦看置中，手機自動滿版） */
     .app-container {
       position: relative;
       width: 100%; max-width: 480px; height: 100%; max-height: 100vh;
@@ -264,8 +254,9 @@
 
   <!-- ================= 詳情頁 ================= -->
   <div id="screen-detail" class="screen">
-    <div class="header-bar" style="position: absolute; background: transparent; border: none; z-index: 10;">
-      <div class="back-btn" onclick="backToList()"><i class="ph-bold ph-arrow-left"></i></div>
+    <!-- 修正：將返回按鈕改成絕對定位並加上安全邊距，不再卡進手機外框圓角裡 -->
+    <div onclick="backToList()" style="position: absolute; top: 16px; left: 16px; z-index: 50; width: 40px; height: 40px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.15); cursor: pointer; font-size: 1.2rem; color: #292524;">
+      <i class="ph-bold ph-arrow-left"></i>
     </div>
     <img id="detail-img" class="detail-cover" src="" alt="Cover">
     <div class="detail-body">
@@ -310,7 +301,7 @@
           sub: "【看秀】週六限定科技夜景 ✨", 
           type: "spot", 
           kr: "광안리해수욕장", 
-          map: "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5", 
+          map: "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%EC%95%B4%EC%88%98%EC%9A%95%EC%9E%A5", 
           web: "https://www.gwangallimdrone.co.kr/information", 
           img: "https://www.visitbusan.net/uploadImgs/files/cntnts/20240126145805570", 
           desc: "釜山代表性浪漫海景地標！數百架無人機在廣安大橋前變換3D圖騰，沙灘上免費觀賞。" 
@@ -376,7 +367,7 @@
         { time: "12:15", title: "新東亞海鮮市場大啖松葉蟹", sub: "【午餐】現撈現蒸活松葉蟹 🦀", type: "spot", kr: "신동아수산물종합시장", map: "https://map.naver.com/p/search/%EC%8B%A0%EB%8F%99%EC%95%84%EC%88%98%EC%82%B0%EB%AC%BC", img: "https://english.visitkorea.or.kr/public/images/foodtrip/k-food-img/img_kfood_view_131.jpg", desc: "現挑生猛活蟹直送樓上清蒸！肉質爆汁鮮甜，必吃麻油海苔蟹膏炒飯。" },
         { time: "14:00", title: "南浦商圈購物散策", sub: "逛 BIFF、大創、Olive Young 補貨", type: "shop" },
         { time: "18:00", title: "李在模 Pizza (南浦總店)", sub: "【晚餐】傳奇起司瀑布手工披薩", type: "food", kr: "이재모피자 본점", map: "https://map.naver.com/p/search/%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%84%B0%EC%9E%90", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80", desc: "釜山無人不曉的披薩神店！頂級純鮮奶起司一拉開就是起司瀑布。" },
-        { time: "20:00", title: "富平罐頭夜市吃透透", sub: "【夜市】烤魷魚、肉捲、韓牛握壽司", type: "food", kr: "부평깡통야시장", map: "https://map.naver.com/p/search/%EB%B6%80%ED%8F%89%EA%B9%A1%ED%86%B5%EC%95%BC%EC%8B%9C%EC%9E%A5", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80", desc: "熱鬧傳統夜市，聚集各種鐵板小吃與韓國街頭美食。" },
+        { time: "20:00", title: "富平罐頭夜市吃透透", sub: "【夜市】烤魷魚、肉捲、韓牛握壽司", type: "food", kr: "부평깡통야시장", map: "https://map.naver.com/p/search/%EB%B6%80%EC%82%84%EA%B0%95%ED%86%B5%EC%95%BC%EC%8B%9C%EC%9E%A5", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80", desc: "熱鬧傳統夜市，聚集各種鐵板小吃與韓國街頭美食。" },
         { time: "宵夜", title: "南浦洞布帳馬車", sub: "【宵夜】辣炒盲鰻配燒酒", type: "food" }
       ]
     },
@@ -506,7 +497,3 @@
 </script>
 </body>
 </html>
-
-```
-
-這樣無論是在電腦上用瀏覽器打開（會呈現超有質感的中央手機外框），還是用手機隨時拿起來查閱，畫面都會完美無瑕、賞心悅目囉！
