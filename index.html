@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>釜山慶州 秋季自由行</title>
+  <title>釜山慶州 秋季旅遊手冊</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,13 +15,14 @@
       --primary: #c2410c;       
       --primary-light: #ffedd5; 
       --accent: #b45309;        
-      --bg: #faf6f0;            
+      --bg: #292524;            /* 書桌深色背景襯托手冊質感 */
+      --book-bg: #faf6f0;       /* 內頁米色紙張色 */
       --surface: #ffffff;
       --text: #292524;          
       --text-muted: #78716c;    
       --border: #e7e5e4;
-      --radius-lg: 24px;
-      --radius-md: 16px;
+      --radius-lg: 20px;
+      --radius-md: 12px;
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; scroll-behavior: smooth; }
@@ -29,51 +30,83 @@
     body {
       font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
       margin: 0; background-color: var(--bg); color: var(--text);
-      line-height: 1.6;
+      display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;
+      perspective: 2000px; padding: 20px 0;
     }
 
-    /* 寬螢幕置中容器，打造旅遊雜誌風格 */
-    .magazine-container {
-      max-width: 900px;
-      margin: 0 auto;
-      background-color: var(--surface);
-      min-height: 100vh;
-      box-shadow: 0 0 40px rgba(0,0,0,0.06);
+    /* 📘 模擬實體旅遊手冊的外觀與書背陰影 */
+    .travel-book {
+      position: relative;
+      width: 100%; max-width: 950px;
+      background-color: var(--book-bg);
+      min-height: 96vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 15px 0 30px rgba(0,0,0,0.03);
+      overflow: hidden;
     }
 
-    /* 封面區塊 */
-    .hero-cover {
-      position: relative; height: 450px;
-      background: linear-gradient(180deg, rgba(67, 36, 22, 0.3) 0%, rgba(67, 36, 22, 0.85) 100%), 
+    /* ================= 3D 翻書封面 ================= */
+    .book-cover {
+      position: absolute; inset: 0; z-index: 9999;
+      background: linear-gradient(180deg, rgba(67, 36, 22, 0.3) 0%, rgba(67, 36, 22, 0.9) 100%),
                   url('https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=1600&q=80') center/cover;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 50px; color: white;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+      padding: 60px 40px 100px;
+      transform-origin: left center;
+      transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.7s;
+      backface-visibility: hidden;
     }
-    .hero-badge {
-      display: inline-block; background: rgba(255,255,255,0.25); backdrop-filter: blur(8px);
-      padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; width: fit-content;
+    .book-cover.hide {
+      transform: rotateY(-110deg);
+      opacity: 0; pointer-events: none;
     }
-    .hero-cover h1 { font-size: 3.2rem; font-weight: 900; margin: 0 0 10px 0; letter-spacing: 2px; }
-    .hero-cover p { margin: 0; font-size: 1.2rem; opacity: 0.95; font-weight: 500; }
+    .cover-title { color: white; text-align: center; margin-bottom: 60px; }
+    .cover-title h1 { font-size: 4rem; font-weight: 900; margin: 0 0 10px; letter-spacing: 6px; font-family: 'Plus Jakarta Sans', sans-serif;}
+    .cover-title p { font-size: 1.35rem; opacity: 0.95; margin: 0; font-weight: 700; letter-spacing: 2px;}
+    .cover-btn {
+      background: var(--surface); color: var(--primary);
+      border: none; border-radius: 999px; padding: 20px 50px;
+      font-size: 1.25rem; font-weight: 800; display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; transition: 0.2s;
+    }
+    .cover-btn:hover { transform: scale(1.05); }
+    .cover-btn:active { transform: scale(0.95); }
 
-    /* 頂部快捷導覽列 */
-    .nav-bar {
+    /* 手冊封面內頁裝飾 */
+    .book-header {
+      position: relative; height: 320px;
+      background: linear-gradient(180deg, rgba(67, 36, 22, 0.4) 0%, rgba(67, 36, 22, 0.85) 100%), 
+                  url('https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=1600&q=80') center/cover;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 45px; color: white;
+      border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg);
+      box-shadow: 0 10px 30px rgba(194, 65, 12, 0.15);
+    }
+    .book-badge {
+      display: inline-block; background: rgba(255,255,255,0.25); backdrop-filter: blur(8px);
+      padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; width: fit-content;
+    }
+    .book-header h1 { font-size: 2.5rem; font-weight: 800; margin: 0 0 8px 0; }
+    .book-header p { margin: 0; font-size: 1.05rem; opacity: 0.9; }
+
+    /* 頂部索引導覽列 */
+    .index-nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px);
-      padding: 15px 30px; border-bottom: 1px solid var(--border);
+      background: rgba(250, 246, 240, 0.92); backdrop-filter: blur(12px);
+      padding: 15px 35px; border-bottom: 1px solid var(--border);
       display: flex; gap: 10px; overflow-x: auto; white-space: nowrap;
     }
-    .nav-btn {
-      background: var(--bg); color: var(--text); padding: 8px 16px; border-radius: 999px;
+    .index-btn {
+      background: var(--surface); color: var(--text); padding: 8px 16px; border-radius: 999px;
       font-size: 0.9rem; font-weight: 700; text-decoration: none; border: 1px solid var(--border);
-      transition: 0.2s; cursor: pointer; flex-shrink: 0;
+      transition: 0.2s; cursor: pointer; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
-    .nav-btn:hover, .nav-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .index-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-    /* 內容主區域 */
-    .content-body { padding: 40px; }
+    /* 內頁主區域 */
+    .book-body { padding: 40px; }
 
     /* 天數區塊 */
-    .day-section { margin-bottom: 60px; scroll-margin-top: 80px; }
+    .day-section { margin-bottom: 60px; scroll-margin-top: 70px; }
     .day-header {
       display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
       padding-bottom: 12px; border-bottom: 2px solid var(--primary-light);
@@ -95,14 +128,14 @@
     .alert-box div { font-size: 0.95rem; color: #713f12; line-height: 1.5; }
     .alert-box b { color: #854d0e; }
 
-    /* 時間軸卡片設計 */
+    /* 行程時間軸卡片 */
     .timeline-grid { display: flex; flex-direction: column; gap: 16px; }
     .t-card {
-      background: var(--bg); border-radius: var(--radius-md); padding: 20px 24px;
+      background: var(--surface); border-radius: var(--radius-md); padding: 20px 24px;
       display: flex; gap: 20px; align-items: flex-start; border: 1px solid var(--border);
-      transition: 0.2s; position: relative;
+      box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.06); transition: 0.2s; position: relative;
     }
-    .t-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-color: #cbd5e1; }
+    .t-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); border-color: #cbd5e1; }
     .t-card.task-card { border-color: #fca5a5; background: #fff1f2; }
 
     .t-time { font-size: 1rem; font-weight: 800; color: var(--primary); width: 60px; flex-shrink: 0; padding-top: 2px; }
@@ -121,28 +154,24 @@
     .btn-nav:hover { background: #065f46; }
     .btn-web { background: #2563eb; color: white; }
     .btn-web:hover { background: #1d4ed8; }
-    .btn-cp { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .btn-cp { background: var(--book-bg); color: var(--text); border: 1px solid var(--border); }
     .btn-cp:hover { background: #f5f5f4; }
 
-    /* 購物與美妝專區排版 */
-    .shopping-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-    .shop-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column; }
-    .shop-card h3 { margin: 0 0 6px 0; font-size: 1.25rem; color: var(--primary); }
-    .shop-card h4 { margin: 0 0 14px 0; font-size: 0.9rem; color: var(--text-muted); font-weight: 600; }
+    /* 購物專區 (4欄精簡整合) */
+    .shopping-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .shop-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.06); display: flex; flex-direction: column; }
+    .shop-card h3 { margin: 0 0 6px 0; font-size: 1.2rem; color: var(--primary); }
     
-    /* 智慧新增商品輸入列 */
-    .add-item-row { display: flex; gap: 8px; margin-bottom: 16px; }
-    .add-input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: var(--surface); }
+    .add-item-row { display: flex; gap: 8px; margin-top: 12px; margin-bottom: 16px; }
+    .add-input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: var(--book-bg); }
     .add-btn { background: var(--primary); color: white; border: none; padding: 0 16px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s; }
     .add-btn:hover { background: #9a3412; }
 
-    /* 商品清單樣式 */
     .item-list { display: flex; flex-direction: column; gap: 8px; max-height: 300px; overflow-y: auto; }
-    .item-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.95rem; }
+    .item-row { display: flex; align-items: center; justify-content: space-between; background: var(--book-bg); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.95rem; }
     .item-delete { color: #dc2626; background: none; border: none; cursor: pointer; font-size: 1.1rem; padding: 2px 6px; border-radius: 4px; }
     .item-delete:hover { background: #fee2e2; }
 
-    /* Toast 提示 */
     #toast {
       position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px);
       background: rgba(41, 37, 36, 0.95); color: white; padding: 12px 24px; border-radius: 999px;
@@ -151,37 +180,50 @@
     }
 
     @media (max-width: 768px) {
-      .hero-cover { height: 320px; padding: 25px; }
-      .hero-cover h1 { font-size: 2.2rem; }
-      .content-body { padding: 20px; }
-      .magazine-container { box-shadow: none; }
+      body { padding: 0; }
+      .travel-book { border-radius: 0; min-height: 100vh; box-shadow: none; }
+      .book-header { height: 280px; padding: 25px; }
+      .book-header h1 { font-size: 2rem; }
+      .book-body { padding: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="magazine-container">
+  <div class="travel-book">
 
-    <!-- 封面 -->
-    <div class="hero-cover">
-      <div class="hero-badge">🍁 釜山 ✕ 慶州 秋季專屬手冊</div>
-      <h1>秋季自由行</h1>
-      <p>2026.10.10 - 10.15 • 完整行程與攻略指南</p>
+    <!-- ================= 3D 翻書封面 ================= -->
+    <div id="bookCover" class="book-cover">
+      <div class="cover-title">
+        <h1>BUSAN</h1>
+        <p>釜山 ✕ 慶州 秋季旅遊手冊</p>
+        <p style="font-size:1rem; opacity:0.8; margin-top:10px; font-weight: 600;">2026.10.10 - 10.15</p>
+      </div>
+      <button class="cover-btn" onclick="openBook()">
+        翻開手冊 <i class="ph-bold ph-arrow-right"></i>
+      </button>
     </div>
 
-    <!-- 快捷導覽列 -->
-    <div class="nav-bar">
-      <a href="#d1" class="nav-btn">10/10 廣安里</a>
-      <a href="#d2" class="nav-btn">10/11 傳統市場</a>
-      <a href="#d3" class="nav-btn">10/12 冬柏島</a>
-      <a href="#d4" class="nav-btn">10/13 慶州花海</a>
-      <a href="#d5" class="nav-btn">10/14 松葉蟹</a>
-      <a href="#d6" class="nav-btn">10/15 釜山塔</a>
-      <a href="#shopping-area" class="nav-btn">🛒 智慧掃貨清單</a>
+    <!-- 手冊封面 Banner -->
+    <header class="book-header">
+      <div class="book-badge">🍁 釜山 ✕ 慶州</div>
+      <h1>秋季自由行隨身手冊</h1>
+      <p>廣安里無人機秀 • 千年慶州花海 • 釜山塔與味讚王</p>
+    </header>
+
+    <!-- 索引導覽列 -->
+    <div class="index-nav">
+      <a href="#d1" class="index-btn">10/10 廣安里</a>
+      <a href="#d2" class="index-btn">10/11 傳統市場</a>
+      <a href="#d3" class="index-btn">10/12 冬柏島</a>
+      <a href="#d4" class="index-btn">10/13 慶州花海</a>
+      <a href="#d5" class="index-btn">10/14 松葉蟹</a>
+      <a href="#d6" class="index-btn">10/15 釜山塔</a>
+      <a href="#shopping-area" class="index-btn">🛒 智慧掃貨清單</a>
     </div>
 
-    <div class="content-body" id="mainContent">
-      <!-- 行程內容由 JS 動態載入 -->
+    <div class="book-body" id="mainContent">
+      <!-- 內頁內容由 JS 動態載入 -->
     </div>
 
   </div>
@@ -213,7 +255,7 @@
         { time: "17:00", title: "Beansbins 海景咖啡廳", sub: "【下午茶】賞海景吃鬆餅", type: "food", kr: "빈스빈스 광안리점", map: "https://map.naver.com/p/search/%EB%B9%88%EC%8A%A4%EB%B9%88%EC%8A%A4%20%EA%B4%91%EC%95%88%EB%A6%AC%EC%A0%90", img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80", desc: "窗邊第一排享受現烤水果鬆餅，看著夕陽將廣安大橋染成橘紅色。" },
         { time: "17:30", title: "任務：遠端抽湯飯號碼牌", sub: "使用 CatchTable App", type: "task" },
         { time: "19:00", title: "廣安里 M 無人機燈光秀", sub: "【看秀】週六限定科技夜景 ✨", type: "spot", kr: "광안리해수욕장", map: "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5", web: "https://www.gwangallimdrone.co.kr/information", desc: "釜山代表性浪漫海景地標！數百架無人機在廣安大橋前變換3D圖騰，沙灘上免費觀賞。" },
-        { time: "19:25", title: "水邊最高豬肉湯飯", sub: "【晚餐】濃郁奶白大骨高湯", type: "food", kr: "수변최고돼지국밥", map: "https://map.naver.com/p/search/%EC%88%98%EB%B3%80%EC%B5%9C%EA%B3%A0%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5", desc: "釜山評價最高的排隊湯飯！推薦松坂肉湯飯，加韭菜與蝦醬超對味。" },
+        { time: "19:25", title: "水邊最高豬肉湯飯", sub: "【晚餐】濃郁奶白大骨高湯", type: "food", kr: "수변최고돼지국밥", map: "https://map.naver.com/p/search/%EC%88%98%EB%B3%80%EC%B5%9C%EA%B3%A0%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "釜山評價最高的排隊湯飯！推薦松坂肉湯飯，加韭菜與蝦醬超對味。" },
         { time: "20:50", title: "Emart24 購物", sub: "超商補貨", type: "shop" },
         { time: "21:40", title: "Aventree 入住並提行李", sub: "宵夜魚板/糖餅，睡前整理行李", type: "hotel" }
       ]
@@ -231,7 +273,7 @@
         { time: "12:30", title: "三五亭蔘雞湯", sub: "【午餐】西面老字號溫補名店", type: "food", kr: "삼오정", map: "https://map.naver.com/p/search/%EC%82%BC%EC%98%A4%EC%A0%95", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "整隻童子雞燉至骨肉分離，內塞糯米與高麗蔘，秋季溫補首選。" },
         { time: "14:30", title: "ARTE MUSEUM BUSAN", sub: "【景點】影島沉浸式光影美術館", type: "spot", kr: "아르떼뮤지엄 부산", map: "https://map.naver.com/p/search/%EC%95%84%EB%A5%B4%EB%96%BC%EB%AE%A4%EC%A7%80%EC%97%84", img: "https://www.visitbusan.net/uploadImgs/files/cntnts/20240912162614628_oen", desc: "釜山最大數位沉浸式藝術展！巨型投影與香氛還原巨浪與極光花海。" },
         { time: "17:30", title: "NewCZ Nampo 辦理入住", sub: "提領行李進房休息", type: "hotel" },
-        { time: "18:00", title: "勝畜畜產 (南浦店)", sub: "【晚餐】厚切熟成五花與韓牛", type: "food", kr: "승축축산 남포점", map: "https://map.naver.com/p/search/%EC%8A%B9%EC%B6%95%EC%B6%95%EC%82%B0", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80", desc: "外焦裡嫩鎖住肉汁，配生菜包大蒜泡菜超級滿足！" },
+        { time: "18:00", title: "勝畜畜產 (南浦店)", sub: "【晚餐】厚切熟成五花與韓牛", type: "food", kr: "승축축산 남포점", map: "https://map.naver.com/p/search/%EC%8A%B9%EC%B6%95%EC%82%B0", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80", desc: "外焦裡嫩鎖住肉汁，配生菜包大蒜泡菜超級滿足！" },
         { time: "20:00", title: "BIFF 廣場 ＋ 光復路", sub: "逛街散策，宵夜外帶橋村炸雞", type: "shop" }
       ]
     },
@@ -316,7 +358,7 @@
     }
   ];
 
-  // 智慧分類商品清單資料庫 (支援 localStorage 記憶)
+  // 智慧分類商品清單 (已將男友代買精簡整合至美妝區)
   let shoppingCategories = JSON.parse(localStorage.getItem('busan_shopping_list')) || [
     {
       id: "supermarket",
@@ -335,13 +377,8 @@
     },
     {
       id: "beauty",
-      title: "✨ Olive Young 美妝保養",
-      items: ["Arenchia 綠茶年糕潔面", "Torhop 黑鹽潔顏乳", "Skin1004 防曬", "The Ordinary 煙鹼醯胺 10%+鋅 1%", "s.nature 角鯊霜", "KATE 零瑕肌密粉底液 (00 亮白)", "KATE 蜜粉液", "Clio 哈利波特眼影盤", "CANMAKE 臥蠶打亮筆"]
-    },
-    {
-      id: "boyfriend",
-      title: "👦 男友專屬代買清單",
-      items: ["Obge 男士素顏霜", "男性專用清爽型 All-in-One 化妝水"]
+      title: "✨ Olive Young 美妝與男友代買",
+      items: ["Arenchia 綠茶年糕潔面", "Torhop 黑鹽潔顏乳", "Skin1004 防曬", "The Ordinary 煙鹼醯胺 10%+鋅 1%", "s.nature 角鯊霜", "KATE 零瑕肌密粉底液 (00 亮白)", "KATE 蜜粉液", "Clio 哈利波特眼影盤", "CANMAKE 臥蠶打亮筆", "Obge 男士素顏霜", "男性專用清爽型 All-in-One 化妝水"]
     }
   ];
 
@@ -355,7 +392,7 @@
   };
 
   // 動態渲染網頁內容
-  function renderMagazine() {
+  function renderBook() {
     const container = document.getElementById('mainContent');
     let html = '';
 
@@ -404,14 +441,14 @@
       html += `</div></div>`;
     });
 
-    // 2. 渲染智慧購物專區
+    // 2. 渲染智慧購物專區 (4欄)
     html += `
       <div id="shopping-area" class="day-section">
         <div class="day-header">
           <div class="day-icon"><i class="ph-fill ph-shopping-bag-open"></i></div>
           <div class="day-title-group">
             <h2>🛒 智慧掃貨與必買清單</h2>
-            <p>輸入你想買的東西，AI會自動幫你歸類！</p>
+            <p>輸入你想買的東西，AI 會自動幫你歸類到對應的清單中！</p>
           </div>
         </div>
 
@@ -449,14 +486,13 @@
     container.innerHTML = html;
   }
 
-  // 智慧 AI 分類邏輯 (根據關鍵字自動分到對應分類)
+  // 智慧 AI 分類邏輯 (4個分類)
   function classifyItem(text) {
     const t = text.toLowerCase();
-    if (t.includes('美妝') || t.includes('防曬') || t.includes('粉底') || t.includes('眼影') || t.includes('洗面乳') || t.includes('精華') || t.includes('霜') || t.includes('蜜粉') || t.includes('筆') || t.includes('唇')) return 3; // Olive Young
-    if (t.includes('男友') || t.includes('素顏霜') || t.includes('男') || t.includes('化妝水')) return 4; // 男友專屬
+    if (t.includes('美妝') || t.includes('防曬') || t.includes('粉底') || t.includes('眼影') || t.includes('洗面乳') || t.includes('精華') || t.includes('霜') || t.includes('蜜粉') || t.includes('筆') || t.includes('唇') || t.includes('男友') || t.includes('素顏霜') || t.includes('男') || t.includes('化妝水')) return 3; // 美妝與男友代買
     if (t.includes('慶州') || t.includes('皇南餅') || t.includes('十元') || t.includes('麵包') || t.includes('瞻星臺') || t.includes('明信片')) return 1; // 慶州限定
     if (t.includes('水果') || t.includes('葡萄') || t.includes('桃') || t.includes('海苔') || t.includes('小菜')) return 2; // 水果市場
-    return 0; // 預設歸類到 超市與零食
+    return 0; // 超市零食
   }
 
   function addItem(catIdx) {
@@ -464,7 +500,6 @@
     const val = input.value.trim();
     if(!val) return;
 
-    // 自動判斷最適合的分類群組
     const targetIdx = classifyItem(val);
     shoppingCategories[targetIdx].items.push(val);
     
@@ -485,11 +520,11 @@
 
   function saveAndRender() {
     localStorage.setItem('busan_shopping_list', JSON.stringify(shoppingCategories));
-    renderMagazine();
+    renderBook();
   }
 
-  function enterApp() {
-    document.getElementById('screen-cover').classList.add('hide');
+  function openBook() {
+    document.getElementById('bookCover').classList.add('hide');
   }
 
   function copyText(text) {
@@ -506,7 +541,7 @@
   }
 
   // 初始化執行
-  renderMagazine();
+  renderBook();
 </script>
 </body>
 </html>
