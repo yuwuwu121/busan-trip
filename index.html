@@ -33,7 +33,6 @@
       padding: 0;
     }
 
-    /* 寬螢幕置中容器，手機與電腦通用雜誌風格 */
     .app-container {
       position: relative;
       width: 100%; max-width: 900px;
@@ -42,7 +41,6 @@
       box-shadow: 0 0 40px rgba(0,0,0,0.05);
     }
 
-    /* 頁面切換系統 */
     .page {
       display: none;
       animation: fadeIn 0.3s ease-in-out;
@@ -108,14 +106,24 @@
     .timeline::before { content: ''; position: absolute; top: 20px; bottom: 20px; left: 12px; width: 2px; background: #e7e5e4; border-radius: 2px; }
     .t-item { position: relative; margin-bottom: 16px; }
     .t-dot { position: absolute; left: -27px; top: 24px; width: 12px; height: 12px; border-radius: 50%; background: white; border: 3px solid var(--primary); z-index: 2; }
-    .t-card { background: var(--surface); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); display: flex; align-items: center; gap: 16px; border: 1px solid transparent; }
+    .t-card { background: var(--surface); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); display: flex; align-items: center; gap: 16px; border: 1px solid transparent; cursor: pointer; transition: 0.2s; }
+    .t-card:hover { border-color: var(--border); box-shadow: 0 6px 20px -3px rgba(120, 113, 108, 0.12); }
     .t-card.task { border-color: #fca5a5; box-shadow: 0 4px 15px -3px rgba(239, 68, 68, 0.15); }
     .t-time { font-size: 0.95rem; font-weight: 800; color: var(--primary); width: 55px; flex-shrink: 0; }
     .t-info { flex: 1; }
     .t-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
     .t-sub { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
 
-    /* 詳情頁設計 */
+    /* 詳情頁設計 (獨立純白圓形返回按鈕 Icon) */
+    .detail-back-icon {
+      position: absolute; top: 20px; left: 20px; z-index: 50;
+      width: 42px; height: 42px; border-radius: 50%; background: white;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15); cursor: pointer;
+      font-size: 1.2rem; color: #292524; transition: 0.2s;
+    }
+    .detail-back-icon:hover { transform: scale(1.05); background: #f5f5f4; }
+
     .detail-cover { width: 100%; height: 320px; object-fit: cover; background: #e7e5e4; }
     .detail-body { padding: 30px; background: var(--surface); border-top-left-radius: 24px; border-top-right-radius: 24px; margin-top: -24px; position: relative; z-index: 5; }
     .d-tag { display: inline-block; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px; }
@@ -231,9 +239,7 @@
 
     <!-- ================= 詳情頁 ================= -->
     <div id="page-detail" class="page">
-      <div class="header-bar" style="position: absolute; background: transparent; border: none; z-index: 10; width: 100%;">
-        <div class="back-btn" onclick="goBackToList()"><i class="ph-bold ph-arrow-left"></i></div>
-      </div>
+      <div class="detail-back-icon" onclick="goBackToList()"><i class="ph-bold ph-arrow-left"></i></div>
       <img id="detail-img" class="detail-cover" src="" alt="Cover">
       <div class="detail-body">
         <div id="detail-tag" class="d-tag">標籤</div>
@@ -347,7 +353,7 @@
         { time: "16:30", title: "抵達金海機場", sub: "進行行李秤重與最後分裝", type: "traffic" },
         { time: "17:00", title: "櫃檯辦理登機與託運", sub: "取得登機證", type: "traffic" },
         { time: "17:20", title: "機場辦理退稅手續", sub: "領取退稅現金", type: "task" },
-        { time: "17:50", title: "免稅區 CU 超商採買", sub: "買香蕉牛奶、優格提上飛機", type: "shop" },
+        { time: "17:50", title: "免稅區 CU 超商採買", sub: "買香蕉牛奶，優格提上飛機", type: "shop" },
         { time: "18:20", title: "登機門排隊準備登機", sub: "準備搭機返台", type: "traffic" },
         { time: "19:10", title: "班機起飛返回台灣", sub: "飛行途中", type: "traffic" },
         { time: "19:25", title: "機上享用飛機餐", sub: "空中晚餐", type: "food" },
@@ -374,7 +380,7 @@
     },
     {
       id: "beauty",
-      title: "✨ Olive Young 美妝與男友代買",
+      title: "✨ Olive Young 美妝保養",
       items: ["Arenchia 綠茶年糕潔面", "Torhop 黑鹽潔顏乳", "Skin1004 防曬", "The Ordinary 煙鹼醯胺 10%+鋅 1%", "s.nature 角鯊霜", "KATE 零瑕肌密粉底液 (00 亮白)", "KATE 蜜粉液", "Clio 哈利波特眼影盤", "CANMAKE 臥蠶打亮筆", "Obge 男士素顏霜", "男性專用清爽型 All-in-One 化妝水"]
     }
   ];
@@ -388,7 +394,9 @@
     hotel: { color: '#9a3412', bg: '#ffedd5', label: '住宿' }
   };
 
-  let currentDayId = '';
+  function enterApp() {
+    document.getElementById('screen-cover').classList.add('hide');
+  }
 
   function openDay(id) {
     currentDayId = id;
@@ -521,6 +529,7 @@
     renderShopping();
   }
 
+  let currentDayId = '';
   function switchPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
