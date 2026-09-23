@@ -138,18 +138,22 @@
     .btn-cp { background: #f5f5f4; color: #44403c; border: 1px solid #d6d3d1; }
     .btn-cp:hover { background: #e7e5e4; }
 
-    /* 智慧一條輸入框掃貨清單 */
-    .bulk-input-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); }
-    .bulk-textarea { width: 100%; height: 90px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: var(--bg); resize: none; margin-bottom: 10px; font-family: inherit; }
-    .bulk-btn { background: var(--primary); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
-    .bulk-btn:hover { background: #9a3412; }
+    /* 單一大清單與新增欄位設計 */
+    .add-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); }
+    .add-input { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: var(--bg); margin-bottom: 10px; font-family: inherit; }
+    .add-btn { background: var(--primary); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .add-btn:hover { background: #9a3412; }
 
-    .shopping-wrapper { display: flex; flex-direction: column; gap: 20px; }
-    .shop-group-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); }
-    .shop-group-card h3 { margin: 0 0 12px 0; font-size: 1.15rem; color: var(--primary); }
-    .item-list { display: flex; flex-direction: column; gap: 8px; max-height: 300px; overflow-y: auto; }
-    .item-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.9rem; }
-    .item-delete { color: #dc2626; background: none; border: none; cursor: pointer; font-size: 1.1rem; padding: 2px 6px; }
+    .single-shop-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); }
+    .single-shop-card h3 { margin: 0 0 16px 0; font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    
+    .shopping-item-grid { display: flex; flex-direction: column; gap: 12px; max-height: 500px; overflow-y: auto; }
+    .shop-item-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); gap: 12px; }
+    .shop-item-info { display: flex; align-items: center; gap: 14px; flex: 1; }
+    .shop-item-thumb { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; background: #e7e5e4; flex-shrink: 0; }
+    .shop-item-name { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .shop-item-delete { color: #dc2626; background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 4px 8px; border-radius: 6px; }
+    .shop-item-delete:hover { background: #fee2e2; }
 
     #toast { position: fixed; top: 40px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(41, 37, 36, 0.95); color: white; padding: 12px 24px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 8px; opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 999; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -205,7 +209,7 @@
       <div class="home-menu">
         <div class="menu-card buy" onclick="openShopping()">
           <div class="menu-icon"><i class="ph-fill ph-gift"></i></div>
-          <div class="menu-info"><div class="menu-date">AI 智慧分類</div><div class="menu-title">必買掃貨清單</div></div>
+          <div class="menu-info"><div class="menu-date">隨身掃貨記帳</div><div class="menu-title">必買伴手禮清單</div></div>
           <i class="ph-bold ph-caret-right menu-arrow"></i>
         </div>
       </div>
@@ -223,29 +227,30 @@
       </div>
     </div>
 
-    <!-- ================= 智慧購物清單頁 ================= -->
+    <!-- ================= 購物清單頁 (單一大清單 + 圖片) ================= -->
     <div id="page-shopping" class="page">
       <div class="header-bar">
         <div class="back-btn" onclick="goHome()"><i class="ph-bold ph-arrow-left"></i></div>
-        <h2 class="header-title">🛒 智慧掃貨與必買清單</h2>
+        <h2 class="header-title">🛒 必買伴手禮與美妝清單</h2>
       </div>
       <div class="list-container">
         <div class="alert-card">
           <i class="ph-fill ph-warning-circle alert-icon"></i>
-          <div class="alert-text">💡 <b>直接在這裡輸入想買的東西</b>（可換行打多個），按下方按鈕 AI 就會自動幫你分類歸位！</div>
+          <div class="alert-text">💡 <b>隨時新增想買的商品</b>，可自由貼上網路上商品的圖片網址，方便逛街比對！</div>
         </div>
         
-        <!-- 單一大型輸入框 -->
-        <div class="bulk-input-box">
-          <textarea id="bulkInput" class="bulk-textarea" placeholder="例如：
-安城湯麵
-皇南餅
-水蜜桃
-KATE粉底液"></textarea>
-          <button class="bulk-btn" onclick="addBulkItems()">✨ AI 自動分類新增</button>
+        <!-- 新增商品區塊 -->
+        <div class="add-box">
+          <input type="text" id="itemName" class="add-input" placeholder="輸入商品名稱（例如：安城湯麵、KATE粉底液）...">
+          <input type="text" id="itemImg" class="add-input" placeholder="貼上商品圖片網址 (選填，可不填)...">
+          <button class="add-btn" onclick="addShopItem()">✨ 新增至掃貨清單</button>
         </div>
 
-        <div id="shoppingContainer" class="shopping-wrapper"></div>
+        <!-- 混合大清單顯示區 -->
+        <div class="single-shop-card">
+          <h3><i class="ph-fill ph-basket"></i> 欲購買商品總覽</h3>
+          <div id="shoppingContainer" class="shopping-item-grid"></div>
+        </div>
       </div>
     </div>
 
@@ -301,7 +306,7 @@ KATE粉底液"></textarea>
         { time: "12:30", title: "三五亭蔘雞湯", sub: "【午餐】西面老字號溫補名店", type: "food", kr: "삼오정", map: "https://map.naver.com/p/search/%EC%82%BC%EC%98%A4%EC%A0%95", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "整隻童子雞燉至骨肉分離，內塞糯米與高麗蔘，秋季溫補首選。" },
         { time: "14:30", title: "ARTE MUSEUM BUSAN", sub: "【景點】影島沉浸式光影美術館", type: "spot", kr: "아르떼뮤지엄 부산", map: "https://map.naver.com/p/search/%EC%95%84%EB%A5%B4%EB%96%BC%EB%AE%A4%EC%A7%80%EC%97%84", img: "https://www.visitbusan.net/uploadImgs/files/cntnts/20240912162614628_oen", desc: "釜山最大數位沉浸式藝術展！巨型投影與香氛還原巨浪與極光花海。" },
         { time: "17:30", title: "NewCZ Nampo 辦理入住", sub: "提領行李進房休息", type: "hotel" },
-        { time: "18:00", title: "勝畜畜產 (南浦店)", sub: "【晚餐】厚切熟成五花與韓牛", type: "food", kr: "승축축산 남포점", map: "https://map.naver.com/p/search/%EC%8A%B9%EC%B6%95%EC%82%B0", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80", desc: "外焦裡嫩鎖住肉汁，配生菜包大蒜泡菜超級滿足！" },
+        { time: "18:00", title: "勝畜畜產 (南浦店)", sub: "【晚餐】厚切熟成五花與韓牛", type: "food", kr: "승축축산 남포점", map: "https://map.naver.com/p/search/%EC%8A%B9%EC%B6%95%EC%B6%95%EC%82%B0", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80", desc: "外焦裡嫩鎖住肉汁，配生菜包大蒜泡菜超級滿足！" },
         { time: "20:00", title: "BIFF 廣場 ＋ 光復路", sub: "逛街散策，宵夜外帶橋村炸雞", type: "shop" }
       ]
     },
@@ -374,27 +379,15 @@ KATE粉底液"></textarea>
     }
   };
 
-  let shoppingCategories = JSON.parse(localStorage.getItem('busan_shopping_list')) || [
-    {
-      id: "supermarket",
-      title: "🛒 超市與零食伴手禮",
-      items: ["安城湯麵", "不倒翁金螃蟹海鮮麵", "HBAF 杏仁果 (大蒜麵包口味)", "No Brand 紫薯片", "韓國特級白芝麻油", "宗家府泡菜", "袋裝海苔", "韓國玉米鬚茶包"]
-    },
-    {
-      id: "gyeongju",
-      title: "🏛️ 慶州古都限定伴手禮",
-      items: ["皇南餅 / 佛國餅", "皇理團路十元麵包", "瞻星臺特色明信片與香氛蠟燭"]
-    },
-    {
-      id: "fruit",
-      title: "🍇 秋季新鮮水果與市場",
-      items: ["釜田市場巨大水蜜桃", "韓國產麝香葡萄 (無籽極甜)", "現烤海苔", "各式韓國小菜 (醃章魚、魷魚絲)"]
-    },
-    {
-      id: "beauty",
-      title: "✨ Olive Young 美妝保養",
-      items: ["Arenchia 綠茶年糕潔面", "Torhop 黑鹽潔顏乳", "Skin1004 防曬", "The Ordinary 煙鹼醯胺 10%+鋅 1%", "s.nature 角鯊霜", "KATE 零瑕肌密粉底液 (00 亮白)", "KATE 蜜粉液", "Clio 哈利波特眼影盤", "CANMAKE 臥蠶打亮筆", "Obge 男士素顏霜", "男性專用清爽型 All-in-One 化妝水"]
-    }
+  // 單一大清單資料庫 (支援 localStorage 記憶)
+  let shoppingItems = JSON.parse(localStorage.getItem('busan_single_shopping_list')) || [
+    { name: "安城湯麵", img: "" },
+    { name: "不倒翁金螃蟹海鮮麵", img: "" },
+    { name: "HBAF 杏仁果 (大蒜麵包口味)", img: "" },
+    { name: "皇南餅 / 佛國餅", img: "" },
+    { name: "釜田市場巨大水蜜桃", img: "" },
+    { name: "KATE 零瑕肌密粉底液 (00 亮白)", img: "" },
+    { name: "Obge 男士素顏霜", img: "" }
   ];
 
   const typeMap = {
@@ -480,70 +473,45 @@ KATE粉底液"></textarea>
     const container = document.getElementById('shoppingContainer');
     let html = '';
 
-    shoppingCategories.forEach((cat, catIdx) => {
-      html += `
-        <div class="shop-group-card">
-          <h3>${cat.title}</h3>
-          <div class="item-list">
-      `;
-
-      if(cat.items.length === 0) {
-        html += `<div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:15px;">目前沒有商品</div>`;
-      } else {
-        cat.items.forEach((itemText, itemIdx) => {
-          html += `
-            <div class="item-row">
-              <span>${itemText}</span>
-              <button class="item-delete" onclick="deleteItem(${catIdx}, ${itemIdx})"><i class="ph-bold ph-trash"></i></button>
+    if (shoppingItems.length === 0) {
+      html = `<div style="text-align:center; color:var(--text-muted); font-size:0.9rem; padding:20px;">目前沒有商品，快在上方新增吧！</div>`;
+    } else {
+      shoppingItems.forEach((item, idx) => {
+        const thumbHtml = item.img ? `<img src="${item.img}" class="shop-item-thumb" alt="img">` : `<div class="shop-item-thumb" style="display:flex;align-items:center;justify-content:center;color:#a8a29e;"><i class="ph-fill ph-image"></i></div>`;
+        html += `
+          <div class="shop-item-row">
+            <div class="shop-item-info">
+              ${thumbHtml}
+              <div class="shop-item-name">${item.name}</div>
             </div>
-          `;
-        });
-      }
-
-      html += `</div></div>`;
-    });
+            <button class="shop-item-delete" onclick="deleteShopItem(${idx})"><i class="ph-bold ph-trash"></i></button>
+          </div>
+        `;
+      });
+    }
 
     container.innerHTML = html;
   }
 
-  // AI 智慧自動分類邏輯 (一條文字框輸入，自動分到四大類)
-  function classifyItem(text) {
-    const t = text.toLowerCase();
-    if (t.includes('美妝') || t.includes('防曬') || t.includes('粉底') || t.includes('眼影') || t.includes('洗面乳') || t.includes('精華') || t.includes('霜') || t.includes('蜜粉') || t.includes('筆') || t.includes('唇') || t.includes('男友') || t.includes('素顏霜') || t.includes('男') || t.includes('化妝水') || t.includes('kate') || t.includes('clio') || t.includes('canmake') || t.includes('the ordinary')) return 3; // 美妝保養
-    if (t.includes('慶州') || t.includes('皇南餅') || t.includes('十元') || t.includes('麵包') || t.includes('瞻星臺') || t.includes('明信片')) return 1; // 慶州限定
-    if (t.includes('水果') || t.includes('葡萄') || t.includes('桃') || t.includes('海苔') || t.includes('小菜') || t.includes('水蜜桃')) return 2; // 水果市場
-    return 0; // 超市零食
+  function addShopItem() {
+    const nameInput = document.getElementById('itemName');
+    const imgInput = document.getElementById('itemImg');
+    const nameVal = nameInput.value.trim();
+    const imgVal = imgInput.value.trim();
+
+    if(!nameVal) return;
+
+    shoppingItems.push({ name: nameVal, img: imgVal });
+    nameInput.value = '';
+    imgInput.value = '';
+
+    localStorage.setItem('busan_single_shopping_list', JSON.stringify(shoppingItems));
+    renderShopping();
   }
 
-  function addBulkItems() {
-    const textarea = document.getElementById('bulkInput');
-    const lines = textarea.value.split('\n');
-    
-    let addedCount = 0;
-    lines.forEach(line => {
-      const val = line.trim();
-      if (val) {
-        const targetIdx = classifyItem(val);
-        shoppingCategories[targetIdx].items.push(val);
-        addedCount++;
-      }
-    });
-
-    if (addedCount > 0) {
-      textarea.value = '';
-      localStorage.setItem('busan_shopping_list', JSON.stringify(shoppingCategories));
-      renderShopping();
-      
-      const toast = document.getElementById('toast');
-      document.getElementById('toastMsg').innerText = `成功新增 ${addedCount} 項商品並自動分類！`;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
-    }
-  }
-
-  function deleteItem(catIdx, itemIdx) {
-    shoppingCategories[catIdx].items.splice(itemIdx, 1);
-    localStorage.setItem('busan_shopping_list', JSON.stringify(shoppingCategories));
+  function deleteShopItem(idx) {
+    shoppingItems.splice(idx, 1);
+    localStorage.setItem('busan_single_shopping_list', JSON.stringify(shoppingItems));
     renderShopping();
   }
 
