@@ -1,538 +1,1264 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="h-full scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>釜山慶州 秋季旅遊手冊</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-  <style>
-    :root {
-      --primary: #c2410c;       
-      --primary-light: #ffedd5; 
-      --accent: #b45309;        
-      --bg: #faf6f0;            
-      --surface: #ffffff;
-      --text: #292524;          
-      --text-muted: #78716c;    
-      --border: #e7e5e4;
-      --radius-lg: 24px;
-      --radius-md: 16px;
-    }
-
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-    
-    body {
-      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
-      margin: 0; background-color: var(--bg); color: var(--text);
-      display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;
-      padding: 0;
-    }
-
-    .app-container {
-      position: relative;
-      width: 100%; max-width: 900px;
-      background-color: var(--bg);
-      min-height: 100vh;
-      box-shadow: 0 0 40px rgba(0,0,0,0.05);
-    }
-
-    .page {
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-      padding-bottom: 80px;
-    }
-    .page.active {
-      display: block;
-    }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* 頂部封面 Hero */
-    .hero {
-      position: relative; height: 320px;
-      background: linear-gradient(180deg, rgba(67, 36, 22, 0.4) 0%, rgba(67, 36, 22, 0.9) 100%), 
-                  url('https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=1600&q=80') center/cover;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 35px; color: white;
-      border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg);
-      box-shadow: 0 10px 30px rgba(194, 65, 12, 0.15);
-    }
-    .hero-badge {
-      display: inline-block; background: rgba(255,255,255,0.25); backdrop-filter: blur(8px);
-      padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; width: fit-content;
-    }
-    .hero h1 { font-size: 2.2rem; font-weight: 800; margin: 0 0 6px 0; }
-    .hero p { margin: 0; font-size: 1rem; opacity: 0.9; }
-
-    .section-title { font-size: 1.2rem; font-weight: 800; color: var(--text); margin: 30px 24px 14px; display: flex; align-items: center; gap: 8px; }
-    .home-menu { padding: 0 24px 20px; display: flex; flex-direction: column; gap: 14px; }
-    .menu-card {
-      background: var(--surface); border-radius: var(--radius-md); padding: 20px;
-      display: flex; align-items: center; gap: 16px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.1); cursor: pointer; transition: 0.2s;
-    }
-    .menu-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px -3px rgba(194, 65, 12, 0.15); }
-    .menu-card:active { transform: scale(0.98); background: #f5f5f4; }
-    .menu-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
-    .menu-info { flex: 1; }
-    .menu-date { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
-    .menu-title { font-size: 1.15rem; font-weight: 800; color: var(--text); }
-    .menu-arrow { color: #a8a29e; font-size: 1.2rem; }
-
-    .menu-card.buy .menu-icon { background: #fefce8; color: #a16207; }
-    .menu-card.buy .menu-date { color: #a16207; }
-
-    /* 頂部導覽列 */
-    .header-bar {
-      position: sticky; top: 0; z-index: 50; background: rgba(250, 246, 240, 0.92); backdrop-filter: blur(16px);
-      padding: 18px 24px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; gap: 14px;
-    }
-    .back-btn { width: 42px; height: 42px; border-radius: 50%; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; transition: 0.2s; }
-    .back-btn:hover { background: #f5f5f4; transform: scale(1.05); }
-    .header-title { font-size: 1.3rem; font-weight: 800; margin: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .list-container { padding: 24px; }
-
-    .alert-card {
-      background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%); border: 1px solid #fde047; border-radius: var(--radius-md);
-      padding: 18px; margin-bottom: 24px; display: flex; gap: 14px; box-shadow: 0 4px 12px rgba(202, 138, 4, 0.1);
-    }
-    .alert-icon { font-size: 1.5rem; color: #a16207; flex-shrink: 0; }
-    .alert-text { font-size: 0.9rem; color: #713f12; line-height: 1.5; }
-    .alert-text b { color: #854d0e; }
-
-    .timeline { position: relative; padding-left: 32px; }
-    .timeline::before { content: ''; position: absolute; top: 20px; bottom: 20px; left: 12px; width: 2px; background: #e7e5e4; border-radius: 2px; }
-    .t-item { position: relative; margin-bottom: 16px; }
-    .t-dot { position: absolute; left: -27px; top: 24px; width: 12px; height: 12px; border-radius: 50%; background: white; border: 3px solid var(--primary); z-index: 2; }
-    .t-card { background: var(--surface); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); display: flex; align-items: center; gap: 16px; border: 1px solid transparent; cursor: pointer; transition: 0.2s; }
-    .t-card:hover { border-color: var(--border); box-shadow: 0 6px 20px -3px rgba(120, 113, 108, 0.12); }
-    .t-card.task { border-color: #fca5a5; box-shadow: 0 4px 15px -3px rgba(239, 68, 68, 0.15); }
-    .t-time { font-size: 0.95rem; font-weight: 800; color: var(--primary); width: 55px; flex-shrink: 0; }
-    .t-info { flex: 1; }
-    .t-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-    .t-sub { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
-
-    /* 詳情頁 */
-    .detail-back-icon {
-      position: absolute; top: 20px; left: 20px; z-index: 50;
-      width: 42px; height: 42px; border-radius: 50%; background: white;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15); cursor: pointer;
-      font-size: 1.2rem; color: #292524; transition: 0.2s;
-    }
-    .detail-back-icon:hover { transform: scale(1.05); background: #f5f5f4; }
-    .detail-cover { width: 100%; height: 320px; object-fit: cover; background: #e7e5e4; }
-    .detail-body { padding: 30px; background: var(--surface); border-top-left-radius: 24px; border-top-right-radius: 24px; margin-top: -24px; position: relative; z-index: 5; }
-    .d-tag { display: inline-block; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px; }
-    .d-title { font-size: 1.6rem; font-weight: 800; margin: 0 0 16px 0; line-height: 1.3; }
-    .d-desc { font-size: 1rem; color: #44403c; line-height: 1.8; margin-bottom: 30px; white-space: pre-line; }
-
-    .action-row { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
-    .btn-large { width: 100%; padding: 18px; border-radius: 14px; font-size: 1.05rem; font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 10px; border: none; cursor: pointer; text-decoration: none; transition: 0.2s; }
-    .btn-nav { background: #047857; color: white; }
-    .btn-nav:hover { background: #065f46; }
-    .btn-web { background: #2563eb; color: white; }
-    .btn-web:hover { background: #1d4ed8; }
-    .btn-cp { background: #f5f5f4; color: #44403c; border: 1px solid #d6d3d1; }
-    .btn-cp:hover { background: #e7e5e4; }
-
-    /* 單一大清單與新增欄位設計 */
-    .add-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); }
-    .add-input { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: var(--bg); margin-bottom: 10px; font-family: inherit; }
-    .add-btn { background: var(--primary); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
-    .add-btn:hover { background: #9a3412; }
-
-    .single-shop-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; box-shadow: 0 4px 15px -3px rgba(120, 113, 108, 0.08); }
-    .single-shop-card h3 { margin: 0 0 16px 0; font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 8px; }
-    
-    .shopping-item-grid { display: flex; flex-direction: column; gap: 12px; max-height: 500px; overflow-y: auto; }
-    .shop-item-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); gap: 12px; }
-    .shop-item-info { display: flex; align-items: center; gap: 14px; flex: 1; }
-    .shop-item-thumb { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; background: #e7e5e4; flex-shrink: 0; }
-    .shop-item-name { font-size: 1rem; font-weight: 700; color: var(--text); }
-    .shop-item-delete { color: #dc2626; background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 4px 8px; border-radius: 6px; }
-    .shop-item-delete:hover { background: #fee2e2; }
-
-    #toast { position: fixed; top: 40px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(41, 37, 36, 0.95); color: white; padding: 12px 24px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 8px; opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 999; }
-    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>釜山慶州6日 - 秋日簡約風之旅</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif'],
+                        mono: ['"Plus Jakarta Sans"', 'monospace'],
+                    },
+                    colors: {
+                        autumn: {
+                            bg: '#fcfaf7',
+                            card: '#ffffff',
+                            border: '#e7e2d8',
+                            primary: '#8c6d53',       /* 溫潤焦糖棕 */
+                            primaryHover: '#735741',
+                            accent: '#d98b65',        /* 秋葉橘色 */
+                            soft: '#f5f0eb',          /* 淺米色底 */
+                            textMain: '#2c2522',      /* 深咖啡字 */
+                            textSub: '#7a7067',       /* 灰褐次要字 */
+                        }
+                    },
+                    boxShadow: {
+                        autumn: '0 10px 25px -5px rgba(140, 109, 83, 0.08), 0 8px 10px -6px rgba(140, 109, 83, 0.05)',
+                        autumnHover: '0 20px 35px -10px rgba(140, 109, 83, 0.15), 0 10px 15px -5px rgba(140, 109, 83, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+            background-color: #fcfaf7;
+            color: #2c2522;
+            min-height: 100vh;
+        }
+        .autumn-card {
+            background-color: #ffffff;
+            border: 1px solid #e7e2d8;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(140, 109, 83, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .autumn-card:hover {
+            border-color: #d98b65;
+            box-shadow: 0 16px 30px -8px rgba(140, 109, 83, 0.12);
+            transform: translateY(-2px);
+        }
+        .autumn-header {
+            background: rgba(252, 250, 247, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e7e2d8;
+        }
+        .autumn-btn {
+            background-color: #8c6d53;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(140, 109, 83, 0.2);
+            transition: all 0.2s ease;
+        }
+        .autumn-btn:hover {
+            background-color: #735741;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(140, 109, 83, 0.3);
+        }
+        .autumn-badge {
+            background-color: #f5f0eb;
+            color: #8c6d53;
+            border: 1px solid #e7e2d8;
+        }
+        /* Hide scrollbars for clean mobile scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
-<body>
+<body class="flex flex-col selection:bg-amber-100 selection:text-amber-900">
 
-  <div class="app-container">
-
-    <!-- ================= 首頁 ================= -->
-    <div id="page-home" class="page active">
-      <header class="hero">
-        <div class="hero-badge">🍁 釜山 ✕ 慶州</div>
-        <h1>秋季自由行</h1>
-        <p>廣安里無人機秀 • 千年慶州花海 • 釜山塔與味讚王</p>
-      </header>
-
-      <div class="section-title"><i class="ph-bold ph-calendar-check"></i> 行程總覽</div>
-      <div class="home-menu">
-        <div class="menu-card" onclick="openDay('d1')">
-          <div class="menu-icon"><i class="ph-fill ph-airplane-landing"></i></div>
-          <div class="menu-info"><div class="menu-date">10/10 (六)</div><div class="menu-title">廣安海景與無人機秀</div></div>
-          <i class="ph-bold ph-caret-right menu-arrow"></i>
+    <header class="autumn-header text-autumn-textMain sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#overview" class="flex items-center space-x-2.5">
+                <i class="fa-solid fa-seedling text-lg text-autumn-primary"></i>
+                <h1 class="text-base md:text-lg font-bold tracking-wide text-autumn-primary">釜山慶州6日</h1>
+            </a>
+            <nav class="hidden md:flex space-x-1 text-sm font-medium">
+                <a href="#overview" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">總覽</a>
+                <a href="#itinerary" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">每日行程</a>
+                <a href="#guide" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">深度導覽</a>
+                <a href="#accommodation" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">住宿</a>
+                <a href="#translation" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">翻譯</a>
+                <a href="#snacks" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">伴手禮</a>
+                <a href="#checklist" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">行李</a>
+                <a href="#budget" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">記帳</a>
+                <a href="#info" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">資訊</a>
+            </nav>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-autumn-primary focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
         </div>
-        <div class="menu-card" onclick="openDay('d2')">
-          <div class="menu-icon"><i class="ph-fill ph-palette"></i></div>
-          <div class="menu-info"><div class="menu-date">10/11 (日)</div><div class="menu-title">傳統市場與光影展</div></div>
-          <i class="ph-bold ph-caret-right menu-arrow"></i>
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pt-2 pb-4 space-y-1.5 border-t border-autumn-border shadow-md">
+            <a href="#overview" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-primary font-semibold">行程總覽</a>
+            <a href="#itinerary" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">每日行程</a>
+            <a href="#guide" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">深度導覽</a>
+            <a href="#accommodation" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">住宿與周邊</a>
+            <a href="#translation" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">韓文翻譯與語音</a>
+            <a href="#snacks" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">零食伴手禮</a>
+            <a href="#checklist" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">行李清單</a>
+            <a href="#budget" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">花費記帳</a>
+            <a href="#info" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">實用資訊</a>
         </div>
-        <div class="menu-card" onclick="openDay('d3')">
-          <div class="menu-icon"><i class="ph-fill ph-waves"></i></div>
-          <div class="menu-info"><div class="menu-date">10/12 (一)</div><div class="menu-title">冬柏海景與尾浦散策</div></div>
-          <i class="ph-bold ph-caret-right menu-arrow"></i>
-        </div>
-        <div class="menu-card" onclick="openDay('d4')">
-          <div class="menu-icon"><i class="ph-fill ph-leaf"></i></div>
-          <div class="menu-info"><div class="menu-date">10/13 (二)</div><div class="menu-title">慶州千年古都與花海</div></div>
-          <i class="ph-bold ph-caret-right menu-arrow"></i>
-        </div>
-        <div class="menu-card" onclick="openDay('d5')">
-          <div class="menu-icon"><i class="ph-fill ph-fish-simple"></i></div>
-          <div class="menu-info"><div class="menu-date">10/14 (三)</div><div class="menu-title">松葉蟹與披薩夜市大滿貫</div></div>
-          <i class="ph-bold ph-caret-right menu-arrow"></i>
-        </div>
-        <div class="menu-card" onclick="openDay('d6')">
-          <div class="menu-icon"><i class="ph-fill ph-airplane-takeoff"></i></div>
-          <div class="menu-info"><div class="menu-date">10/15 (四)</div><div class="menu-title">釜山塔、味讚王烤肉賦歸</div></div>
-          <i class="ph-bold ph-caret-right menu-arrow"></i>
-        </div>
-      </div>
+    </header>
 
-      <div class="section-title"><i class="ph-bold ph-shopping-bag-open"></i> 專屬清單</div>
-      <div class="home-menu">
-        <div class="menu-card buy" onclick="openShopping()">
-          <div class="menu-icon"><i class="ph-fill ph-gift"></i></div>
-          <div class="menu-info"><div class="menu-date">隨身掃貨記帳</div><div class="menu-title">必買伴手禮清單</div></div>
-          <i class="ph-bold ph-caret-right menu-arrow"></i>
-        </div>
-      </div>
-    </div>
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-6 space-y-16">
 
-    <!-- ================= 行程列表頁 ================= -->
-    <div id="page-list" class="page">
-      <div class="header-bar">
-        <div class="back-btn" onclick="goHome()"><i class="ph-bold ph-arrow-left"></i></div>
-        <h2 class="header-title" id="list-header-title">Day 1</h2>
-      </div>
-      <div class="list-container">
-        <div id="listAlert" class="alert-card" style="display:none;"></div>
-        <div id="listContent" class="timeline"></div>
-      </div>
-    </div>
-
-    <!-- ================= 購物清單頁 (單一大清單 + 圖片) ================= -->
-    <div id="page-shopping" class="page">
-      <div class="header-bar">
-        <div class="back-btn" onclick="goHome()"><i class="ph-bold ph-arrow-left"></i></div>
-        <h2 class="header-title">🛒 必買伴手禮與美妝清單</h2>
-      </div>
-      <div class="list-container">
-        <div class="alert-card">
-          <i class="ph-fill ph-warning-circle alert-icon"></i>
-          <div class="alert-text">💡 <b>隨時新增想買的商品</b>，可自由貼上網路上商品的圖片網址，方便逛街比對！</div>
-        </div>
-        
-        <!-- 新增商品區塊 -->
-        <div class="add-box">
-          <input type="text" id="itemName" class="add-input" placeholder="輸入商品名稱（例如：安城湯麵、KATE粉底液）...">
-          <input type="text" id="itemImg" class="add-input" placeholder="貼上商品圖片網址 (選填，可不填)...">
-          <button class="add-btn" onclick="addShopItem()">✨ 新增至掃貨清單</button>
-        </div>
-
-        <!-- 混合大清單顯示區 -->
-        <div class="single-shop-card">
-          <h3><i class="ph-fill ph-basket"></i> 欲購買商品總覽</h3>
-          <div id="shoppingContainer" class="shopping-item-grid"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= 詳情頁 ================= -->
-    <div id="page-detail" class="page">
-      <div class="detail-back-icon" onclick="goBackToList()"><i class="ph-bold ph-arrow-left"></i></div>
-      <img id="detail-img" class="detail-cover" src="" alt="Cover">
-      <div class="detail-body">
-        <div id="detail-tag" class="d-tag">標籤</div>
-        <h2 id="detail-title" class="d-title">標題</h2>
-        <div id="detail-desc" class="d-desc">內容介紹</div>
-        <div id="detail-actions" class="action-row"></div>
-      </div>
-    </div>
-
-  </div>
-
-  <div id="toast"><i class="ph-fill ph-check-circle"></i><span id="toastMsg">已複製</span></div>
-
-<script>
-  const db = {
-    'd1': {
-      title: "10/10 廣安海景與無人機秀",
-      alert: "今日重點：<b>13:40</b> 去南浦 Emart24 預訂 15 瓶飲料；<b>17:30</b> 開 CatchTable 抽水邊最高豬肉湯飯號碼牌！",
-      items: [
-        { time: "04:00", title: "小7集合出發", sub: "前往機場", type: "traffic" },
-        { time: "05:00", title: "機場報到", sub: "辦理登機手續", type: "traffic" },
-        { time: "07:00", title: "飛機起飛前往釜山", sub: "飛行途中", type: "traffic" },
-        { time: "07:30", title: "機上享用飛機餐", sub: "空中早餐", type: "food" },
-        { time: "10:20", title: "抵達金海機場", sub: "入境釜山", type: "traffic" },
-        { time: "10:50", title: "接機專車前往市區", sub: "直奔南浦洞", type: "traffic" },
-        { time: "11:40", title: "Aventree 飯店寄放行李", sub: "先放重物", type: "hotel", kr: "아벤트리호텔 부산", map: "https://map.naver.com/p/search/%EC%95%84%EB%B2%A4%ED%8A%B8%EB%A6%AC%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80", desc: "抵達飯店後先寄放大型行李，輕裝出發去吃午餐！" },
-        { time: "12:10", title: "弘小(紅燒)豬腳", sub: "【午餐】推薦半半豬腳", type: "food", kr: "홍소족발 본점", map: "https://map.naver.com/p/search/%ED%99%8D%EC%86%8C%EC%A1%B1%EB%B0%9C", img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80", desc: "南浦洞極具盛名的豬腳老店！外皮軟糯、富含膠原蛋白，搭配隨桌附贈的鮮美醒酒大骨湯。" },
-        { time: "13:40", title: "任務：預訂飲料×15", sub: "Emart24 超商 (10/14取貨)", type: "task" },
-        { time: "13:50", title: "友利換錢所換錢", sub: "換妥韓幣現金", type: "traffic" },
-        { time: "14:00", title: "搭乘 Uber 前往廣安里", sub: "分 2 台車移動", type: "traffic" },
-        { time: "14:30", title: "廣安里逛街散策", sub: "SCENTICA香水、ADoR、文創小店", type: "spot" },
-        { time: "17:00", title: "Beansbins 海景咖啡廳", sub: "【下午茶】賞海景吃鬆餅", type: "food", kr: "빈스빈스 광안리점", map: "https://map.naver.com/p/search/%EB%B9%88%EC%8A%A4%EB%B9%88%EC%8A%A4%20%EA%B4%91%EC%95%88%EB%A6%AC%EC%A0%90", img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80", desc: "窗邊第一排享受現烤水果鬆餅，看著夕陽將廣安大橋染成橘紅色。" },
-        { time: "17:30", title: "任務：遠端抽湯飯號碼牌", sub: "使用 CatchTable App", type: "task" },
-        { time: "19:00", title: "廣安里 M 無人機燈光秀", sub: "【看秀】週六限定科技夜景 ✨", type: "spot", kr: "광안리해수욕장", map: "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5", web: "https://www.gwangallimdrone.co.kr/information", img: "https://www.visitbusan.net/uploadImgs/files/cntnts/20240126145805570", desc: "釜山代表性浪漫海景地標！數百架無人機在廣安大橋前變換3D圖騰，沙灘上免費觀賞。" },
-        { time: "19:25", title: "水邊最高豬肉湯飯", sub: "【晚餐】濃郁奶白大骨高湯", type: "food", kr: "수변최고돼지국밥", map: "https://map.naver.com/p/search/%EC%88%98%EB%B3%80%EC%B5%9C%EA%B3%A0%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "釜山評價最高的排隊湯飯！推薦松坂肉湯飯，加韭菜與蝦醬超對味。" },
-        { time: "20:50", title: "Emart24 購物", sub: "超商補貨", type: "shop" },
-        { time: "21:40", title: "Aventree 入住並提行李", sub: "宵夜魚板/糖餅，睡前整理行李", type: "hotel" }
-      ]
-    },
-    'd2': {
-      title: "10/11 傳統市場與光影展",
-      alert: "今日備忘：<b>09:00</b> 換至 NewCZ Nampo Hotel 寄放行李；釜田市場建議多備現金！",
-      items: [
-        { time: "08:40", title: "Aventree 辦理退房", sub: "準備換飯店", type: "traffic" },
-        { time: "09:00", title: "換宿 NewCZ Nampo", sub: "寄放行李", type: "hotel", kr: "뉴씨즈 남포호텔", map: "https://map.naver.com/p/search/%EB%89%B4%EC%94%A8%EC%A6%88%20%EB%82%A8%ED%8F%AC%ED%98%B8%ED%85%94", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80", desc: "換到新飯店寄放行李後，搭 Uber 展開今日行程。" },
-        { time: "09:50", title: "釜田市場傳統小吃", sub: "【早餐】手工排骨餅、買水果", type: "spot", kr: "부전시장", map: "https://map.naver.com/p/search/%EB%B6%80%EC%82%84%EC%8B%9C%EC%9E%A5", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=800&q=80", desc: "品嚐手工排骨豬肉餅、明卵紫菜包飯、大王鯛魚燒，順便買新鮮麝香葡萄。" },
-        { time: "12:30", title: "三五亭蔘雞湯", sub: "【午餐】西面老字號溫補名店", type: "food", kr: "삼오정", map: "https://map.naver.com/p/search/%EC%82%BC%EC%98%A4%EC%A0%95", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "整隻童子雞燉至骨肉分離，內塞糯米與高麗蔘，秋季溫補首選。" },
-        { time: "14:30", title: "ARTE MUSEUM BUSAN", sub: "【景點】影島沉浸式光影美術館", type: "spot", kr: "아르떼뮤지엄 부산", map: "https://map.naver.com/p/search/%EC%95%84%EB%A5%B4%EB%96%BC%EB%AE%A4%EC%A7%80%EC%97%84", img: "https://www.visitbusan.net/uploadImgs/files/cntnts/20240912162614628_oen", desc: "釜山最大數位沉浸式藝術展！巨型投影與香氛還原巨浪與極光花海。" },
-        { time: "17:30", title: "NewCZ Nampo 辦理入住", sub: "提領行李進房休息", type: "hotel" },
-        { time: "18:00", title: "勝畜畜產 (南浦店)", sub: "【晚餐】厚切熟成五花與韓牛", type: "food", kr: "승축축산 남포점", map: "https://map.naver.com/p/search/%EC%8A%B9%EC%B6%95%EC%B6%95%EC%82%B0", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80", desc: "外焦裡嫩鎖住肉汁，配生菜包大蒜泡菜超級滿足！" },
-        { time: "20:00", title: "BIFF 廣場 ＋ 光復路", sub: "逛街散策，宵夜外帶橋村炸雞", type: "shop" }
-      ]
-    },
-    'd3': {
-      title: "10/12 冬柏海景與尾浦散策",
-      alert: "今日備忘：下午 Emart 海雲台店購物，滿額記得攜帶護照直接辦理現場退稅！",
-      items: [
-        { time: "08:00", title: "EGG DROP 南浦店", sub: "【早餐】歐姆蛋厚吐司外帶", type: "food" },
-        { time: "08:40", title: "Mega Coffee 買咖啡", sub: "搭配早餐享用", type: "food" },
-        { time: "10:30", title: "冬柏島 ＆ APEC 世峰樓", sub: "【景點】絕美臨海懸崖木棧道", type: "spot", kr: "동백섬", map: "https://map.naver.com/p/search/%EB%8F%99%EB%B0%B1%EC%84%AC", img: "https://tong.visitkorea.or.kr/cms/resource/20/3334420_image2_1.jpg", desc: "一邊松林一邊大海的懸空木棧道，收納廣安大橋與海雲台美景。" },
-        { time: "12:30", title: "尾浦散策", sub: "慢逛文創選物店與海岸村落", type: "spot", kr: "미포", map: "https://map.naver.com/p/search/%EB%AF%B8%ED%8F%AC", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80", desc: "復古漁村巷弄聚集了質感手天文創與濱海咖啡廳。" },
-        { time: "13:30", title: "老虎冰淇淋大福", sub: "【排隊甜點】薄皮Q嫩冰淇淋", type: "food", kr: "호랑이젤라떡", map: "https://map.naver.com/p/search/%ED%98%B8%EB%9E%91%EC%9D%B4%EC%A0%A4%EB%9D%BC%EB%96%A1", img: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?auto=format&fit=crop&w=800&q=80", desc: "現包極薄Q彈麻糬皮包裹義式冰淇淋的人氣打卡名店。" },
-        { time: "14:00", title: "極東豬肉湯飯 (尾浦店)", sub: "【午餐】米其林推薦清湯派", type: "food", kr: "극동돼지국밥", map: "https://map.naver.com/p/search/%EA%B7%B9%EB%8F%99%EB%8F%BC%EC%A7%80%EA%B5%AD%EC%9D%B4", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "清澈甘甜的清湯派白切肉湯飯，回甘不膩口。" },
-        { time: "15:30", title: "Emart 海雲台店大採購", sub: "【超市】零食伴手禮一次買齊", type: "shop", kr: "이마트 해운대점", map: "https://map.naver.com/p/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%20%ED%95%B4%EC%9A%B4%EB%8C%80", img: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80", desc: "現場出示護照辦理退稅，搭 Uber 載戰利品回南浦洞。" },
-        { time: "19:00", title: "豆田裡 韓式吃到飽", sub: "【晚餐】南浦洞十幾種手作小菜", type: "food", kr: "콩밭에", map: "https://map.naver.com/p/search/%EC%BD%A9%EB%B0%AD%EC%97%90", img: "https://images.unsplash.com/photo-1580651315530-69c8e0026377?auto=format&fit=crop&w=800&q=80", desc: "點主餐即可無限享用手作韓式小菜、煎餅與甜湯。" },
-        { time: "宵夜", title: "Puradak 炸雞", sub: "【宵夜】飯店享用奢華炸雞", type: "food" }
-      ]
-    },
-    'd4': {
-      title: "10/13 慶州千年古都與花海",
-      alert: "今日備忘：KTX 班次已固定（去程 08:39 / 回程 19:37），請務必提前 15 分鐘到月台候車！",
-      items: [
-        { time: "08:39", title: "搭乘 KTX 018 前往慶州", sub: "09:13 抵達慶州站", type: "traffic", kr: "부산역", map: "https://map.naver.com/p/search/%EB%B6%80%EC%82%B0%EC%97%AD" },
-        { time: "09:40", title: "百年客人", sub: "【早餐】古城旁炭火烤肉定食", type: "food", kr: "백년손님", map: "https://map.naver.com/p/search/%EB%B0%B1%EB%85%84%EC%86%90%EB%8B%98%20%EA%B2%BD%EC%A3%BC", img: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=800&q=80", desc: "炭香四溢的烤豬肉搭配新鮮現拌小菜與大醬湯。" },
-        { time: "10:45", title: "瞻星臺 ✕ 粉紅黛子草花海", sub: "【景點】秋季限定粉紅波波草 🌸", type: "spot", kr: "첨성대", map: "https://map.naver.com/p/search/%EC%B2%A8%EC%84%B1%EB%8C%80", img: "https://img.atlasobscura.com/Fj8W6XSHSSpFsg7SVTMZ5yXmt7AwVuyKM-rTRnknnqg/rt:fit/w:1200/q:80/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL3BsYWNl/X2ltYWdlcy80OTU2/ZTE5MS1iMDk3LTRk/NjktOTZkZC0zMGU1/MDljNzYzODdlMGEy/OWIwYWRkMzA4OTQ3/M2FfMkE0NTVBTi5q/cGc.jpg", desc: "東亞最古老天文台！10月中旬周遭綻放粉紅棉花糖般的波波草與波斯菊花海。" },
-        { time: "12:00", title: "大陵苑 ＆ 天馬塚石牆路", sub: "【景點】新羅王陵與秋意林蔭道", type: "spot", kr: "대릉원", map: "https://map.naver.com/p/search/%EB%8C%80%EB%A6%89%EC%9B%90", img: "https://upload.wikimedia.org/wikipedia/commons/2/26/Gyeongju_-_King_Tomb_Park_-_panoramio.jpg", desc: "綠丘陵墓群與古石牆小徑，充滿秋季韓劇氛圍。" },
-        { time: "13:10", title: "皇理團路 韓屋街", sub: "漫逛文創選物與特色店鋪", type: "shop", kr: "황리단길", map: "https://map.naver.com/p/search/%ED%99%A9%EB%A6%AC%EB%8B%A8%EA%B8%B8", desc: "傳統瓦頂改建的潮流街區，聚集手作陶瓷、香氛與十元麵包。" },
-        { time: "14:30", title: "巨松燉排骨 (皇南店)", sub: "【午餐】濃醬香辣排骨拌飯", type: "food", kr: "거송갈비찜", map: "https://map.naver.com/p/search/%EA%B1%B0%EC%86%A1%EA%B0%88%EB%B9%84%EC%A7%90", img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80", desc: "排骨慢火精燉至骨肉分離，大蒜辣甜醬汁堪稱白飯小偷。" },
-        { time: "15:30", title: "韓屋下午茶三選一", sub: "1894薩朗宅 / Cafe Neung / Terarosa", type: "food" },
-        { time: "17:30", title: "東宮與月池夜景", sub: "【景點】水面完美倒影絕美夜景", type: "spot", kr: "동궁과 월지", map: "https://map.naver.com/p/search/%EB%8F%99%EA%B6%81%EA%B3%BC%20%EC%9B%94%EC%A7%80", img: "https://images.unsplash.com/photo-1590515188831-7787497d394e?auto=format&fit=crop&w=800&q=80", desc: "宮殿建築打上金黃色燈光，完美倒映在平靜池面上的絕美夜景。" },
-        { time: "19:37", title: "搭乘 KTX 059 返回釜山", sub: "20:11 抵達釜山站", type: "traffic" },
-        { time: "20:30", title: "釜山站旁炒瑪麵館", sub: "【晚餐】香辣海鮮麵與糖醋肉", type: "food" }
-      ]
-    },
-    'd5': {
-      title: "10/14 松葉蟹與披薩夜市大滿貫",
-      alert: "今日重點：<b>11:30</b> 提領預訂的 15 瓶飲料放回飯店；吃螃蟹最後一定要點蟹膏炒飯！",
-      items: [
-        { time: "08:30", title: "世界村莊土豆湯", sub: "【早餐】大塊排骨燉馬鈴薯醒酒湯", type: "food", kr: "통뼈감자탕", map: "https://map.naver.com/p/search/%ED%86%B5%EB%BC%88%EA%B0%90%EC%9E%90%ED%83%95", img: "https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80", desc: "釜山經典醒酒湯，排骨軟嫩一咬骨肉分離，元氣滿分。" },
-        { time: "10:00", title: "樂天超市光復店", sub: "【超市】最後採買與紙箱打包", type: "shop" },
-        { time: "11:30", title: "任務：提領飲料 × 15", sub: "至指定 Emart24 提貨", type: "task" },
-        { time: "11:40", title: "回飯店放戰利品與飲料", sub: "輕裝出門吃大餐", type: "hotel" },
-        { time: "12:15", title: "新東亞海鮮市場大啖松葉蟹", sub: "【午餐】現撈現蒸活松葉蟹 🦀", type: "spot", kr: "신동아수산물종합시장", map: "https://map.naver.com/p/search/%EC%8B%A0%EB%8F%99%EC%95%84%EC%88%98%EC%82%B0%EB%AC%BC", img: "https://english.visitkorea.or.kr/public/images/foodtrip/k-food-img/img_kfood_view_131.jpg", desc: "現挑生猛活蟹直送樓上清蒸！肉質爆汁鮮甜，必吃麻油海苔蟹膏炒飯。" },
-        { time: "14:00", title: "南浦商圈購物散策", sub: "逛 BIFF、大創、Olive Young 補貨", type: "shop" },
-        { time: "18:00", title: "李在模 Pizza (南浦總店)", sub: "【晚餐】傳奇起司瀑布手工披薩", type: "food", kr: "이재모피자 본점", map: "https://map.naver.com/p/search/%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%84%B0%EC%9E%90", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80", desc: "釜山無人不曉的披薩神店！頂級純鮮奶起司一拉開就是起司瀑布。" },
-        { time: "20:00", title: "富平罐頭夜市吃透透", sub: "【夜市】烤魷魚、肉捲、韓牛握壽司", type: "food", kr: "부평깡통야시장", map: "https://map.naver.com/p/search/%EB%B6%80%EC%95%84%EA%B0%95%ED%86%B5%EC%95%BC%EC%8B%9C%EC%9E%A5", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80", desc: "熱鬧傳統夜市，聚集各種鐵板小吃與韓國街頭美食。" },
-        { time: "宵夜", title: "南浦洞布帳馬車", sub: "【宵夜】辣炒盲鰻配燒酒", type: "food" }
-      ]
-    },
-    'd6': {
-      title: "10/15 釜山塔、味讚王烤肉賦歸",
-      alert: "今日重點：<b>15:30</b> 於飯店門口搭乘專車前往機場；記得在機場 CU 採買香蕉牛奶！",
-      items: [
-        { time: "09:00", title: "飯店辦理退房", sub: "行李寄放櫃檯", type: "hotel" },
-        { time: "09:20", title: "153 龜浦麵條南浦店", sub: "【早餐】在地特色美味麵條", type: "food" },
-        { time: "10:30", title: "龍頭山公園 ＋ 釜山塔", sub: "【景點】俯瞰釜山市景與地標合影", type: "spot", kr: "용두산공원 부산타워", map: "https://map.naver.com/p/search/%EB%B6%80%EC%82%B0%ED%83%80%EC%9B%8c", img: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=800&q=80", desc: "登高遠眺釜山港與市區街景，為旅程留下美好紀念。" },
-        { time: "12:20", title: "味讚王鹽烤肉 (富平店)", sub: "【午餐】專人代烤頂級厚切烤肉", type: "food", kr: "맛찬들왕소금구이 부평점", map: "https://map.naver.com/p/search/%EB%B7%85%EC%B0%찬%EB%93%A4%EC%99%95%EC%86%8C%EA%B8%88%EA%B5%AC%EC%9D%B4", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80", desc: "專人桌邊代烤服務！肉汁飽滿、香氣四溢的頂級鹽烤肉。" },
-        { time: "14:20", title: "商圈最後巡禮散步", sub: "輕鬆逛街，慢慢晃回飯店", type: "shop" },
-        { time: "15:00", title: "回飯店提領所有行李", sub: "準備前往機場", type: "hotel" },
-        { time: "15:30", title: "飯店門口搭接機專車", sub: "出發前往金海機場", type: "traffic" },
-        { time: "16:30", title: "抵達金海機場", sub: "進行行李秤重與最後分裝", type: "traffic" },
-        { time: "17:00", title: "櫃檯辦理登機與託運", sub: "取得登機證", type: "traffic" },
-        { time: "17:20", title: "機場辦理退稅手續", sub: "領取退稅現金", type: "task" },
-        { time: "17:50", title: "免稅區 CU 超商採買", sub: "買香蕉牛奶，優格提上飛機", type: "shop" },
-        { time: "18:20", title: "登機門排隊準備登機", sub: "準備搭機返台", type: "traffic" },
-        { time: "19:10", title: "班機起飛返回台灣", sub: "飛行途中", type: "traffic" },
-        { time: "19:25", title: "機上享用飛機餐", sub: "空中晚餐", type: "food" },
-        { time: "20:30", title: "抵達桃園國際機場", sub: "平安返家", type: "traffic" }
-      ]
-    }
-  };
-
-  // 單一大清單資料庫 (支援 localStorage 記憶)
-  let shoppingItems = JSON.parse(localStorage.getItem('busan_single_shopping_list')) || [
-    { name: "安城湯麵", img: "" },
-    { name: "不倒翁金螃蟹海鮮麵", img: "" },
-    { name: "HBAF 杏仁果 (大蒜麵包口味)", img: "" },
-    { name: "皇南餅 / 佛國餅", img: "" },
-    { name: "釜田市場巨大水蜜桃", img: "" },
-    { name: "KATE 零瑕肌密粉底液 (00 亮白)", img: "" },
-    { name: "Obge 男士素顏霜", img: "" }
-  ];
-
-  const typeMap = {
-    food: { color: '#c2410c', bg: '#ffedd5', label: '美食' },
-    spot: { color: '#b45309', bg: '#fef3c7', label: '景點' },
-    task: { color: '#be123c', bg: '#ffe4e6', label: '重要' },
-    shop: { color: '#854d0e', bg: '#fef08a', label: '購物' },
-    traffic: { color: '#78716c', bg: '#f5f5f4', label: '交通' },
-    hotel: { color: '#9a3412', bg: '#ffedd5', label: '住宿' }
-  };
-
-  function enterApp() {
-    document.getElementById('screen-cover').classList.add('hide');
-  }
-
-  function openDay(id) {
-    currentDayId = id;
-    const data = db[id];
-    document.getElementById('list-header-title').innerText = data.title;
-    
-    const alertBox = document.getElementById('listAlert');
-    if (data.alert) { 
-      alertBox.style.display = 'flex'; 
-      alertBox.innerHTML = `<i class="ph-fill ph-warning-circle alert-icon"></i><div class="alert-text">${data.alert}</div>`; 
-    } else { 
-      alertBox.style.display = 'none'; 
-    }
-
-    const container = document.getElementById('listContent');
-    container.innerHTML = '';
-    
-    data.items.forEach((item, index) => {
-      const typeCfg = typeMap[item.type] || typeMap.traffic;
-      const isTask = item.type === 'task' ? 'task' : '';
-      const clickable = (item.img || item.desc || item.kr || item.map || item.web) ? `onclick="openDetail('${id}', ${index})"` : '';
-
-      const html = `
-        <div class="t-item">
-          <div class="t-dot" style="border-color: ${typeCfg.color}"></div>
-          <div class="t-card ${isTask}" ${clickable}>
-            <div class="t-time" style="color: ${typeCfg.color}">${item.time}</div>
-            <div class="t-info"><div class="t-title">${item.title}</div><div class="t-sub">${item.sub}</div></div>
-            ${clickable ? '<i class="ph-bold ph-caret-right" style="color:#d6d3d1;"></i>' : ''}
-          </div>
-        </div>
-      `;
-      container.insertAdjacentHTML('beforeend', html);
-    });
-
-    switchPage('page-list');
-  }
-
-  function openDetail(dayId, itemIndex) {
-    const item = db[dayId].items[itemIndex];
-    const typeCfg = typeMap[item.type] || typeMap.traffic;
-
-    const imgEl = document.getElementById('detail-img');
-    if(item.img) { imgEl.src = item.img; imgEl.style.display = 'block'; } else { imgEl.style.display = 'none'; }
-
-    const tagEl = document.getElementById('detail-tag');
-    tagEl.innerText = typeCfg.label; 
-    tagEl.style.backgroundColor = typeCfg.bg; 
-    tagEl.style.color = typeCfg.color;
-
-    document.getElementById('detail-title').innerText = item.title;
-    document.getElementById('detail-desc').innerHTML = item.desc || '';
-
-    const actionsBox = document.getElementById('detail-actions');
-    actionsBox.innerHTML = '';
-    if(item.web) actionsBox.innerHTML += `<a href="${item.web}" target="_blank" class="btn-large btn-web"><i class="ph-fill ph-globe"></i> 官方無人機秀資訊網站</a>`;
-    if(item.map) actionsBox.innerHTML += `<a href="${item.map}" target="_blank" class="btn-large btn-nav"><i class="ph-fill ph-map-pin"></i> 開啟 NAVER 導航</a>`;
-    if(item.kr) actionsBox.innerHTML += `<button class="btn-large btn-cp" onclick="copyText('${item.kr}')"><i class="ph-bold ph-copy"></i> 複製韓文：${item.kr}</button>`;
-
-    switchPage('page-detail');
-  }
-
-  function openShopping() {
-    renderShopping();
-    switchPage('page-shopping');
-  }
-
-  function renderShopping() {
-    const container = document.getElementById('shoppingContainer');
-    let html = '';
-
-    if (shoppingItems.length === 0) {
-      html = `<div style="text-align:center; color:var(--text-muted); font-size:0.9rem; padding:20px;">目前沒有商品，快在上方新增吧！</div>`;
-    } else {
-      shoppingItems.forEach((item, idx) => {
-        const thumbHtml = item.img ? `<img src="${item.img}" class="shop-item-thumb" alt="img">` : `<div class="shop-item-thumb" style="display:flex;align-items:center;justify-content:center;color:#a8a29e;"><i class="ph-fill ph-image"></i></div>`;
-        html += `
-          <div class="shop-item-row">
-            <div class="shop-item-info">
-              ${thumbHtml}
-              <div class="shop-item-name">${item.name}</div>
+        <!-- OVERVIEW SECTION -->
+        <section id="overview" class="space-y-6 pt-4">
+            <div class="relative rounded-3xl overflow-hidden shadow-autumn bg-gradient-to-br from-amber-50 via-orange-50/40 to-stone-100 p-6 md:p-10 flex flex-col justify-end border border-autumn-border">
+                <span class="autumn-badge text-xs uppercase px-3.5 py-1.5 rounded-full w-max font-bold mb-3 shadow-sm">🌰 2026 秋日簡約風之旅</span>
+                <h2 class="text-2xl md:text-4xl font-bold tracking-wide text-autumn-textMain">釜山慶州6日 - 秋日漫遊自由行</h2>
+                <p class="text-sm text-autumn-textSub mt-2 flex items-center"><i class="fa-regular fa-calendar mr-2 text-autumn-primary"></i> 2026年10月10日 (六) - 10月15日 (四) · 6天5夜豪華自由行</p>
             </div>
-            <button class="shop-item-delete" onclick="deleteShopItem(${idx})"><i class="ph-bold ph-trash"></i></button>
-          </div>
-        `;
-      });
-    }
 
-    container.innerHTML = html;
-  }
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="autumn-card p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-autumn-border pb-3">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-plane-departure text-autumn-primary"></i>
+                            <span class="font-bold text-sm tracking-wider text-autumn-primary">去程登機證 / BOARDING PASS</span>
+                        </div>
+                        <span class="text-xs autumn-badge px-2.5 py-1 rounded-full font-bold">長榮 BR1194</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-stone-100 pb-3">
+                        <div>
+                            <p class="text-xs text-autumn-textSub">航線 ROUTE</p>
+                            <p class="text-lg font-bold text-autumn-textMain font-mono">TPE ➔ PUS</p>
+                            <p class="text-xs text-autumn-textSub">台北桃園 ➔ 釜山金海</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-autumn-textSub">日期 DATE</p>
+                            <p class="text-sm font-bold text-autumn-textMain font-mono">10 OCT 2026</p>
+                            <p class="text-xs text-autumn-textSub">星期六 (SAT)</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 text-center bg-autumn-soft p-3 rounded-2xl border border-autumn-border">
+                        <div>
+                            <p class="text-[11px] text-autumn-textSub">起飛時間</p>
+                            <p class="text-base font-bold text-autumn-primary font-mono">07:00</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] text-autumn-textSub">抵達時間</p>
+                            <p class="text-base font-bold text-autumn-primary font-mono">10:20</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] text-autumn-textSub">託運行李</p>
+                            <p class="text-base font-bold text-autumn-primary font-mono">23 KG</p>
+                        </div>
+                    </div>
+                </div>
 
-  function addShopItem() {
-    const nameInput = document.getElementById('itemName');
-    const imgInput = document.getElementById('itemImg');
-    const nameVal = nameInput.value.trim();
-    const imgVal = imgInput.value.trim();
+                <div class="autumn-card p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-autumn-border pb-3">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-plane-arrival text-autumn-primary"></i>
+                            <span class="font-bold text-sm tracking-wider text-autumn-primary">回程登機證 / BOARDING PASS</span>
+                        </div>
+                        <span class="text-xs autumn-badge px-2.5 py-1 rounded-full font-bold">長榮 BR163</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-stone-100 pb-3">
+                        <div>
+                            <p class="text-xs text-autumn-textSub">航線 ROUTE</p>
+                            <p class="text-lg font-bold text-autumn-textMain font-mono">PUS ➔ TPE</p>
+                            <p class="text-xs text-autumn-textSub">釜山金海 ➔ 台北桃園</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-autumn-textSub">日期 DATE</p>
+                            <p class="text-sm font-bold text-autumn-textMain font-mono">15 OCT 2026</p>
+                            <p class="text-xs text-autumn-textSub">星期四 (THU)</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 text-center bg-autumn-soft p-3 rounded-2xl border border-autumn-border">
+                        <div>
+                            <p class="text-[11px] text-autumn-textSub">起飛時間</p>
+                            <p class="text-base font-bold text-autumn-primary font-mono">19:10</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] text-autumn-textSub">抵達時間</p>
+                            <p class="text-base font-bold text-autumn-primary font-mono">20:30</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] text-autumn-textSub">託運行李</p>
+                            <p class="text-base font-bold text-autumn-primary font-mono">46 KG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    if(!nameVal) return;
+        <!-- ITINERARY SECTION -->
+        <section id="itinerary" class="space-y-6 pt-4">
+            <div class="border-b border-autumn-border pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <h3 class="text-xl font-bold text-autumn-textMain flex items-center"><i class="fa-solid fa-map-location-dot text-autumn-primary mr-2.5"></i>每日行程總覽</h3>
+                <div class="flex space-x-1.5 overflow-x-auto pb-2 no-scrollbar w-full sm:w-auto">
+                    <button onclick="renderDay(1)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap autumn-btn shadow-sm transition" data-day="1">10/10(六)</button>
+                    <button onclick="renderDay(2)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="2">10/11(日)</button>
+                    <button onclick="renderDay(3)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="3">10/12(一)</button>
+                    <button onclick="renderDay(4)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="4">10/13(二)</button>
+                    <button onclick="renderDay(5)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="5">10/14(三)</button>
+                    <button onclick="renderDay(6)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="6">10/15(四)</button>
+                </div>
+            </div>
 
-    shoppingItems.push({ name: nameVal, img: imgVal });
-    nameInput.value = '';
-    imgInput.value = '';
+            <div id="day-content-container" class="autumn-card p-6 md:p-8">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </section>
 
-    localStorage.setItem('busan_single_shopping_list', JSON.stringify(shoppingItems));
-    renderShopping();
-  }
+        <!-- GUIDE SECTION -->
+        <section id="guide" class="space-y-6 pt-4">
+            <div class="autumn-card p-6 md:p-10 space-y-8">
+                <div class="border-b border-autumn-border pb-6">
+                    <span class="text-xs uppercase tracking-widest text-autumn-primary font-bold">Autumn Minimalist Travel Magazine</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-autumn-textMain mt-1">釜山與慶州秋季深度導覽手冊</h2>
+                    <p class="text-xs text-autumn-textSub mt-1">依照行程實際造訪順序排列（首站廣安里），深入探索各大人氣景點與歷史冷知識。</p>
+                </div>
 
-  function deleteShopItem(idx) {
-    shoppingItems.splice(idx, 1);
-    localStorage.setItem('busan_single_shopping_list', JSON.stringify(shoppingItems));
-    renderShopping();
-  }
+                <!-- 1. 廣安里海水浴場 -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 1 景點</span>
+                        <h3 class="text-xl font-bold text-autumn-primary">1. 廣安里：跨海大橋與夜空中的科技藝術</h3>
+                    </div>
+                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                        擁有半月形優美沙灘，並以雄偉的廣安大橋夜景聞名。每周六夜晚舉辦常態性無人機燈光秀，結合上千架無人機在夜空中排列出千變萬化的動態圖騰。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 在地冷知識：廣安大橋的雙層結構</h4>
+                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                                全長 7.42 公里，入夜後會點綴多達數萬種色彩的高級 LED 燈光秀，倒映在海面上美不勝收。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 廣安里 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.112%2C35.150%2C129.124%2C35.158&amp;layer=mapnik&amp;marker=35.154%2C129.118" style="border: 0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  let currentDayId = '';
-  function switchPage(pageId) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
-    window.scrollTo(0,0);
-  }
+                <!-- 2. 釜田市場 -->
+                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                    <div class="flex items-center space-x-2">
+                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 2 景點</span>
+                        <h3 class="text-xl font-bold text-autumn-primary">2. 釜田市場 (Bujeon Market)：釜山的庶民美食寶庫</h3>
+                    </div>
+                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                        釜山規模最大、最具人情味的傳統市場之一。這裡販售產地直送新鮮蔬果、道地韓式小菜、手工排骨豬肉餅與炭烤燻鴨。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 在地冷知識：豐富的藥材與乾貨</h4>
+                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                                鄰近釜田地鐵站與火車站，市場內除了美食外，還設有規模龐大的中藥材與人參專區。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 釜田市場 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.058%2C35.158%2C129.068%2C35.166&amp;layer=mapnik&amp;marker=35.162%2C129.063" style="border: 0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  function goHome() { switchPage('page-home'); }
-  function goBackToList() { openDay(currentDayId); }
+                <!-- 3. ARTE MUSEUM Busan -->
+                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                    <div class="flex items-center space-x-2">
+                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 2 景點</span>
+                        <h3 class="text-xl font-bold text-autumn-primary">3. ARTE MUSEUM BUSAN：影島的光影美學饗宴</h3>
+                    </div>
+                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                        坐落於影島的沉浸式數位藝術展覽館。透過頂尖投影技術、聲光特效與香氣結合，以「永恆的自然 (ETERNAL NATURE)」為主題。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 空間冷知識：前身為造船廠倉庫</h4>
+                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                                展館空間前身為大型工業製造與造船廠倉庫，改造後完美保留了空間壯闊感。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ ARTE MUSEUM OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.065%2C35.080%2C129.075%2C35.088&amp;layer=mapnik&amp;marker=35.084%2C129.070" style="border: 0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  function copyText(text) {
-    navigator.clipboard.writeText(text).then(() => {
-      const toast = document.getElementById('toast');
-      document.getElementById('toastMsg').innerText = `已複製：${text}`;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
-    });
-  }
-</script>
+                <!-- 4. BIFF 廣場與光復路時尚街 -->
+                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                    <div class="flex items-center space-x-2">
+                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">市區地標</span>
+                        <h3 class="text-xl font-bold text-autumn-primary">4. BIFF 廣場與光復路時尚街：南浦洞的流行心臟</h3>
+                    </div>
+                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                        釜山國際電影節發源地，地面鑲嵌著國際電影大師手印，周遭巷弄聚集黑糖餅與各類街頭小吃；光復路時尚街則集結潮流服飾與美妝。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 街頭冷知識：電影節的起源</h4>
+                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                                釜山國際電影節於 1996 年在此創辦，保留了釜山電影文化的歷史根基。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ BIFF 廣場 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.027%2C35.097%2C129.037%2C35.105&amp;layer=mapnik&amp;marker=35.101%2C129.032" style="border: 0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. 冬柏島 -->
+                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                    <div class="flex items-center space-x-2">
+                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 3 景點</span>
+                        <h3 class="text-xl font-bold text-autumn-primary">5. 冬柏島 (Dongbaekseom)：海雲台的絕美木棧步道</h3>
+                    </div>
+                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                        過去曾是獨立小島，因長年泥沙堆積與陸地相連。沿著平緩海岸木棧道漫步，可眺望蔚藍海景與 APEC 世峰樓。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 峰會冷知識：APEC 舉辦地</h4>
+                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                                島上的世峰樓為 2005 年 APEC 領導人會議會場，建築設計靈感源自韓國傳統涼亭。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 冬柏島 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.150%2C35.153%2C129.160%2C35.161&amp;layer=mapnik&amp;marker=35.157%2C129.155" style="border: 0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. 皇理團路 -->
+                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                    <div class="flex items-center space-x-2">
+                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 4 景點</span>
+                        <h3 class="text-xl font-bold text-autumn-primary">6. 皇理團路 (Hwangridan-gil)：慶州的韓屋咖啡街</h3>
+                    </div>
+                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                        慶州火紅的文青街區，完美保留傳統韓屋瓦房外觀，內部則改造成質感咖啡廳與選物店。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 名稱冷知識：新羅皇陵交織</h4>
+                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                                街區名稱結合皇南洞與經理團路。街道周遭隨處可見新羅時代大型皇陵草丘。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 皇理團路 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.205%2C35.835%2C129.215%2C35.843&amp;layer=mapnik&amp;marker=35.839%2C129.210" style="border: 0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. 新東亞海鮮市場 -->
+                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                    <div class="flex items-center space-x-2">
+                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 5 景點</span>
+                        <h3 class="text-xl font-bold text-autumn-primary">7. 新東亞海鮮市場 (Sin-Dong-A)：大啖活體松葉蟹</h3>
+                    </div>
+                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                        鄰近札嘎其市場，是品嚐頂級活體松葉蟹、帝王蟹與現撈海鮮的聖地。可親自挑選新鮮活海鮮請店家代客料理。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 在地冷知識：現挑現蒸的鮮美</h4>
+                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                                攤販多由經驗豐富的阿姨經營，點完後直接送入後方蒸籠，熱騰騰香氣四溢。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 新東亞市場 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.028%2C35.093%2C129.038%2C35.101&amp;layer=mapnik&amp;marker=35.097%2C129.033" style="border: 0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. 富平罐頭夜市 -->
+                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                    <div class="flex items-center space-x-2">
+                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 5 景點</span>
+                        <h3 class="text-xl font-bold text-autumn-primary">8. 富平罐頭夜市 (Bupyeong Kkangtong Market)：全球美食大熔爐</h3>
+                    </div>
+                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                        韓國首個常態性夜市。入夜後擺滿特色攤車，從烤魷魚、蔬菜肉捲、烤腸到各國異國小吃應有盡有。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 名稱冷知識：美軍罐頭歷史</h4>
+                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                                韓戰時期美軍駐紮於此，進口軍用罐頭與商品在此流通，因此當地人稱之為罐頭市場。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 罐頭夜市 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.023%2C35.102%2C129.033%2C35.110&amp;layer=mapnik&amp;marker=35.106%2C129.028" style="border: 0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. 龍頭山公園 + 釜山塔 -->
+                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                    <div class="flex items-center space-x-2">
+                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 6 景點</span>
+                        <h3 class="text-xl font-bold text-autumn-primary">9. 龍頭山公園與釜山塔 (Diamond Tower)：俯瞰港都全景</h3>
+                    </div>
+                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                        因山勢如龍頭般伸展而得名。矗立於山頂的釜山塔高 120 公尺，登上觀景台可 360 度俯瞰南浦洞港口。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 歷史冷知識：避難所的祈願</h4>
+                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                                韓戰期間曾是難民避難所聚集地，如今公園內豎立李舜臣將軍銅像與花鐘。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 龍頭山公園 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.030%2C35.099%2C129.040%2C35.107&amp;layer=mapnik&amp;marker=35.103%2C129.035" style="border: 0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACCOMMODATION SECTION -->
+        <section id="accommodation" class="space-y-6 pt-4">
+            <div class="autumn-card p-6 md:p-8 space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-hotel text-autumn-primary mr-2.5"></i>住宿飯店與周邊地圖指南</h3>
+                    <p class="text-xs text-autumn-textSub mt-1">本次行程入住兩間南浦洞精選飯店，提供 NAVER Map 連結與韓文名稱，方便複製在當地搜尋與導航！</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-autumn-border rounded-3xl p-5 space-y-4 bg-autumn-soft">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs autumn-badge px-3 py-1 rounded-full font-bold">10/10 入住 1 晚</span>
+                                <h4 class="text-lg font-bold text-autumn-textMain mt-2">Aventree Hotel Busan (釜山阿凡樹飯店)</h4>
+                            </div>
+                            <div class="flex flex-col space-y-2">
+                                <a href="https://map.naver.com/v5/search/%EC%95%84%EB%B2%A4%ED%8A%B8%EB%A6%AC%20%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" target="_blank" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs px-3 py-1.5 rounded-xl transition font-medium flex items-center justify-center shadow-sm">
+                                    <i class="fa-solid fa-location-dot mr-1"></i> NAVER 地圖
+                                </a>
+                                <button onclick="copyToClipboard('아벤트리 호텔 부산')" class="autumn-badge hover:opacity-90 text-autumn-primary text-[11px] px-3 py-1 rounded-lg transition font-medium">
+                                    <i class="fa-regular fa-copy mr-1"></i> 複製韓文
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-xs text-autumn-textSub font-mono">韓文：아벤트리 호텔 부산</p>
+                        <p class="text-xs text-autumn-textSub">位於光復路商圈核心，逛街、吃豬腳、去換錢所都極為方便！</p>
+                    </div>
+
+                    <div class="border border-autumn-border rounded-3xl p-5 space-y-4 bg-autumn-soft">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs autumn-btn px-3 py-1 rounded-full font-bold text-white">10/11 - 10/15 入住 4 晚</span>
+                                <h4 class="text-lg font-bold text-autumn-textMain mt-2">NewCZ Nampo Hotel (紐古茲南浦飯店)</h4>
+                            </div>
+                            <div class="flex flex-col space-y-2">
+                                <a href="https://map.naver.com/v5/search/%EB%89%B4%EC%94%A8%EC%A6%88%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" target="_blank" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs px-3 py-1.5 rounded-xl transition font-medium flex items-center justify-center shadow-sm">
+                                    <i class="fa-solid fa-location-dot mr-1"></i> NAVER 地圖
+                                </a>
+                                <button onclick="copyToClipboard('뉴씨즈호텔 남포')" class="autumn-badge hover:opacity-90 text-autumn-primary text-[11px] px-3 py-1 rounded-lg transition font-medium">
+                                    <i class="fa-regular fa-copy mr-1"></i> 複製韓文
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-xs text-autumn-textSub font-mono">韓文：뉴씨즈호텔 남포</p>
+                        <p class="text-xs text-autumn-textSub">地點極佳，鄰近龍頭山公園與南浦洞商圈，便於採買與搭車前往各景點。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSLATION SECTION -->
+        <section id="translation" class="space-y-6 pt-4">
+            <div class="autumn-card p-6 md:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-autumn-border pb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-language text-autumn-primary mr-2.5"></i>韓文翻譯、退稅與語音對話</h3>
+                        <p class="text-xs text-autumn-textSub mt-1">點擊「播放語音」可直接讓手機唸出韓文給店員聽，或點擊「複製」複製韓文！</p>
+                    </div>
+                    <a href="https://papago.naver.com/" target="_blank" class="autumn-btn text-sm font-bold px-5 py-2.5 transition shadow-sm flex items-center shrink-0">
+                        <i class="fa-solid fa-globe mr-2"></i> 開啟 Papago 線上翻譯
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- 餐廳與購物 -->
+                    <div class="border border-autumn-border rounded-2xl p-4 bg-autumn-soft space-y-3">
+                        <h4 class="font-bold text-autumn-primary text-sm flex items-center"><i class="fa-solid fa-utensils mr-2"></i>餐廳點餐與結帳 / 退稅</h4>
+                        <div class="space-y-2.5 text-xs">
+                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-autumn-textSub">請給我這個 (指著菜單)</p>
+                                    <p class="font-bold text-autumn-textMain font-mono">이거 주세요. [I-geo ju-se-yo]</p>
+                                </div>
+                                <div class="flex space-x-1.5 shrink-0">
+                                    <button onclick="speakKorean('이거 주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('이거 주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-autumn-textSub">請問這個會辣嗎？</p>
+                                    <p class="font-bold text-autumn-textMain font-mono">이거 매워요? [I-geo mae-wo-yo?]</p>
+                                </div>
+                                <div class="flex space-x-1.5 shrink-0">
+                                    <button onclick="speakKorean('이거 매워요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('이거 매워요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-autumn-textSub">請幫我結帳 / 買單</p>
+                                    <p class="font-bold text-autumn-textMain font-mono">계산해주세요. [Gye-san-hae-ju-se-yo]</p>
+                                </div>
+                                <div class="flex space-x-1.5 shrink-0">
+                                    <button onclick="speakKorean('계산해주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('계산해주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-autumn-textSub">請給我收據</p>
+                                    <p class="font-bold text-autumn-textMain font-mono">영수증 주세요. [yeong-su-jeung ju-se-yo]</p>
+                                </div>
+                                <div class="flex space-x-1.5 shrink-0">
+                                    <button onclick="speakKorean('영수증 주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('영수증 주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-autumn-textSub">請幫我辦理退稅</p>
+                                    <p class="font-bold text-autumn-textMain font-mono">택스 프리 해주세요. [taek-seu peu-ri hae-ju-se-yo]</p>
+                                </div>
+                                <div class="flex space-x-1.5 shrink-0">
+                                    <button onclick="speakKorean('택스 프리 해주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('택스 프리 해주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 購物與問路 -->
+                    <div class="border border-autumn-border rounded-2xl p-4 bg-autumn-soft space-y-3">
+                        <h4 class="font-bold text-autumn-primary text-sm flex items-center"><i class="fa-solid fa-bag-shopping mr-2"></i>購物與問路</h4>
+                        <div class="space-y-2.5 text-xs">
+                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-autumn-textSub">請問這個多少錢？</p>
+                                    <p class="font-bold text-autumn-textMain font-mono">얼마예요? [Eol-ma-ye-yo?]</p>
+                                </div>
+                                <div class="flex space-x-1.5 shrink-0">
+                                    <button onclick="speakKorean('얼마예요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('얼마예요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-autumn-textSub">可以刷卡嗎？</p>
+                                    <p class="font-bold text-autumn-textMain font-mono">카드 되나요? [Ka-deu doe-na-yo?]</p>
+                                </div>
+                                <div class="flex space-x-1.5 shrink-0">
+                                    <button onclick="speakKorean('카드 되나요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('카드 되나요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-autumn-textSub">請問洗手間在哪裡？</p>
+                                    <p class="font-bold text-autumn-textMain font-mono">화장실 어디예요? [Hwa-jang-sil eo-di-ye-yo?]</p>
+                                </div>
+                                <div class="flex space-x-1.5 shrink-0">
+                                    <button onclick="speakKorean('화장실 어디예요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('화장실 어디예요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SNACKS & SHOPPING SECTION -->
+        <section id="snacks" class="space-y-6 pt-4">
+            <div class="autumn-card p-6 md:p-8 space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-basket-shopping text-autumn-primary mr-2.5"></i>零食、伴手禮與戰利品採購指南</h3>
+                    <p class="text-xs text-autumn-textSub mt-1">上方為網路上釜山熱門推薦參考區（含 EPT 鞋款、SCENTICA 與 ADoR 香水、文創小店、All Sunday Bagel 及藥局必買好物），下方則為您專屬的購物清單（可自行新增與打勾記錄）！</p>
+                </div>
+
+                <!-- 1. 網路熱門推薦參考區 (純參考) -->
+                <div class="bg-autumn-soft p-5 rounded-2xl border border-autumn-border space-y-3">
+                    <h4 class="text-xs font-bold text-autumn-primary uppercase tracking-wider flex items-center">
+                        <i class="fa-solid fa-star mr-1.5 text-amber-600"></i> 網路上熱門戰利品推薦參考 (釜山當地有店面)
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 text-xs">
+                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                            <span class="font-bold text-autumn-primary block mb-0.5">👗 潮流服飾</span>
+                            <span class="text-autumn-textSub">Covernat / Sio (西面與南浦洞商圈皆有實體店)</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                            <span class="font-bold text-autumn-primary block mb-0.5">👟 流行鞋款 / EPT</span>
+                            <span class="text-autumn-textSub">EPT (East Pacific Trading)、Salomon、韓國限定 Converse (光復路 ABC-Mart)</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                            <span class="font-bold text-autumn-primary block mb-0.5">🧴 熱銷保養</span>
+                            <span class="text-autumn-textSub">Biodance 膠原蛋白深層面膜 (南浦/西面 Olive Young)</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                            <span class="font-bold text-autumn-primary block mb-0.5">💄 精緻彩妝</span>
+                            <span class="text-autumn-textSub">Olive Young 熱銷唇釉、眼影與氣墊 (南浦站周邊多間)</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                            <span class="font-bold text-autumn-primary block mb-0.5">🌿 高級香水</span>
+                            <span class="text-autumn-textSub">Tamburins (樂天百貨光復店有專櫃) / SCENTICA / ADoR Perfume (廣安里)</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                            <span class="font-bold text-autumn-primary block mb-0.5">💊 藥局必買好物</span>
+                            <span class="text-autumn-textSub">解酒液 (Condition/Morning Care)、去疤膏 (NoScarna)、Bepanthen 萬用膏、B-Complex 維他命</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                            <span class="font-bold text-autumn-primary block mb-0.5">🥯 文創與貝果</span>
+                            <span class="text-autumn-textSub">All Sunday Bagel 與廣安里質感文創小店</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                            <span class="font-bold text-autumn-primary block mb-0.5">🍎 當季水果</span>
+                            <span class="text-autumn-textSub">釜田市場新鮮水蜜桃、草莓、秋季甜柿子</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 我們實際想買的採購清單 (完全空白，讓您自訂) -->
+                <div class="space-y-4 pt-2">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                        <h4 class="text-sm font-bold text-autumn-textMain flex items-center">
+                            <i class="fa-solid fa-list-check mr-2 text-autumn-primary"></i> 我們實際想買的採購清單 (請自行輸入)
+                        </h4>
+                        <div class="flex space-x-2 w-full sm:w-auto">
+                            <input type="text" id="new-snack-input" placeholder="輸入想買的戰利品..." class="flex-grow sm:flex-grow-0 px-3.5 py-2 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
+                            <button onclick="addSnackItem()" class="autumn-btn px-4 py-2 text-sm font-medium transition shadow-sm"><i class="fa-solid fa-plus mr-1"></i>新增</button>
+                        </div>
+                    </div>
+
+                    <div id="snacks-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <!-- Dynamic Snacks -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHECKLIST & MEMOS SECTION -->
+        <section id="checklist" class="space-y-6 pt-4">
+            <div class="autumn-card p-6 md:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-autumn-border pb-4">
+                    <h3 class="text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-list-check text-autumn-primary mr-2.5"></i>秋季行李與隨身物品清單 (長榮行李 去23kg / 回46kg)</h3>
+                    <div class="flex space-x-2 w-full sm:w-auto">
+                        <input type="text" id="new-item-input" placeholder="新增行李項目..." class="flex-grow sm:flex-grow-0 px-3.5 py-2 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
+                        <button onclick="addChecklistItem()" class="autumn-btn px-4 py-2 text-sm font-medium transition shadow-sm"><i class="fa-solid fa-plus mr-1"></i>新增</button>
+                    </div>
+                </div>
+                <div id="checklist-container" class="space-y-3">
+                    <!-- Dynamic Checklist -->
+                </div>
+
+                <div class="border-t border-autumn-border pt-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-autumn-textMain text-base flex items-center"><i class="fa-solid fa-note-sticky text-autumn-primary mr-2"></i>個人備忘錄 (網址自動轉為點擊按鈕)</h4>
+                    </div>
+                    <div class="flex space-x-2">
+                        <input type="text" id="memo-input" placeholder="輸入備忘事項或網址 (例如: https://naver.com)..." class="flex-grow px-3.5 py-2 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
+                        <button onclick="addMemoItem()" class="autumn-btn px-4 py-2 text-sm font-medium transition shadow-sm">新增備忘</button>
+                    </div>
+                    <div id="memos-container" class="space-y-2">
+                        <!-- Dynamic Memos -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WALLET & BUDGET SECTION -->
+        <section id="budget" class="space-y-6 pt-4">
+            <!-- Currency Calculator -->
+            <div class="autumn-card p-6 md:p-8 space-y-4">
+                <h3 class="text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-calculator text-autumn-primary mr-2.5"></i>即時匯率計算機 (KRW ➔ TWD)</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
+                    <input type="text" id="calc-input" placeholder="輸入算式 (例如: 5000+2000*3)" class="px-4 py-3 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary font-mono bg-autumn-soft text-autumn-textMain shadow-sm">
+                    <button onclick="calculateExpression()" class="autumn-btn py-3 text-sm font-medium transition shadow-sm">計算並換算</button>
+                    <div id="calc-result" class="text-sm font-bold text-autumn-primary autumn-badge p-3 rounded-xl text-center border border-autumn-border font-mono">
+                        結果：₩ 0 ≒ NT$ 0
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expense Form with Photo Upload -->
+            <div class="autumn-card p-6 md:p-8 space-y-4">
+                <div class="flex justify-between items-center border-b border-autumn-border pb-3">
+                    <h3 class="text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-wallet text-autumn-primary mr-2.5"></i>新增花費記帳與照片上傳</h3>
+                    <div class="text-right">
+                        <span class="text-xs text-autumn-textSub">已記錄總花費：</span>
+                        <span class="text-base font-bold text-autumn-primary font-mono" id="total-spent-display">₩ 0</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                    <input type="text" id="expense-title" placeholder="品名稱 (例如: 弘小豬腳)" class="px-4 py-3 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
+                    <input type="number" id="expense-amount" placeholder="金額 (KRW)" class="px-4 py-3 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary font-mono bg-autumn-soft text-autumn-textMain shadow-sm">
+                    <input type="file" id="expense-photo" accept="image/*" class="text-xs file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-autumn-soft file:text-autumn-primary hover:file:bg-stone-200 self-center">
+                    <button onclick="addExpense()" class="autumn-btn py-3 text-sm font-medium transition shadow-sm">新增記帳</button>
+                </div>
+            </div>
+
+            <!-- Expense List -->
+            <div class="autumn-card p-6 md:p-8">
+                <h3 class="text-lg font-bold text-autumn-textMain mb-4">花費明細列表</h3>
+                <div id="expense-list-container" class="divide-y divide-autumn-border">
+                    <!-- Dynamic expenses -->
+                </div>
+            </div>
+        </section>
+
+        <!-- INFO SECTION -->
+        <section id="info" class="space-y-6 pt-4 pb-8">
+            <div class="autumn-card p-6 md:p-8 space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-circle-info text-autumn-primary mr-2.5"></i>韓國旅遊實用資訊與緊急聯絡</h3>
+                    <p class="text-xs text-autumn-textSub mt-1">包含當地天氣預報、緊急救援電話以及出入境注意事項。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="border border-autumn-border rounded-3xl p-5 space-y-3 bg-autumn-soft">
+                        <h4 class="font-bold text-autumn-textMain text-sm flex items-center"><i class="fa-solid fa-phone text-autumn-primary mr-2"></i>韓國緊急聯絡電話</h4>
+                        <ul class="text-xs text-autumn-textSub space-y-2">
+                            <li><strong>警察局：</strong> 112</li>
+                            <li><strong>救護車與消防：</strong> 119</li>
+                            <li><strong>韓國旅遊諮詢熱線：</strong> 1330 (可通中文)</li>
+                            <li><strong>駐韓國台北代表部：</strong> +82-2-399-2800</li>
+                        </ul>
+                    </div>
+
+                    <div class="border border-autumn-border rounded-3xl p-5 space-y-3 bg-autumn-soft">
+                        <h4 class="font-bold text-autumn-textMain text-sm flex items-center"><i class="fa-solid fa-cloud-sun text-autumn-primary mr-2"></i>當地天氣與氣象查詢</h4>
+                        <p class="text-xs text-autumn-textSub leading-relaxed">
+                            釜山與慶州 10 月份秋高氣爽，平均氣溫約在 12°C 至 22°C 之間，早晚溫差較大，建議攜帶防風保暖外套。
+                        </p>
+                        <a href="https://www.weather.go.kr/" target="_blank" class="inline-block autumn-btn text-xs px-4 py-2.5 font-medium transition shadow-sm mt-2 text-white">
+                            <i class="fa-solid fa-globe mr-1"></i> 查詢韓國氣象廳 (KMA)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-autumn-soft border-t border-autumn-border py-4 text-center text-xs text-autumn-textSub mt-auto">
+        <p>長榮航空 BR1194 / BR163 (去 23kg / 回 46kg) · 祝 2026 釜山慶州秋日簡約風之旅平安愉快 🌰🇰🇷</p>
+    </footer>
+
+    <script>
+        window.toggleMobileMenu = function() {
+            const menu = document.getElementById('mobile-menu');
+            if(menu) menu.classList.toggle('hidden');
+        };
+
+        window.copyToClipboard = function(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                alert('已成功複製韓文：' + text);
+            } catch (err) {
+                console.error('複製失敗', err);
+            }
+            document.body.removeChild(textarea);
+        };
+
+        window.speakKorean = function(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('您的瀏覽器不支援語音播放功能');
+            }
+        };
+
+        const itineraryData = {
+            1: {
+                title: "10/10 (六) 廣安里海景與無人機秀",
+                items: [
+                    { time: "04:00", title: "小7集合", desc: "小7集合，出發前往機場", ko: "" },
+                    { time: "05:00", title: "機場報到", desc: "機場報到，長榮櫃檯辦理登機與託運（去程 23kg）", ko: "" },
+                    { time: "07:00", title: "【航班 BR1194】飛機起飛", desc: "飛機起飛前往釜山", ko: "" },
+                    { time: "07:30", title: "機上享用飛機餐", desc: "機上享用美味飛機餐", ko: "" },
+                    { time: "10:20", title: "抵達釜山金海機場", desc: "抵達釜山金海機場，順利通關", ko: "김해국제공항" },
+                    { time: "10:50", title: "接機專車出發前往市區", desc: "接機專車出發前往市區", ko: "" },
+                    { time: "11:40", title: "Aventree 飯店寄放行李", desc: "Aventree 飯店寄放行李", ko: "아벤트리 호텔 부산", naver: "https://map.naver.com/v5/search/%EC%95%84%EB%B2%A4%ED%8A%B8%EB%A6%AC%20%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" },
+                    { time: "12:00", title: "步行前往弘小豬腳", desc: "步行前往弘小豬腳", ko: "" },
+                    { time: "12:10", title: "【午餐】弘小(紅燒)豬腳", desc: "品嚐軟嫩入味的紅燒豬腳", ko: "홍소족발", naver: "https://map.naver.com/v5/search/%EB%부산%20중구%20광복로%2021-2%20홍소족발" },
+                    { time: "13:30", title: "步行前往南浦洞 Emart24 超商", desc: "步行前往南浦洞 Emart24 超商", ko: "" },
+                    { time: "13:40", title: "【任務】Emart24預訂飲料*15", desc: "預訂 15 瓶飲料 (10/14早上取貨)", ko: "이마트24" },
+                    { time: "13:50", title: "友利換錢所換錢", desc: "友利換錢所換錢", ko: "우리환전소 남포점", naver: "https://map.naver.com/v5/search/%EC%9A%B0%EB%A6%AC%ED%99%98%EC%A0%84%EC%86%8C%20%EB%82%A8%ED%8F%AC%EC%A0%90" },
+                    { time: "14:00", title: "搭乘 Uber(分2台車) 前往廣安里", desc: "搭乘 Uber 分兩台車前往廣安里", ko: "광안리해수욕장" },
+                    { time: "14:30", title: "廣安里逛街", desc: "SCENTICA香水、ADoR Perfume、文創小店、All Sunday Bagel", ko: "광안리" },
+                    { time: "16:30", title: "沙灘落日海景拍照，步行前往咖啡廳", desc: "沙灘落日海景拍照，步行前往咖啡廳", ko: "광안리 해변" },
+                    { time: "17:00", title: "【下午茶】Beansbins 海景咖啡廳", desc: "享受悠閒海景下午茶", ko: "빈스빈스커피 광안리점", naver: "https://map.naver.com/v5/search/%EB%B9%88%EC%8A%A4%EB%B9%88%EC%8A%A4%EC%BB%A4%ED%94%BC%20%EA%B4%91%EC%95%88%EB%A6%AC%EC%90%90" },
+                    { time: "17:30", title: "【任務】CatchTable 遠端抽號碼牌", desc: "用 CatchTable App 遠端抽「水邊最高豬肉湯飯」號碼牌", ko: "캐치테이블" },
+                    { time: "18:40", title: "步行前往觀賞區", desc: "步行前往無人機秀觀賞區", ko: "" },
+                    { time: "19:00", title: "【看秀】廣安里無人機秀", desc: "欣賞精彩絕倫的廣安里無人機大秀", ko: "광안리해수욕장", naver: "https://map.naver.com/v5/search/%EA%B4%91%EC%95%88%EB%A6%AC%EC%95%88%EC%97%85%EC%9E%A5" },
+                    { time: "19:15", title: "步行前往水邊最高豬肉湯飯", desc: "步行前往餐廳", ko: "" },
+                    { time: "19:25", title: "【晚餐】水邊最高豬肉湯飯", desc: "享用香濃味美的招牌豬肉湯飯", ko: "수변최고돼지국밥 광안점", naver: "https://map.naver.com/v5/search/%EC%88%98%EB%B3%80%EC%B5%9C%EA%B3%A0%EB%8F%84%EC%A7%80%EA%B5%AD%EB%B0%A5%20%EA%B4%91%EC%95%88%EC%A0%90" },
+                    { time: "20:45", title: "步行走到廣安里 Emart24 超商", desc: "步行前往超商", ko: "" },
+                    { time: "20:50", title: "【超商】Emart24 購物", desc: "超商補貨購物", ko: "이마트24" },
+                    { time: "21:10", title: "搭乘 Uber 返回南浦洞", desc: "搭乘 Uber 返回南浦洞飯店", ko: "" },
+                    { time: "21:40", title: "Aventree 飯店辦理入住、提領行李", desc: "辦理入住與提領行李", ko: "아벤트리 호텔 부산" },
+                    { time: "宵夜", title: "享用路邊攤魚板/年糕/糖餅", desc: "路邊攤品嚐在地美食 (或 No Brand Burger)", ko: "포장마차" },
+                    { time: "睡前", title: "整理行李", desc: "收拾戰利品與準備明天行程", ko: "" }
+                ]
+            },
+            2: {
+                title: "10/11 (日) 傳統市場與 ARTE 美術館",
+                items: [
+                    { time: "08:40", title: "Aventree 飯店辦理退房", desc: "辦理退房手續", ko: "아벤트리 호텔 부산" },
+                    { time: "09:00", title: "換飯店並寄放行李", desc: "寄放行李於 NewCZ Nampo Hotel", ko: "뉴씨즈호텔 남포", naver: "https://map.naver.com/v5/search/%EB%89%B4%EC%94%A8%EC%A6%88%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" },
+                    { time: "09:20", title: "搭乘 Uber(分2台車) 前往釜田市場", desc: "搭車前往釜田市場", ko: "부전시장" },
+                    { time: "09:50", title: "【早餐】釜田市場", desc: "手工排骨豬肉餅、炭烤燻鴨、明卵紫菜包飯、大王鯛魚燒、買水果", ko: "부전시장", naver: "https://map.naver.com/v5/search/%EB%부%전%시%장" },
+                    { time: "12:00", title: "步行前往西面地下街 (釜田段)", desc: "步行逛西面地下街", ko: "서면지하상가" },
+                    { time: "12:30", title: "【午餐】三五亭蔘雞湯", desc: "品嚐滋補暖身的蔘雞湯", ko: "삼오정", naver: "https://map.naver.com/v5/search/%EC%82%BC%EC%98%A4%EC%A0%95" },
+                    { time: "14:00", title: "搭乘 Uber 前往影島 ARTE MUSEUM", desc: "搭車前往影島沉浸式美術館", ko: "아르떼뮤지엄 부산" },
+                    { time: "14:30", title: "【景點】ARTE MUSEUM BUSAN", desc: "沉浸式光影美術館視覺饗宴", ko: "아르떼뮤지엄 부산", naver: "https://map.naver.com/v5/search/%EC%95%84%EB%B8%70%EB%AE%A4%EC%A7%80%EC%97%84%20%EB%B6%80%EC%82%B0" },
+                    { time: "17:00", title: "搭乘 Uber 返回南浦洞", desc: "搭車返回南浦洞", ko: "" },
+                    { time: "17:30", title: "NewCZ Nampo Hotel 辦理入住、提領行李", desc: "正式入住新飯店", ko: "뉴씨즈호텔 남포" },
+                    { time: "18:00", title: "【晚餐】勝畜畜產南浦分店", desc: "熟成烤豬五花肉、頂級韓牛", ko: "승축축산" },
+                    { time: "20:00", title: "逛 BIFF 廣場、光復路時尚街", desc: "漫步南浦洞商圈", ko: "BIFF광장" },
+                    { time: "宵夜", title: "【宵夜】橋村炸雞", desc: "帶回飯店享用美味橋村炸雞", ko: "교촌치킨 남포점" }
+                ]
+            },
+            3: {
+                title: "10/12 (一) 冬柏島海景、尾浦散策與海雲台點心",
+                items: [
+                    { time: "07:50", title: "步行前往 EGG DROP 南浦店", desc: "步行前往早餐店", ko: "" },
+                    { time: "08:00", title: "【早餐】EGG DROP 南浦店", desc: "享用美味招牌吐司", ko: "에그드랍 남포점", naver: "https://map.naver.com/v5/search/%EC%97%90%EA%B7%B8%EB%93%9c%EB%A0%89%20%EB%82%A8%ED%8F%AC%EC%90%90" },
+                    { time: "08:30", title: "步行前往 Mega Coffee", desc: "前往買咖啡", ko: "" },
+                    { time: "08:40", title: "Mega Coffee 買咖啡", desc: "買香濃冰美式", ko: "메가커피" },
+                    { time: "08:50", title: "回飯店房間內用餐、準備出發", desc: "回房享用早餐", ko: "" },
+                    { time: "10:00", title: "飯店門口搭乘 Uber 前往海雲台冬柏島", desc: "搭車前往冬柏島", ko: "동백섬" },
+                    { time: "10:30", title: "【景點】冬柏島海岸步道散步、參觀 APEC 世峰樓", desc: "冬柏島海岸步道散步、參觀 APEC 世峰樓", ko: "동백섬", naver: "https://map.naver.com/v5/search/%EB%8F%99%EB%B0%B1%EC%84%AC" },
+                    { time: "12:00", title: "沙灘海景拍照，沿路步行前往尾浦", desc: "沿海濱步道步行至尾浦", ko: "미포" },
+                    { time: "12:30", title: "慢逛尾浦在地文創選物小店", desc: "逛特色文創選物", ko: "미포" },
+                    { time: "13:30", title: "【排隊甜點】老虎冰淇淋大福", desc: "品嚐人氣Q彈老虎冰淇淋大福", ko: "호랑이젤라떡" },
+                    { time: "14:00", title: "【午餐】極東豬肉湯飯 (尾浦店)", desc: "享用美味豬肉湯飯", ko: "극동돼지국밥", naver: "https://map.naver.com/v5/search/%EA%B7%B9%EB%8F%99%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5" },
+                    { time: "15:15", title: "店門口搭乘 Uber 前往 Emart 海雲台店", desc: "搭車前往超市", ko: "이마트 해운대점" },
+                    { time: "15:30", title: "【超市大採購】Emart 購物", desc: "Emart 採購零食紀念品", ko: "이마트 해운대점", naver: "https://map.naver.com/v5/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%20%ED%95%94%EA%9A%B4%EB%8C%80%EC%A0%90" },
+                    { time: "17:30", title: "搭乘 Uber 返回南浦洞飯店", desc: "搭車返回南浦洞", ko: "" },
+                    { time: "18:10", title: "回房間放東西、稍作休息", desc: "回房休息放戰利品", ko: "" },
+                    { time: "18:50", title: "步行前往南浦洞「豆田裡」", desc: "步行前往餐廳", ko: "" },
+                    { time: "19:00", title: "【晚餐】豆田裡 韓式吃到飽", desc: "享用豐富韓式大醬湯與定食吃到飽", ko: "콩밭" },
+                    { time: "20:30", title: "續逛 BIFF 廣場、光復路時尚街", desc: "夜晚散步血拼", ko: "BIFF광장" },
+                    { time: "宵夜", title: "【宵夜】Puradak 炸雞", desc: "外帶 Puradak 質感炸雞回飯店享用", ko: "푸라닭치킨" }
+                ]
+            },
+            4: {
+                title: "10/13 (二) 慶州古都秋季花海與韓屋一日遊",
+                items: [
+                    { time: "07:40", title: "飯店出發，搭乘 Uber 前往釜山車站", desc: "搭車前往釜山站搭高鐵", ko: "부산역" },
+                    { time: "08:39", title: "【搭車】搭乘 KTX 018 前往慶州站", desc: "搭乘 KTX 高鐵前往新慶州站", ko: "신경주역" },
+                    { time: "09:13", title: "抵達慶州站，09:15 直接搭乘 Uber 前往市區", desc: "抵達後搭車前往市區", ko: "경주시내" },
+                    { time: "09:40", title: "【早餐】百年客人", desc: "享用在地美味早餐", ko: "백년손님" },
+                    { time: "10:45", title: "步行前往瞻星臺，欣賞秋季限定粉紅黛子草與波斯菊花海", desc: "瞻星臺粉黛草花海拍照", ko: "첨성대", naver: "https://map.naver.com/v5/search/%EC%B2%A8%EC%84%B1%EB%8C%80" },
+                    { time: "12:00", title: "步行前往大陵苑、天馬塚與古色古香的石牆路散步拍人生照", desc: "漫步新羅古墓群", ko: "대릉원" },
+                    { time: "13:00", title: "漫步步行進入皇理團路", desc: "漫步皇理團路", ko: "황리단길" },
+                    { time: "13:10", title: "慢逛皇理團路巷弄文創小店與特色選物", desc: "逛文創小店", ko: "황리단길" },
+                    { time: "14:30", title: "【午餐】巨松排骨皇南店", desc: "品嚐人氣巨松排骨", ko: "거송갈비찜 황남점", naver: "https://map.naver.com/v5/search/%EA%B1%B0%EC%86%A1%EA%B0%88%EB%B9%84%찜%20%ED%99%A9%EB%82%A8%EC%A0%90" },
+                    { time: "15:30", title: "【韓屋下午茶】三選一 (1894薩朗宅 / Cafe Neung / Terarosa Coffee)", desc: "體驗唯美韓屋咖啡廳", ko: "1894사랑채", naver: "https://map.naver.com/v5/search/1894%EC%82%AC%EB%9E%91%EC%B1%84" },
+                    { time: "17:30", title: "皇理團路買慶州限定伴手禮，或前往東宮與月池欣賞夜景", desc: "買伴手禮與賞夜景", ko: "동궁과월지" },
+                    { time: "18:45", title: "搭乘 Uber 前往慶州站", desc: "搭車前往車站", ko: "신경주역" },
+                    { time: "19:05", title: "抵達慶州站", desc: "抵達車站準備搭車", ko: "신경주역" },
+                    { time: "19:37", title: "【搭車】搭乘 KTX 059 返回釜山車站", desc: "搭高鐵返回釜山", ko: "부산역" },
+                    { time: "20:11", title: "抵達釜山車站", desc: "返回釜山", ko: "부산역" },
+                    { time: "20:16", title: "步行前往炒瑪麵館", desc: "步行前往餐廳", ko: "" },
+                    { time: "20:30", title: "【晚餐】炒瑪麵館", desc: "享用香辣過癮的韓式炒瑪麵", ko: "짬뽕맛집" },
+                    { time: "21:30", title: "搭乘 Uber 返回南浦洞飯店休息", desc: "搭車回飯店洗洗睡", ko: "" }
+                ]
+            },
+            5: {
+                title: "10/14 (三) 土豆豬骨湯、樂天超市、松葉蟹與披薩夜市大滿貫",
+                items: [
+                    { time: "08:20", title: "步行前往世界村莊土豆湯", desc: "步行前往早餐店", ko: "" },
+                    { time: "08:30", title: "【早餐】世界村莊土豆湯 (札嘎其店)", desc: "享用濃郁暖胃的土豆豬骨湯", ko: "세계마을감자탕", naver: "https://map.naver.com/v5/search/%EC%84%B8%EA%B3%84%EB%A7%88%EC%9D%84%EA%B0%90%EC%9E%90%ED%83%85" },
+                    { time: "09:40", title: "慢慢步行前往南浦站旁的樂天超市", desc: "散步前往樂天超市", ko: "" },
+                    { time: "10:00", title: "【超市大採購】樂天超市光復店", desc: "樂天超市採購伴手禮", ko: "롯데마트 광복점", naver: "https://map.naver.com/v5/search/%EB%롯데%마트%20%EA%B4%91%EB%B3%B5%EC%A0%90" },
+                    { time: "11:30", title: "【重要任務】前往指定 Emart24 超商，提領預訂的飲料*15", desc: "提領 Day 1 預訂的 15 瓶飲料", ko: "이마트24" },
+                    { time: "11:40", title: "回飯店 放戰利品、重物與 15 瓶飲料", desc: "回房卸下手信與飲料", ko: "" },
+                    { time: "12:00", title: "輕鬆出發，步行前往新東亞海鮮市場", desc: "步行前往海鮮市場", ko: "신동아수산물종합시장" },
+                    { time: "12:15", title: "【午餐】新東亞海鮮市場大啖松葉蟹、品嚐美味蟹膏炒飯", desc: "大啖頂級新鮮松葉蟹與蟹膏炒飯", ko: "신동아수산물종합시장", naver: "https://map.naver.com/v5/search/%EC%8B%A0%EB%8F%99%EC%95%84%EC%88%98%EC%82%B0%EB%AC%BC%EC%A2%85%ED%95%A9%EC%8C%9C%EC%9E%A5" },
+                    { time: "14:00", title: "【逛街散策】BIFF 廣場 / 光復路商圈 / 南浦站地下街 (大創、OV補貨)", desc: "大創與各店鋪血拼補貨", ko: "남포동지하상가" },
+                    { time: "18:00", title: "【晚餐】李在模 Pizza (南浦總店)", desc: "享用牽絲濃郁的超人氣李在模披薩", ko: "이재모피자 본점", naver: "https://map.naver.com/v5/search/%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%94%피%EC%9E%90%20%EB%B3%B8%EC%점" },
+                    { time: "20:00", title: "【夜市大狂吃】富平罐頭夜市", desc: "烤魷魚、蔬菜肉捲、烤腸、炸雞、煎餅、韓牛握壽司", ko: "부평깡통야시장", naver: "https://map.naver.com/v5/search/%EB%부%평%깡%통%야%시%장" },
+                    { time: "21:30", title: "沿路散步逛街、慢慢晃回飯店", desc: "散步回飯店", ko: "" },
+                    { time: "宵夜", title: "體驗飯店樓下的南浦洞傳統布帳馬車", desc: "體驗道地韓國布帳馬車文化", ko: "포장마차" },
+                    { time: "睡前", title: "整理行李與裝箱，準備隔天回國", desc: "打包戰利品與行李過磅預備", ko: "" }
+                ]
+            },
+            6: {
+                title: "10/15 (四) 龜浦麵條、釜山塔散策、味讚王烤肉 ➡️ 溫暖的家",
+                items: [
+                    { time: "09:00", title: "飯店 退房，行李寄放櫃檯", desc: "辦理退房並寄放行李", ko: "뉴씨즈호텔 남포" },
+                    { time: "09:10", title: "步行前往 153 龜浦麵條南浦店", desc: "步行前往早餐店", ko: "" },
+                    { time: "09:20", title: "【早餐】153 龜浦麵條", desc: "品嚐暖胃順口的龜浦麵條", ko: "153구포국수", naver: "https://map.naver.com/v5/search/153%EA%B5%AC%ED%8F%AC%EA%B5%AD%EC%88%98" },
+                    { time: "10:30", title: "【景點】龍頭山公園 + 釜山塔 (Diamond Tower)", desc: "漫步龍頭山公園俯瞰釜山市景", ko: "용두산공원 부산타워", naver: "https://map.naver.com/v5/search/%EC%9A%A9%EB%10%EC%82%B0%EA%B3%B5%EC%9B%90" },
+                    { time: "12:20", title: "【午餐】味讚王鹽烤肉 富平店", desc: "享受專人代烤的極品厚切豬五花", ko: "맛찬들왕소금구이 부평점", naver: "https://map.naver.com/v5/search/%EB%맛%찬%B0%EB%93%9C%EC%99%95%EC%86%8C%EA%B0%88%GU%EC%9D%84" },
+                    { time: "14:20", title: "吃飽後沿路逛街散步做最後巡禮，慢慢晃回飯店方向", desc: "最後購物巡禮", ko: "" },
+                    { time: "15:00", title: "回飯店 提領所有行李", desc: "返回飯店領取所有行李", ko: "" },
+                    { time: "15:30", title: "飯店門口搭乘接機專車出發前往金海機場", desc: "搭專車前往機場", ko: "김해국제공항" },
+                    { time: "16:30", title: "抵達金海機場，進行行李秤重、分裝與最後整理", desc: "機場秤重與行李最後分裝（回程 46kg 額度）", ko: "김해국제공항" },
+                    { time: "17:00", title: "航空公司櫃檯辦理登機報到、行李託運", desc: "長榮航空櫃檯辦理報到與託運", ko: "" },
+                    { time: "17:20", title: "機場辦理退稅手續", desc: "辦理退稅手續", ko: "" },
+                    { time: "17:50", title: "【過安檢後】在免稅區 CU 超商採買香蕉牛奶、優格直接提上飛機", desc: "免稅區超商採買上機點心", ko: "CU 편의점" },
+                    { time: "18:20", title: "登機門，排隊準備登機", desc: "前往登機門排隊", ko: "" },
+                    { time: "19:10", title: "班機起飛，飛往桃園國際機場", desc: "搭乘長榮航空 BR163 起飛返台", ko: "" },
+                    { time: "19:25", title: "機上享用飛機餐", desc: "享用回程機上餐點", ko: "" },
+                    { time: "20:30", title: "順利抵達桃園國際機場", desc: "平安降落桃園機場", ko: "" },
+                    { time: "21:00", title: "順利接機，平安回家！", desc: "圓滿結束美好的釜山慶州秋季之旅", ko: "" }
+                ]
+            }
+        };
+
+        window.renderDay = function(dayNum) {
+            document.querySelectorAll('.day-btn').forEach(btn => {
+                if(parseInt(btn.dataset.day) === dayNum) {
+                    btn.classList.add('autumn-btn', 'text-white', 'shadow-sm');
+                    btn.classList.remove('bg-white', 'text-autumn-primary', 'border', 'border-autumn-border');
+                } else {
+                    btn.classList.remove('autumn-btn', 'text-white', 'shadow-sm');
+                    btn.classList.add('bg-white', 'text-autumn-primary', 'border', 'border-autumn-border');
+                }
+            });
+
+            const data = itineraryData[dayNum];
+            let html = `
+                <div class="mb-6 pb-4 border-b border-autumn-border flex justify-between items-center">
+                    <h3 class="text-lg md:text-xl font-bold text-autumn-textMain flex items-center"><i class="fa-solid fa-map-location-dot text-autumn-primary mr-2.5"></i>${data.title}</h3>
+                </div>
+            `;
+            html += `<div class="relative border-l-2 border-autumn-border ml-3 space-y-6">`;
+            
+            data.items.forEach((item) => {
+                html += `
+                    <div class="ml-6 relative bg-white p-4 rounded-2xl border border-autumn-border shadow-sm hover:border-autumn-primary transition group">
+                        <span class="absolute -left-[43px] top-5 w-4 h-4 rounded-full bg-autumn-primary border-2 border-white shadow-sm"></span>
+                        
+                        <div class="flex flex-col md:flex-row gap-4 justify-between items-start">
+                            <div class="flex-grow">
+                                <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                                    <span class="text-[11px] font-bold text-autumn-primary autumn-badge px-2.5 py-0.5 rounded-full tracking-wide font-mono">${item.time}</span>
+                                    <h4 class="font-bold text-autumn-textMain text-base">${item.title}</h4>
+                                </div>
+                                ${item.desc ? `<p class="text-sm text-autumn-textSub mt-1">${item.desc}</p>` : ''}
+                                
+                                ${item.ko ? `
+                                    <div class="mt-2.5 flex flex-wrap items-center gap-2">
+                                        <div class="flex items-center space-x-2 bg-autumn-soft px-3 py-1.5 rounded-xl border border-autumn-border w-max shadow-sm">
+                                            <span class="text-xs font-mono text-autumn-textMain">🇰🇷 ${item.ko}</span>
+                                            <button onclick="copyToClipboard('${item.ko}')" class="text-autumn-primary hover:text-amber-900 text-xs px-2 py-0.5 rounded transition font-medium autumn-badge">
+                                                <i class="fa-regular fa-copy mr-1"></i>複製韓文
+                                            </button>
+                                        </div>
+                                        ${item.naver ? `
+                                            <a href="${item.naver}" target="_blank" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs px-3 py-1.5 rounded-xl transition font-medium flex items-center shadow-sm">
+                                                <i class="fa-solid fa-location-dot mr-1"></i> NAVER 地圖
+                                            </a>
+                                        ` : ''}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+            const container = document.getElementById('day-content-container');
+            if(container) container.innerHTML = html;
+        };
+
+        let snacksList = JSON.parse(localStorage.getItem('busan_snacks_autumn') || JSON.stringify([]));
+
+        window.renderSnacks = function() {
+            localStorage.setItem('busan_snacks_autumn', JSON.stringify(snacksList));
+            const container = document.getElementById('snacks-container');
+            if(!container) return;
+            if(snacksList.length === 0) {
+                container.innerHTML = `<div class="col-span-2 text-center py-6 text-xs text-autumn-textSub bg-autumn-soft rounded-2xl border border-autumn-border">目前尚無自訂想買的戰利品，請透過上方輸入框新增！</div>`;
+                return;
+            }
+            container.innerHTML = snacksList.map(item => `
+                <div class="flex items-center justify-between p-3.5 rounded-2xl border border-autumn-border hover:bg-autumn-soft transition bg-white shadow-sm">
+                    <label class="cursor-pointer select-none flex items-center overflow-hidden">
+                        <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleSnackItem(${item.id})" class="w-4 h-4 text-autumn-primary rounded focus:ring-autumn-primary mr-2.5">
+                        <span class="text-sm font-medium ${item.checked ? 'line-through text-stone-400' : 'text-autumn-textMain'}">${item.text}</span>
+                    </label>
+                    <button onclick="deleteSnackItem(${item.id})" class="text-stone-400 hover:text-autumn-primary text-sm ml-2 p-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            `).join('');
+        };
+
+        window.toggleSnackItem = function(id) {
+            const item = snacksList.find(i => i.id === id);
+            if(item) item.checked = !item.checked;
+            renderSnacks();
+        };
+
+        window.addSnackItem = function() {
+            const input = document.getElementById('new-snack-input');
+            if(!input) return;
+            const val = input.value.trim();
+            if(!val) return;
+            snacksList.push({ id: Date.now(), text: val, checked: false });
+            input.value = '';
+            renderSnacks();
+        };
+
+        window.deleteSnackItem = function(id) {
+            snacksList = snacksList.filter(i => i.id !== id);
+            renderSnacks();
+        };
+
+        let checklist = JSON.parse(localStorage.getItem('busan_checklist_autumn') || JSON.stringify([
+            { id: 1, text: "護照 (有效期6個月以上) 與身分證", checked: true },
+            { id: 2, text: "長榮航空機票與住宿預約憑證", checked: true },
+            { id: 3, text: "韓元現金與信用卡 (WOWPASS / 信用卡)", checked: false }
+        ]));
+
+        window.renderChecklist = function() {
+            localStorage.setItem('busan_checklist_autumn', JSON.stringify(checklist));
+            const container = document.getElementById('checklist-container');
+            if(!container) return;
+            container.innerHTML = checklist.map(item => `
+                <div class="flex items-center justify-between p-3.5 rounded-2xl border border-autumn-border hover:bg-autumn-soft transition bg-white shadow-sm">
+                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                        <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleCheckItem(${item.id})" class="w-4 h-4 text-autumn-primary rounded focus:ring-autumn-primary">
+                        <span class="text-sm ${item.checked ? 'line-through text-stone-400' : 'text-autumn-textMain'}">${item.text}</span>
+                    </label>
+                    <button onclick="deleteCheckItem(${item.id})" class="text-stone-400 hover:text-autumn-primary text-sm p-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            `).join('');
+        };
+
+        window.toggleCheckItem = function(id) {
+            const item = checklist.find(i => i.id === id);
+            if(item) item.checked = !item.checked;
+            renderChecklist();
+        };
+
+        window.addChecklistItem = function() {
+            const input = document.getElementById('new-item-input');
+            if(!input) return;
+            const val = input.value.trim();
+            if(!val) return;
+            checklist.push({ id: Date.now(), text: val, checked: false });
+            input.value = '';
+            renderChecklist();
+        };
+
+        window.deleteCheckItem = function(id) {
+            checklist = checklist.filter(i => i.id !== id);
+            renderChecklist();
+        };
+
+        let memos = JSON.parse(localStorage.getItem('busan_memos_autumn') || JSON.stringify([
+            { id: 1, text: "https://papago.naver.com/" }
+        ]));
+
+        window.renderMemos = function() {
+            localStorage.setItem('busan_memos_autumn', JSON.stringify(memos));
+            const container = document.getElementById('memos-container');
+            if(!container) return;
+            container.innerHTML = memos.map(m => {
+                let isUrl = m.text.startsWith('http://') || m.text.startsWith('https://');
+                return `
+                    <div class="flex items-center justify-between p-3 rounded-2xl border border-autumn-border bg-white shadow-sm">
+                        ${isUrl ? `<a href="${m.text}" target="_blank" class="text-xs text-autumn-primary font-medium underline flex items-center"><i class="fa-solid fa-link mr-1.5"></i>${m.text}</a>` : `<span class="text-xs text-autumn-textMain">${m.text}</span>`}
+                        <button onclick="deleteMemo(${m.id})" class="text-stone-400 hover:text-autumn-primary text-xs px-2 py-1"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            }).join('');
+        };
+
+        window.addMemoItem = function() {
+            const input = document.getElementById('memo-input');
+            if(!input) return;
+            const val = input.value.trim();
+            if(!val) return;
+            memos.push({ id: Date.now(), text: val });
+            input.value = '';
+            renderMemos();
+        };
+
+        window.deleteMemo = function(id) {
+            memos = memos.filter(m => m.id !== id);
+            renderMemos();
+        };
+
+        window.calculateExpression = function() {
+            const input = document.getElementById('calc-input');
+            const resultBox = document.getElementById('calc-result');
+            if(!input || !resultBox) return;
+            try {
+                let val = eval(input.value.replace(/[^0-9+\-*/().]/g, ''));
+                if(isNaN(val)) val = 0;
+                let twd = Math.round(val * 0.024);
+                resultBox.innerText = `結果：₩ ${val.toLocaleString()} ≒ NT$ ${twd.toLocaleString()}`;
+            } catch(e) {
+                resultBox.innerText = "運算式格式錯誤";
+            }
+        };
+
+        let expenses = JSON.parse(localStorage.getItem('busan_expenses_autumn') || JSON.stringify([
+            { id: 1, title: "弘小(紅燒)豬腳午餐", amount: 45000, photo: null }
+        ]));
+
+        window.renderBudget = function() {
+            localStorage.setItem('busan_expenses_autumn', JSON.stringify(expenses));
+            const totalSpent = expenses.reduce((sum, item) => sum + item.amount, 0);
+
+            const spentDisplay = document.getElementById('total-spent-display');
+            if(spentDisplay) spentDisplay.innerText = `₩ ${totalSpent.toLocaleString()}`;
+
+            const listContainer = document.getElementById('expense-list-container');
+            if(!listContainer) return;
+            listContainer.innerHTML = expenses.map(item => {
+                let twd = Math.round(item.amount * 0.024);
+                return `
+                    <div class="py-3.5 flex justify-between items-center text-sm">
+                        <div class="flex items-center space-x-3">
+                            ${item.photo ? `<img src="${item.photo}" class="w-10 h-10 object-cover rounded-xl border border-autumn-border">` : ''}
+                            <div>
+                                <span class="font-medium text-autumn-textMain block">${item.title}</span>
+                                <span class="text-xs text-autumn-textSub font-mono">≈ NT$ ${twd.toLocaleString()}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="font-semibold text-autumn-primary font-mono">₩ ${item.amount.toLocaleString()}</span>
+                            <button onclick="deleteExpense(${item.id})" class="text-stone-400 hover:text-autumn-primary p-1"><i class="fa-solid fa-xmark text-base"></i></button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        };
+
+        window.addExpense = function() {
+            const titleInput = document.getElementById('expense-title');
+            const amountInput = document.getElementById('expense-amount');
+            const photoInput = document.getElementById('expense-photo');
+            if(!titleInput || !amountInput) return;
+            const title = titleInput.value.trim();
+            const amount = parseInt(amountInput.value);
+
+            if(!title || isNaN(amount)) return;
+
+            if(photoInput && photoInput.files && photoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        let width = img.width;
+                        let height = img.height;
+                        const maxDim = 300;
+                        if(width > height && width > maxDim) {
+                            height *= maxDim / width;
+                            width = maxDim;
+                        } else if(height > maxDim) {
+                            width *= maxDim / height;
+                            height = maxDim;
+                        }
+                        canvas.width = width;
+                        canvas.height = height;
+                        ctx.drawImage(img, 0, 0, width, height);
+                        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+
+                        expenses.push({ id: Date.now(), title, amount, photo: compressedBase64 });
+                        titleInput.value = '';
+                        amountInput.value = '';
+                        photoInput.value = '';
+                        renderBudget();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(photoInput.files[0]);
+            } else {
+                expenses.push({ id: Date.now(), title, amount, photo: null });
+                titleInput.value = '';
+                amountInput.value = '';
+                renderBudget();
+            }
+        };
+
+        window.deleteExpense = function(id) {
+            expenses = expenses.filter(e => e.id !== id);
+            renderBudget();
+        };
+
+        window.onload = function() {
+            renderDay(1);
+            renderSnacks();
+            renderChecklist();
+            renderMemos();
+            renderBudget();
+        };
+    </script>
 </body>
 </html>
