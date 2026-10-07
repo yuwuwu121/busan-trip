@@ -59,7 +59,7 @@
             transform: translateY(-2px);
         }
         .autumn-header {
-            background: rgba(252, 250, 247, 0.92);
+            background: rgba(252, 250, 247, 0.94);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid #e7e2d8;
         }
@@ -93,168 +93,171 @@
 <body class="flex flex-col selection:bg-amber-100 selection:text-amber-900">
 
     <header class="autumn-header text-autumn-textMain sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#overview" class="flex items-center space-x-2.5">
-                <i class="fa-solid fa-seedling text-lg text-autumn-primary"></i>
-                <h1 class="text-base md:text-lg font-bold tracking-wide text-autumn-primary">釜山慶州6日</h1>
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#overview" class="flex items-center space-x-2">
+                <i class="fa-solid fa-seedling text-base text-autumn-primary"></i>
+                <h1 class="text-sm md:text-base font-bold tracking-wide text-autumn-primary">釜山慶州6日手冊</h1>
             </a>
-            <nav class="hidden md:flex space-x-1 text-sm font-medium">
-                <a href="#overview" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">總覽</a>
-                <a href="#itinerary" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">每日行程</a>
-                <a href="#guide" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">深度導覽</a>
-                <a href="#accommodation" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">住宿</a>
-                <a href="#translation" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">翻譯</a>
-                <a href="#snacks" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">伴手禮</a>
-                <a href="#checklist" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">行李</a>
-                <a href="#budget" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">記帳</a>
-                <a href="#info" class="nav-link transition hover:text-autumn-primary py-1.5 px-3 rounded-lg text-autumn-textSub">資訊</a>
+            <nav class="hidden md:flex space-x-1 text-xs font-medium">
+                <a href="#overview" class="transition hover:text-autumn-primary py-1 px-2.5 rounded-lg text-autumn-textSub">總覽</a>
+                <a href="#itinerary" class="transition hover:text-autumn-primary py-1 px-2.5 rounded-lg text-autumn-textSub">行程</a>
+                <a href="#guide" class="transition hover:text-autumn-primary py-1 px-2.5 rounded-lg text-autumn-textSub">導覽</a>
+                <a href="#accommodation" class="transition hover:text-autumn-primary py-1 px-2.5 rounded-lg text-autumn-textSub">住宿</a>
+                <a href="#translation" class="transition hover:text-autumn-primary py-1 px-2.5 rounded-lg text-autumn-textSub">翻譯</a>
+                <a href="#snacks" class="transition hover:text-autumn-primary py-1 px-2.5 rounded-lg text-autumn-textSub">伴手禮</a>
+                <a href="#checklist" class="transition hover:text-autumn-primary py-1 px-2.5 rounded-lg text-autumn-textSub">行李</a>
+                <a href="#budget" class="transition hover:text-autumn-primary py-1 px-2.5 rounded-lg text-autumn-textSub">記帳</a>
+                <a href="#info" class="transition hover:text-autumn-primary py-1 px-2.5 rounded-lg text-autumn-textSub">資訊</a>
             </nav>
             <button onclick="toggleMobileMenu()" class="md:hidden text-autumn-primary focus:outline-none p-2">
-                <i class="fa-solid fa-bars text-xl"></i>
+                <i class="fa-solid fa-bars text-lg"></i>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pt-2 pb-4 space-y-1.5 border-t border-autumn-border shadow-md">
-            <a href="#overview" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-primary font-semibold">行程總覽</a>
-            <a href="#itinerary" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">每日行程</a>
-            <a href="#guide" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">深度導覽</a>
-            <a href="#accommodation" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">住宿與周邊</a>
-            <a href="#translation" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">韓文翻譯與語音</a>
-            <a href="#snacks" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">零食伴手禮</a>
-            <a href="#checklist" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">行李清單</a>
-            <a href="#budget" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">花費記帳</a>
-            <a href="#info" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub">實用資訊</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pt-2 pb-4 space-y-1 border-t border-autumn-border shadow-md">
+            <a href="#overview" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-primary font-semibold text-xs">行程總覽</a>
+            <a href="#itinerary" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub text-xs">每日行程</a>
+            <a href="#guide" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub text-xs">深度導覽</a>
+            <a href="#accommodation" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub text-xs">住宿與周邊</a>
+            <a href="#translation" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub text-xs">韓文翻譯與語音</a>
+            <a href="#snacks" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub text-xs">零食伴手禮</a>
+            <a href="#checklist" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub text-xs">行李清單</a>
+            <a href="#budget" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub text-xs">花費記帳</a>
+            <a href="#info" onclick="toggleMobileMenu()" class="block py-2 hover:bg-autumn-soft px-3 rounded-xl text-autumn-textSub text-xs">實用資訊</a>
         </div>
     </header>
 
-    <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-6 space-y-16">
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-6 space-y-12">
 
-        <section id="overview" class="space-y-6 pt-4">
-            <div class="relative rounded-3xl overflow-hidden shadow-autumn bg-gradient-to-br from-amber-50 via-orange-50/40 to-stone-100 p-6 md:p-10 flex flex-col justify-end border border-autumn-border">
-                <span class="autumn-badge text-xs uppercase px-3.5 py-1.5 rounded-full w-max font-bold mb-3 shadow-sm">🌰 2026 秋日簡約風之旅</span>
-                <h2 class="text-2xl md:text-4xl font-bold tracking-wide text-autumn-textMain">釜山慶州6日 - 秋日漫遊自由行</h2>
-                <p class="text-sm text-autumn-textSub mt-2 flex items-center"><i class="fa-regular fa-calendar mr-2 text-autumn-primary"></i> 2026年10月10日 (六) - 10月15日 (四) · 6天5夜豪華自由行</p>
+        <!-- OVERVIEW SECTION -->
+        <section id="overview" class="space-y-6 pt-2">
+            <div class="relative rounded-3xl overflow-hidden shadow-autumn bg-gradient-to-br from-amber-50 via-orange-50/40 to-stone-100 p-6 md:p-8 flex flex-col justify-end border border-autumn-border">
+                <span class="autumn-badge text-xs uppercase px-3 py-1 rounded-full w-max font-bold mb-3 shadow-sm">🌰 2026 秋日簡約風之旅</span>
+                <h2 class="text-2xl md:text-3xl font-bold tracking-wide text-autumn-textMain">釜山慶州6日 - 秋日漫遊自由行</h2>
+                <p class="text-xs md:text-sm text-autumn-textSub mt-2 flex items-center"><i class="fa-regular fa-calendar mr-2 text-autumn-primary"></i> 2026年10月10日 (六) - 10月15日 (四) · 6天5夜豪華自由行</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="autumn-card p-6 space-y-4">
-                    <div class="flex justify-between items-center border-b border-autumn-border pb-3">
+                <div class="autumn-card p-5 space-y-3">
+                    <div class="flex justify-between items-center border-b border-autumn-border pb-2.5">
                         <div class="flex items-center space-x-2">
-                            <i class="fa-solid fa-plane-departure text-autumn-primary"></i>
-                            <span class="font-bold text-sm tracking-wider text-autumn-primary">去程登機證 / BOARDING PASS</span>
+                            <i class="fa-solid fa-plane-departure text-autumn-primary text-sm"></i>
+                            <span class="font-bold text-xs tracking-wider text-autumn-primary">去程登機證 / BOARDING PASS</span>
                         </div>
-                        <span class="text-xs autumn-badge px-2.5 py-1 rounded-full font-bold">長榮 BR1194</span>
+                        <span class="text-[11px] autumn-badge px-2.5 py-0.5 rounded-full font-bold">長榮 BR1194</span>
                     </div>
-                    <div class="flex justify-between items-center border-b border-stone-100 pb-3">
+                    <div class="flex justify-between items-center border-b border-stone-100 pb-2.5 text-xs">
                         <div>
-                            <p class="text-xs text-autumn-textSub">航線 ROUTE</p>
-                            <p class="text-lg font-bold text-autumn-textMain font-mono">TPE ➔ PUS</p>
-                            <p class="text-xs text-autumn-textSub">台北桃園 ➔ 釜山金海</p>
+                            <p class="text-autumn-textSub">航線 ROUTE</p>
+                            <p class="text-base font-bold text-autumn-textMain font-mono">TPE ➔ PUS</p>
+                            <p class="text-[11px] text-autumn-textSub">台北桃園 ➔ 釜山金海</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xs text-autumn-textSub">日期 DATE</p>
-                            <p class="text-sm font-bold text-autumn-textMain font-mono">10 OCT 2026</p>
-                            <p class="text-xs text-autumn-textSub">星期六 (SAT)</p>
+                            <p class="text-autumn-textSub">日期 DATE</p>
+                            <p class="text-xs font-bold text-autumn-textMain font-mono">10 OCT 2026</p>
+                            <p class="text-[11px] text-autumn-textSub">星期六 (SAT)</p>
                         </div>
                     </div>
-                    <div class="grid grid-cols-3 gap-2 text-center bg-autumn-soft p-3 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-3 gap-2 text-center bg-autumn-soft p-2.5 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <p class="text-[11px] text-autumn-textSub">起飛時間</p>
-                            <p class="text-base font-bold text-autumn-primary font-mono">07:00</p>
+                            <p class="text-[10px] text-autumn-textSub">起飛時間</p>
+                            <p class="text-sm font-bold text-autumn-primary font-mono">07:00</p>
                         </div>
                         <div>
-                            <p class="text-[11px] text-autumn-textSub">抵達時間</p>
-                            <p class="text-base font-bold text-autumn-primary font-mono">10:20</p>
+                            <p class="text-[10px] text-autumn-textSub">抵達時間</p>
+                            <p class="text-sm font-bold text-autumn-primary font-mono">10:20</p>
                         </div>
                         <div>
-                            <p class="text-[11px] text-autumn-textSub">託運行李</p>
-                            <p class="text-base font-bold text-autumn-primary font-mono">23 KG</p>
+                            <p class="text-[10px] text-autumn-textSub">託運行李</p>
+                            <p class="text-sm font-bold text-autumn-primary font-mono">23 KG</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="autumn-card p-6 space-y-4">
-                    <div class="flex justify-between items-center border-b border-autumn-border pb-3">
+                <div class="autumn-card p-5 space-y-3">
+                    <div class="flex justify-between items-center border-b border-autumn-border pb-2.5">
                         <div class="flex items-center space-x-2">
-                            <i class="fa-solid fa-plane-arrival text-autumn-primary"></i>
-                            <span class="font-bold text-sm tracking-wider text-autumn-primary">回程登機證 / BOARDING PASS</span>
+                            <i class="fa-solid fa-plane-arrival text-autumn-primary text-sm"></i>
+                            <span class="font-bold text-xs tracking-wider text-autumn-primary">回程登機證 / BOARDING PASS</span>
                         </div>
-                        <span class="text-xs autumn-badge px-2.5 py-1 rounded-full font-bold">長榮 BR163</span>
+                        <span class="text-[11px] autumn-badge px-2.5 py-0.5 rounded-full font-bold">長榮 BR163</span>
                     </div>
-                    <div class="flex justify-between items-center border-b border-stone-100 pb-3">
+                    <div class="flex justify-between items-center border-b border-stone-100 pb-2.5 text-xs">
                         <div>
-                            <p class="text-xs text-autumn-textSub">航線 ROUTE</p>
-                            <p class="text-lg font-bold text-autumn-textMain font-mono">PUS ➔ TPE</p>
-                            <p class="text-xs text-autumn-textSub">釜山金海 ➔ 台北桃園</p>
+                            <p class="text-autumn-textSub">航線 ROUTE</p>
+                            <p class="text-base font-bold text-autumn-textMain font-mono">PUS ➔ TPE</p>
+                            <p class="text-[11px] text-autumn-textSub">釜山金海 ➔ 台北桃園</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xs text-autumn-textSub">日期 DATE</p>
-                            <p class="text-sm font-bold text-autumn-textMain font-mono">15 OCT 2026</p>
-                            <p class="text-xs text-autumn-textSub">星期四 (THU)</p>
+                            <p class="text-autumn-textSub">日期 DATE</p>
+                            <p class="text-xs font-bold text-autumn-textMain font-mono">15 OCT 2026</p>
+                            <p class="text-[11px] text-autumn-textSub">星期四 (THU)</p>
                         </div>
                     </div>
-                    <div class="grid grid-cols-3 gap-2 text-center bg-autumn-soft p-3 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-3 gap-2 text-center bg-autumn-soft p-2.5 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <p class="text-[11px] text-autumn-textSub">起飛時間</p>
-                            <p class="text-base font-bold text-autumn-primary font-mono">19:10</p>
+                            <p class="text-[10px] text-autumn-textSub">起飛時間</p>
+                            <p class="text-sm font-bold text-autumn-primary font-mono">19:10</p>
                         </div>
                         <div>
-                            <p class="text-[11px] text-autumn-textSub">抵達時間</p>
-                            <p class="text-base font-bold text-autumn-primary font-mono">20:30</p>
+                            <p class="text-[10px] text-autumn-textSub">抵達時間</p>
+                            <p class="text-sm font-bold text-autumn-primary font-mono">20:30</p>
                         </div>
                         <div>
-                            <p class="text-[11px] text-autumn-textSub">託運行李</p>
-                            <p class="text-base font-bold text-autumn-primary font-mono">46 KG</p>
+                            <p class="text-[10px] text-autumn-textSub">託運行李</p>
+                            <p class="text-sm font-bold text-autumn-primary font-mono">46 KG</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="itinerary" class="space-y-6 pt-4">
+        <!-- ITINERARY SECTION -->
+        <section id="itinerary" class="space-y-6 pt-2">
             <div class="border-b border-autumn-border pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                <h3 class="text-xl font-bold text-autumn-textMain flex items-center"><i class="fa-solid fa-map-location-dot text-autumn-primary mr-2.5"></i>每日行程總覽</h3>
+                <h3 class="text-lg font-bold text-autumn-textMain flex items-center"><i class="fa-solid fa-map-location-dot text-autumn-primary mr-2"></i>每日行程總覽</h3>
                 <div class="flex space-x-1.5 overflow-x-auto pb-2 no-scrollbar w-full sm:w-auto">
-                    <button onclick="renderDay(1)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap autumn-btn shadow-sm transition" data-day="1">10/10(六)</button>
-                    <button onclick="renderDay(2)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="2">10/11(日)</button>
-                    <button onclick="renderDay(3)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="3">10/12(一)</button>
-                    <button onclick="renderDay(4)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="4">10/13(二)</button>
-                    <button onclick="renderDay(5)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="5">10/14(三)</button>
-                    <button onclick="renderDay(6)" class="day-btn px-3.5 py-1.5 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="6">10/15(四)</button>
+                    <button onclick="renderDay(1)" class="day-btn px-3 py-1 rounded-full font-medium text-xs whitespace-nowrap autumn-btn shadow-sm transition" data-day="1">10/10(六)</button>
+                    <button onclick="renderDay(2)" class="day-btn px-3 py-1 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="2">10/11(日)</button>
+                    <button onclick="renderDay(3)" class="day-btn px-3 py-1 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="3">10/12(一)</button>
+                    <button onclick="renderDay(4)" class="day-btn px-3 py-1 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="4">10/13(二)</button>
+                    <button onclick="renderDay(5)" class="day-btn px-3 py-1 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="5">10/14(三)</button>
+                    <button onclick="renderDay(6)" class="day-btn px-3 py-1 rounded-full font-medium text-xs whitespace-nowrap bg-white text-autumn-primary border border-autumn-border transition shadow-sm" data-day="6">10/15(四)</button>
                 </div>
             </div>
 
-            <div id="day-content-container" class="autumn-card p-6 md:p-8">
+            <div id="day-content-container" class="autumn-card p-5 md:p-6">
                 <!-- Dynamically populated via JS -->
             </div>
         </section>
 
-        <section id="guide" class="space-y-6 pt-4">
-            <div class="autumn-card p-6 md:p-10 space-y-8">
-                <div class="border-b border-autumn-border pb-6">
-                    <span class="text-xs uppercase tracking-widest text-autumn-primary font-bold">Autumn Minimalist Travel Magazine</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-autumn-textMain mt-1">釜山與慶州秋季深度導覽手冊</h2>
+        <!-- GUIDE SECTION -->
+        <section id="guide" class="space-y-6 pt-2">
+            <div class="autumn-card p-5 md:p-8 space-y-6">
+                <div class="border-b border-autumn-border pb-4">
+                    <span class="text-[10px] uppercase tracking-widest text-autumn-primary font-bold">Autumn Minimalist Travel Magazine</span>
+                    <h2 class="text-xl md:text-2xl font-bold text-autumn-textMain mt-1">釜山與慶州秋季深度導覽手冊</h2>
                     <p class="text-xs text-autumn-textSub mt-1">依照行程實際造訪順序排列（首站廣安里），深入探索各大人氣景點與歷史冷知識。</p>
                 </div>
 
                 <!-- 1. 廣安里海水浴場 -->
-                <div class="space-y-4">
+                <div class="space-y-3">
                     <div class="flex items-center space-x-2">
-                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 1 景點</span>
-                        <h3 class="text-xl font-bold text-autumn-primary">1. 廣安里：跨海大橋與夜空中的科技藝術</h3>
+                        <span class="autumn-badge text-[11px] px-2.5 py-0.5 rounded-full font-bold">Day 1 景點</span>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary">1. 廣安里：跨海大橋與夜空中的科技藝術</h3>
                     </div>
-                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                    <p class="text-xs md:text-sm text-autumn-textSub leading-relaxed">
                         擁有半月形優美沙灘，並以雄偉的廣安大橋夜景聞名。每周六夜晚舉辦常態性無人機燈光秀，結合上千架無人機在夜空中排列出千變萬化的動態圖騰。
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-autumn-soft p-4 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 在地冷知識：廣安大橋的雙層結構</h4>
-                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                            <h4 class="font-bold text-autumn-primary mb-1">💡 在地冷知識：廣安大橋的雙層結構</h4>
+                            <p class="text-[11px] text-autumn-textSub leading-relaxed">
                                 全長 7.42 公里，入夜後會點綴多達數萬種色彩的高級 LED 燈光秀，倒映在海面上美不勝收。
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 廣安里 OpenStreetMap 導覽地圖</h4>
-                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                            <h4 class="font-bold text-autumn-primary mb-1">🗺️ 廣安里 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-32 rounded-xl overflow-hidden border border-autumn-border">
                                 <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.112%2C35.150%2C129.124%2C35.158&amp;layer=mapnik&amp;marker=35.154%2C129.118" style="border: 0"></iframe>
                             </div>
                         </div>
@@ -262,24 +265,24 @@
                 </div>
 
                 <!-- 2. 冬柏島 -->
-                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                <div class="space-y-3 pt-5 border-t border-autumn-border">
                     <div class="flex items-center space-x-2">
-                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 2 景點</span>
-                        <h3 class="text-xl font-bold text-autumn-primary">2. 冬柏島 (Dongbaekseom)：海雲台的絕美木棧步道</h3>
+                        <span class="autumn-badge text-[11px] px-2.5 py-0.5 rounded-full font-bold">Day 2 景點</span>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary">2. 冬柏島 (Dongbaekseom)：海雲台的絕美木棧步道</h3>
                     </div>
-                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                    <p class="text-xs md:text-sm text-autumn-textSub leading-relaxed">
                         過去曾是獨立小島，因長年泥沙堆積與陸地相連。沿著平緩海岸木棧道漫步，可眺望蔚藍海景與 APEC 世峰樓。
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-autumn-soft p-4 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 峰會冷知識：APEC 舉辦地</h4>
-                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                            <h4 class="font-bold text-autumn-primary mb-1">💡 峰會冷知識：APEC 舉辦地</h4>
+                            <p class="text-[11px] text-autumn-textSub leading-relaxed">
                                 島上的世峰樓為 2005 年 APEC 領導人會議會場，建築設計靈感源自韓國傳統涼亭。
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 冬柏島 OpenStreetMap 導覽地圖</h4>
-                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                            <h4 class="font-bold text-autumn-primary mb-1">🗺️ 冬柏島 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-32 rounded-xl overflow-hidden border border-autumn-border">
                                 <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.150%2C35.153%2C129.160%2C35.161&amp;layer=mapnik&amp;marker=35.157%2C129.155" style="border: 0"></iframe>
                             </div>
                         </div>
@@ -287,24 +290,24 @@
                 </div>
 
                 <!-- 3. 釜田市場 -->
-                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                <div class="space-y-3 pt-5 border-t border-autumn-border">
                     <div class="flex items-center space-x-2">
-                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 3 景點</span>
-                        <h3 class="text-xl font-bold text-autumn-primary">3. 釜田市場 (Bujeon Market)：釜山的庶民美食寶庫</h3>
+                        <span class="autumn-badge text-[11px] px-2.5 py-0.5 rounded-full font-bold">Day 3 景點</span>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary">3. 釜田市場 (Bujeon Market)：釜山的庶民美食寶庫</h3>
                     </div>
-                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                    <p class="text-xs md:text-sm text-autumn-textSub leading-relaxed">
                         釜山規模最大、最具人情味的傳統市場之一。這裡販售產地直送新鮮蔬果、道地韓式小菜、手工排骨豬肉餅與炭烤燻鴨。
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-autumn-soft p-4 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 在地冷知識：豐富的藥材與乾貨</h4>
-                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                            <h4 class="font-bold text-autumn-primary mb-1">💡 在地冷知識：豐富的藥材與乾貨</h4>
+                            <p class="text-[11px] text-autumn-textSub leading-relaxed">
                                 鄰近釜田地鐵站與火車站，市場內除了美食外，還設有規模龐大的中藥材與人參專區。
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 釜田市場 OpenStreetMap 導覽地圖</h4>
-                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                            <h4 class="font-bold text-autumn-primary mb-1">🗺️ 釜田市場 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-32 rounded-xl overflow-hidden border border-autumn-border">
                                 <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.058%2C35.158%2C129.068%2C35.166&amp;layer=mapnik&amp;marker=35.162%2C129.063" style="border: 0"></iframe>
                             </div>
                         </div>
@@ -312,24 +315,24 @@
                 </div>
 
                 <!-- 4. ARTE MUSEUM Busan -->
-                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                <div class="space-y-3 pt-5 border-t border-autumn-border">
                     <div class="flex items-center space-x-2">
-                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 3 景點</span>
-                        <h3 class="text-xl font-bold text-autumn-primary">4. ARTE MUSEUM BUSAN：影島的光影美學饗宴</h3>
+                        <span class="autumn-badge text-[11px] px-2.5 py-0.5 rounded-full font-bold">Day 3 景點</span>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary">4. ARTE MUSEUM BUSAN：影島的光影美學饗宴</h3>
                     </div>
-                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                    <p class="text-xs md:text-sm text-autumn-textSub leading-relaxed">
                         坐落於影島的沉浸式數位藝術展覽館。透過頂尖投影技術、聲光特效與香氣結合，以「永恆的自然 (ETERNAL NATURE)」為主題。
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-autumn-soft p-4 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 空間冷知識：前身為造船廠倉庫</h4>
-                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                            <h4 class="font-bold text-autumn-primary mb-1">💡 空間冷知識：前身為造船廠倉庫</h4>
+                            <p class="text-[11px] text-autumn-textSub leading-relaxed">
                                 展館空間前身為大型工業製造與造船廠倉庫，改造後完美保留了空間壯闊感。
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ ARTE MUSEUM OpenStreetMap 導覽地圖</h4>
-                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                            <h4 class="font-bold text-autumn-primary mb-1">🗺️ ARTE MUSEUM OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-32 rounded-xl overflow-hidden border border-autumn-border">
                                 <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.065%2C35.080%2C129.075%2C35.088&amp;layer=mapnik&amp;marker=35.084%2C129.070" style="border: 0"></iframe>
                             </div>
                         </div>
@@ -337,24 +340,24 @@
                 </div>
 
                 <!-- 5. 皇理團路 -->
-                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                <div class="space-y-3 pt-5 border-t border-autumn-border">
                     <div class="flex items-center space-x-2">
-                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 4 景點</span>
-                        <h3 class="text-xl font-bold text-autumn-primary">5. 皇理團路 (Hwangridan-gil)：慶州的韓屋咖啡街</h3>
+                        <span class="autumn-badge text-[11px] px-2.5 py-0.5 rounded-full font-bold">Day 4 景點</span>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary">5. 皇理團路 (Hwangridan-gil)：慶州的韓屋咖啡街</h3>
                     </div>
-                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                    <p class="text-xs md:text-sm text-autumn-textSub leading-relaxed">
                         慶州火紅的文青街區，完美保留傳統韓屋瓦房外觀，內部則改造成質感咖啡廳與選物店。
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-autumn-soft p-4 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 名稱冷知識：新羅皇陵交織</h4>
-                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                            <h4 class="font-bold text-autumn-primary mb-1">💡 名稱冷知識：新羅皇陵交織</h4>
+                            <p class="text-[11px] text-autumn-textSub leading-relaxed">
                                 街區名稱結合皇南洞與經理團路。街道周遭隨處可見新羅時代大型皇陵草丘。
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 皇理團路 OpenStreetMap 導覽地圖</h4>
-                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                            <h4 class="font-bold text-autumn-primary mb-1">🗺️ 皇理團路 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-32 rounded-xl overflow-hidden border border-autumn-border">
                                 <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.205%2C35.835%2C129.215%2C35.843&amp;layer=mapnik&amp;marker=35.839%2C129.210" style="border: 0"></iframe>
                             </div>
                         </div>
@@ -362,24 +365,24 @@
                 </div>
 
                 <!-- 6. 新東亞海鮮市場 -->
-                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                <div class="space-y-3 pt-5 border-t border-autumn-border">
                     <div class="flex items-center space-x-2">
-                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 5 景點</span>
-                        <h3 class="text-xl font-bold text-autumn-primary">6. 新東亞海鮮市場 (Sin-Dong-A)：大啖活體松葉蟹</h3>
+                        <span class="autumn-badge text-[11px] px-2.5 py-0.5 rounded-full font-bold">Day 5 景點</span>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary">6. 新東亞海鮮市場 (Sin-Dong-A)：大啖活體松葉蟹</h3>
                     </div>
-                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                    <p class="text-xs md:text-sm text-autumn-textSub leading-relaxed">
                         鄰近札嘎其市場，是品嚐頂級活體松葉蟹、帝王蟹與現撈海鮮的聖地。可親自挑選新鮮活海鮮請店家代客料理。
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-autumn-soft p-4 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 在地冷知識：現挑現蒸的鮮美</h4>
-                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                            <h4 class="font-bold text-autumn-primary mb-1">💡 在地冷知識：現挑現蒸的鮮美</h4>
+                            <p class="text-[11px] text-autumn-textSub leading-relaxed">
                                 攤販多由經驗豐富的阿姨經營，點完後直接送入後方蒸籠，熱騰騰香氣四溢。
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 新東亞市場 OpenStreetMap 導覽地圖</h4>
-                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                            <h4 class="font-bold text-autumn-primary mb-1">🗺️ 新東亞市場 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-32 rounded-xl overflow-hidden border border-autumn-border">
                                 <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.028%2C35.093%2C129.038%2C35.101&amp;layer=mapnik&amp;marker=35.097%2C129.033" style="border: 0"></iframe>
                             </div>
                         </div>
@@ -387,24 +390,24 @@
                 </div>
 
                 <!-- 7. 富平罐頭夜市 -->
-                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                <div class="space-y-3 pt-5 border-t border-autumn-border">
                     <div class="flex items-center space-x-2">
-                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 5 景點</span>
-                        <h3 class="text-xl font-bold text-autumn-primary">7. 富平罐頭夜市 (Bupyeong Kkangtong Market)：全球美食大熔爐</h3>
+                        <span class="autumn-badge text-[11px] px-2.5 py-0.5 rounded-full font-bold">Day 5 景點</span>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary">7. 富平罐頭夜市 (Bupyeong Kkangtong Market)：全球美食大熔爐</h3>
                     </div>
-                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                    <p class="text-xs md:text-sm text-autumn-textSub leading-relaxed">
                         韓國首個常態性夜市。入夜後擺滿特色攤車，從烤魷魚、蔬菜肉捲、烤腸到各國異國小吃應有盡有。
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-autumn-soft p-4 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 名稱冷知識：美軍罐頭歷史</h4>
-                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                            <h4 class="font-bold text-autumn-primary mb-1">💡 名稱冷知識：美軍罐頭歷史</h4>
+                            <p class="text-[11px] text-autumn-textSub leading-relaxed">
                                 韓戰時期美軍駐紮於此，進口軍用罐頭與商品在此流通，因此當地人稱之為罐頭市場。
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 罐頭夜市 OpenStreetMap 導覽地圖</h4>
-                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                            <h4 class="font-bold text-autumn-primary mb-1">🗺️ 罐頭夜市 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-32 rounded-xl overflow-hidden border border-autumn-border">
                                 <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.023%2C35.102%2C129.033%2C35.110&amp;layer=mapnik&amp;marker=35.106%2C129.028" style="border: 0"></iframe>
                             </div>
                         </div>
@@ -412,24 +415,24 @@
                 </div>
 
                 <!-- 8. 龍頭山公園 + 釜山塔 -->
-                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                <div class="space-y-3 pt-5 border-t border-autumn-border">
                     <div class="flex items-center space-x-2">
-                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">Day 6 景點</span>
-                        <h3 class="text-xl font-bold text-autumn-primary">8. 龍頭山公園與釜山塔 (Diamond Tower)：俯瞰港都全景</h3>
+                        <span class="autumn-badge text-[11px] px-2.5 py-0.5 rounded-full font-bold">Day 6 景點</span>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary">8. 龍頭山公園與釜山塔 (Diamond Tower)：俯瞰港都全景</h3>
                     </div>
-                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                    <p class="text-xs md:text-sm text-autumn-textSub leading-relaxed">
                         因山勢如龍頭般伸展而得名。矗立於山頂的釜山塔高 120 公尺，登上觀景台可 360 度俯瞰南浦洞港口。
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-autumn-soft p-4 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 歷史冷知識：避難所的祈願</h4>
-                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                            <h4 class="font-bold text-autumn-primary mb-1">💡 歷史冷知識：避難所的祈願</h4>
+                            <p class="text-[11px] text-autumn-textSub leading-relaxed">
                                 韓戰期間曾是難民避難所聚集地，如今公園內豎立李舜臣將軍銅像與花鐘。
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ 龍頭山公園 OpenStreetMap 導覽地圖</h4>
-                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                            <h4 class="font-bold text-autumn-primary mb-1">🗺️ 龍頭山公園 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-32 rounded-xl overflow-hidden border border-autumn-border">
                                 <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.030%2C35.099%2C129.040%2C35.107&amp;layer=mapnik&amp;marker=35.103%2C129.035" style="border: 0"></iframe>
                             </div>
                         </div>
@@ -437,24 +440,24 @@
                 </div>
 
                 <!-- 9. BIFF 廣場與光復路時尚街 -->
-                <div class="space-y-4 pt-6 border-t border-autumn-border">
+                <div class="space-y-3 pt-5 border-t border-autumn-border">
                     <div class="flex items-center space-x-2">
-                        <span class="autumn-badge text-xs px-3 py-1 rounded-full font-bold">市區地標</span>
-                        <h3 class="text-xl font-bold text-autumn-primary">9. BIFF 廣場與光復路時尚街：南浦洞的流行心臟</h3>
+                        <span class="autumn-badge text-[11px] px-2.5 py-0.5 rounded-full font-bold">市區地標</span>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary">9. BIFF 廣場與光復路時尚街：南浦洞的流行心臟</h3>
                     </div>
-                    <p class="text-sm text-autumn-textSub leading-relaxed">
+                    <p class="text-xs md:text-sm text-autumn-textSub leading-relaxed">
                         釜山國際電影節發源地，地面鑲嵌著國際電影大師手印，周遭巷弄聚集黑糖餅與各類街頭小吃；光復路時尚街則集結潮流服飾與美妝。
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-autumn-soft p-5 rounded-2xl border border-autumn-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-autumn-soft p-4 rounded-2xl border border-autumn-border text-xs">
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">💡 街頭冷知識：電影節的起源</h4>
-                            <p class="text-xs text-autumn-textSub leading-relaxed">
+                            <h4 class="font-bold text-autumn-primary mb-1">💡 街頭冷知識：電影節的起源</h4>
+                            <p class="text-[11px] text-autumn-textSub leading-relaxed">
                                 釜山國際電影節於 1996 年在此創辦，保留了釜山電影文化的歷史根基。
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-autumn-primary text-sm mb-1">🗺️ BIFF 廣場 OpenStreetMap 導覽地圖</h4>
-                            <div class="w-full h-36 rounded-xl overflow-hidden border border-autumn-border">
+                            <h4 class="font-bold text-autumn-primary mb-1">🗺️ BIFF 廣場 OpenStreetMap 導覽地圖</h4>
+                            <div class="w-full h-32 rounded-xl overflow-hidden border border-autumn-border">
                                 <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=129.027%2C35.097%2C129.037%2C35.105&amp;layer=mapnik&amp;marker=35.101%2C129.032" style="border: 0"></iframe>
                             </div>
                         </div>
@@ -463,157 +466,189 @@
             </div>
         </section>
 
-        <section id="accommodation" class="space-y-6 pt-4">
-            <div class="autumn-card p-6 md:p-8 space-y-6">
+        <!-- ACCOMMODATION SECTION -->
+        <section id="accommodation" class="space-y-6 pt-2">
+            <div class="autumn-card p-5 md:p-6 space-y-4">
                 <div>
-                    <h3 class="text-xl font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-hotel text-autumn-primary mr-2.5"></i>住宿飯店與周邊地圖指南</h3>
+                    <h3 class="text-base md:text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-hotel text-autumn-primary mr-2"></i>住宿飯店與周邊地圖指南</h3>
                     <p class="text-xs text-autumn-textSub mt-1">本次行程入住兩間南浦洞精選飯店，提供 NAVER Map 連結與韓文名稱，方便複製在當地搜尋與導航！</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="border border-autumn-border rounded-3xl p-5 space-y-4 bg-autumn-soft">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="border border-autumn-border rounded-2xl p-4 space-y-3 bg-autumn-soft">
                         <div class="flex justify-between items-start">
                             <div>
-                                <span class="text-xs autumn-badge px-3 py-1 rounded-full font-bold">10/10 入住 1 晚</span>
-                                <h4 class="text-lg font-bold text-autumn-textMain mt-2">Aventree Hotel Busan (釜山阿凡樹飯店)</h4>
+                                <span class="text-[10px] autumn-badge px-2.5 py-0.5 rounded-full font-bold">10/10 入住 1 晚</span>
+                                <h4 class="font-bold text-autumn-textMain text-sm mt-1.5">Aventree Hotel Busan (釜山阿凡樹飯店)</h4>
                             </div>
-                            <div class="flex flex-col space-y-2">
-                                <a href="https://map.naver.com/v5/search/%EC%95%84%EB%B2%A4%ED%8A%B8%EB%A6%AC%20%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" target="_blank" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs px-3 py-1.5 rounded-xl transition font-medium flex items-center justify-center shadow-sm">
-                                    <i class="fa-solid fa-location-dot mr-1"></i> NAVER 地圖
+                            <div class="flex flex-col space-y-1.5 shrink-0">
+                                <a href="https://map.naver.com/v5/search/%EC%95%84%EB%B2%A4%ED%8A%B8%EB%A6%AC%20%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" target="_blank" class="bg-emerald-700 hover:bg-emerald-800 text-white text-[11px] px-2.5 py-1 rounded-xl transition font-medium flex items-center justify-center shadow-sm">
+                                    <i class="fa-solid fa-location-dot mr-1"></i> NAVER
                                 </a>
-                                <button onclick="copyToClipboard('아벤트리 호텔 부산')" class="autumn-badge hover:opacity-90 text-autumn-primary text-[11px] px-3 py-1 rounded-lg transition font-medium">
-                                    <i class="fa-regular fa-copy mr-1"></i> 複製韓文
+                                <button onclick="copyToClipboard('아벤트리 호텔 부산')" class="autumn-badge hover:opacity-90 text-autumn-primary text-[10px] px-2.5 py-1 rounded-lg transition font-medium">
+                                    <i class="fa-regular fa-copy mr-1"></i> 複製
                                 </button>
                             </div>
                         </div>
-                        <p class="text-xs text-autumn-textSub font-mono">韓文：아벤트리 호텔 부산</p>
-                        <p class="text-xs text-autumn-textSub">位於光復路商圈核心，逛街、吃豬腳、去換錢所都極為方便！</p>
+                        <p class="text-[11px] text-autumn-textSub font-mono">韓文：아벤트리 호텔 부산</p>
+                        <p class="text-[11px] text-autumn-textSub">位於光復路商圈核心，逛街、吃豬腳、去換錢所都極為方便！</p>
                     </div>
 
-                    <div class="border border-autumn-border rounded-3xl p-5 space-y-4 bg-autumn-soft">
+                    <div class="border border-autumn-border rounded-2xl p-4 space-y-3 bg-autumn-soft">
                         <div class="flex justify-between items-start">
                             <div>
-                                <span class="text-xs autumn-btn px-3 py-1 rounded-full font-bold text-white">10/11 - 10/15 入住 4 晚</span>
-                                <h4 class="text-lg font-bold text-autumn-textMain mt-2">NewCZ Nampo Hotel (紐古茲南浦飯店)</h4>
+                                <span class="text-[10px] autumn-btn px-2.5 py-0.5 rounded-full font-bold text-white">10/11 - 10/15 入住 4 晚</span>
+                                <h4 class="font-bold text-autumn-textMain text-sm mt-1.5">NewCZ Nampo Hotel (紐古茲南浦飯店)</h4>
                             </div>
-                            <div class="flex flex-col space-y-2">
-                                <a href="https://map.naver.com/v5/search/%EB%89%B4%EC%94%A8%EC%A6%88%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" target="_blank" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs px-3 py-1.5 rounded-xl transition font-medium flex items-center justify-center shadow-sm">
-                                    <i class="fa-solid fa-location-dot mr-1"></i> NAVER 地圖
+                            <div class="flex flex-col space-y-1.5 shrink-0">
+                                <a href="https://map.naver.com/v5/search/%EB%89%B4%EC%94%A8%EC%A6%88%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" target="_blank" class="bg-emerald-700 hover:bg-emerald-800 text-white text-[11px] px-2.5 py-1 rounded-xl transition font-medium flex items-center justify-center shadow-sm">
+                                    <i class="fa-solid fa-location-dot mr-1"></i> NAVER
                                 </a>
-                                <button onclick="copyToClipboard('뉴씨즈호텔 남포')" class="autumn-badge hover:opacity-90 text-autumn-primary text-[11px] px-3 py-1 rounded-lg transition font-medium">
-                                    <i class="fa-regular fa-copy mr-1"></i> 複製韓文
+                                <button onclick="copyToClipboard('뉴씨즈호텔 남포')" class="autumn-badge hover:opacity-90 text-autumn-primary text-[10px] px-2.5 py-1 rounded-lg transition font-medium">
+                                    <i class="fa-regular fa-copy mr-1"></i> 複製
                                 </button>
                             </div>
                         </div>
-                        <p class="text-xs text-autumn-textSub font-mono">韓文：뉴씨즈호텔 남포</p>
-                        <p class="text-xs text-autumn-textSub">地點極佳，鄰近龍頭山公園與南浦洞商圈，便於採買與搭車前往各景點。</p>
+                        <p class="text-[11px] text-autumn-textSub font-mono">韓文：뉴씨즈호텔 남포</p>
+                        <p class="text-[11px] text-autumn-textSub">地點極佳，鄰近龍頭山公園與南浦洞商圈，便於採買與搭車前往各景點。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="translation" class="space-y-6 pt-4">
-            <div class="autumn-card p-6 md:p-8 space-y-6">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-autumn-border pb-4">
+        <!-- TRANSLATION SECTION -->
+        <section id="translation" class="space-y-6 pt-2">
+            <div class="autumn-card p-5 md:p-6 space-y-5">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-autumn-border pb-3">
                     <div>
-                        <h3 class="text-xl font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-language text-autumn-primary mr-2.5"></i>韓文翻譯、退稅與語音對話</h3>
-                        <p class="text-xs text-autumn-textSub mt-1">點擊「播放語音」可直接讓手機唸出韓文給店員聽，或點擊「複製」複製韓文！</p>
+                        <h3 class="text-base md:text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-language text-autumn-primary mr-2"></i>韓文翻譯、退稅與語音對話</h3>
+                        <p class="text-xs text-autumn-textSub mt-0.5">點擊「播放語音」可直接讓手機唸出韓文給店員聽！</p>
                     </div>
-                    <a href="https://papago.naver.com/" target="_blank" class="autumn-btn text-sm font-bold px-5 py-2.5 transition shadow-sm flex items-center shrink-0">
-                        <i class="fa-solid fa-globe mr-2"></i> 開啟 Papago 線上翻譯
+                    <a href="https://papago.naver.com/" target="_blank" class="autumn-btn text-xs font-bold px-4 py-2 transition shadow-sm flex items-center shrink-0">
+                        <i class="fa-solid fa-globe mr-1.5"></i> 開啟 Papago 翻譯
                     </a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- 餐廳與購物 -->
-                    <div class="border border-autumn-border rounded-2xl p-4 bg-autumn-soft space-y-3">
-                        <h4 class="font-bold text-autumn-primary text-sm flex items-center"><i class="fa-solid fa-utensils mr-2"></i>餐廳點餐與結帳 / 退稅 / 收據</h4>
-                        <div class="space-y-2.5 text-xs">
-                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <!-- 餐廳與結帳退稅 -->
+                    <div class="border border-autumn-border rounded-2xl p-3.5 bg-autumn-soft space-y-2.5">
+                        <h4 class="font-bold text-autumn-primary text-xs flex items-center"><i class="fa-solid fa-utensils mr-1.5"></i>餐廳點餐、結帳與退稅</h4>
+                        <div class="space-y-2">
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
                                 <div>
-                                    <p class="text-autumn-textSub">請給我這個 (指著菜單)</p>
-                                    <p class="font-bold text-autumn-textMain font-mono">이거 주세요. [I-geo ju-se-yo]</p>
+                                    <p class="text-[11px] text-autumn-textSub">請給我這個 (指菜單)</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">이거 주세요. [I-geo ju-se-yo]</p>
                                 </div>
-                                <div class="flex space-x-1.5 shrink-0">
-                                    <button onclick="speakKorean('이거 주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
-                                    <button onclick="copyToClipboard('이거 주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('이거 주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('이거 주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
                                 </div>
                             </div>
-                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
                                 <div>
-                                    <p class="text-autumn-textSub">請問這個會辣嗎？</p>
-                                    <p class="font-bold text-autumn-textMain font-mono">이거 매워요? [I-geo mae-wo-yo?]</p>
+                                    <p class="text-[11px] text-autumn-textSub">請問這個會辣嗎？</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">이거 매워요? [I-geo mae-wo-yo?]</p>
                                 </div>
-                                <div class="flex space-x-1.5 shrink-0">
-                                    <button onclick="speakKorean('이거 매워요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
-                                    <button onclick="copyToClipboard('이거 매워요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('이거 매워요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('이거 매워요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
                                 </div>
                             </div>
-                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
                                 <div>
-                                    <p class="text-autumn-textSub">請幫我結帳 / 買單</p>
-                                    <p class="font-bold text-autumn-textMain font-mono">계산해주세요. [Gye-san-hae-ju-se-yo]</p>
+                                    <p class="text-[11px] text-autumn-textSub">請幫我結帳 / 買單</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">계산해주세요. [Gye-san-hae-ju-se-yo]</p>
                                 </div>
-                                <div class="flex space-x-1.5 shrink-0">
-                                    <button onclick="speakKorean('계산해주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
-                                    <button onclick="copyToClipboard('계산해주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('계산해주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('계산해주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
                                 </div>
                             </div>
-                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
                                 <div>
-                                    <p class="text-autumn-textSub">請給我收據</p>
-                                    <p class="font-bold text-autumn-textMain font-mono">영수증 주세요. [yeong-su-jeung ju-se-yo]</p>
+                                    <p class="text-[11px] text-autumn-textSub">請給我收據</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">영수증 주세요. [yeong-su-jeung ju-se-yo]</p>
                                 </div>
-                                <div class="flex space-x-1.5 shrink-0">
-                                    <button onclick="speakKorean('영수증 주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
-                                    <button onclick="copyToClipboard('영수증 주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('영수증 주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('영수증 주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
                                 </div>
                             </div>
-                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
                                 <div>
-                                    <p class="text-autumn-textSub">請幫我辦理退稅</p>
-                                    <p class="font-bold text-autumn-textMain font-mono">택스 프리 해주세요. [taek-seu peu-ri hae-ju-se-yo]</p>
+                                    <p class="text-[11px] text-autumn-textSub">請幫我辦理退稅</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">택스 프리 해주세요. [taek-seu peu-ri hae-ju-se-yo]</p>
                                 </div>
-                                <div class="flex space-x-1.5 shrink-0">
-                                    <button onclick="speakKorean('택스 프리 해주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
-                                    <button onclick="copyToClipboard('택스 프리 해주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('택스 프리 해주세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('택스 프리 해주세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- 購物與問路 -->
-                    <div class="border border-autumn-border rounded-2xl p-4 bg-autumn-soft space-y-3">
-                        <h4 class="font-bold text-autumn-primary text-sm flex items-center"><i class="fa-solid fa-bag-shopping mr-2"></i>購物與問路</h4>
-                        <div class="space-y-2.5 text-xs">
-                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                    <div class="border border-autumn-border rounded-2xl p-3.5 bg-autumn-soft space-y-2.5">
+                        <h4 class="font-bold text-autumn-primary text-xs flex items-center"><i class="fa-solid fa-bag-shopping mr-1.5"></i>購物、問路與常用禮貌</h4>
+                        <div class="space-y-2">
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
                                 <div>
-                                    <p class="text-autumn-textSub">請問這個多少錢？</p>
-                                    <p class="font-bold text-autumn-textMain font-mono">얼마예요? [Eol-ma-ye-yo?]</p>
+                                    <p class="text-[11px] text-autumn-textSub">請問這個多少錢？</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">얼마예요? [Eol-ma-ye-yo?]</p>
                                 </div>
-                                <div class="flex space-x-1.5 shrink-0">
-                                    <button onclick="speakKorean('얼마예요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
-                                    <button onclick="copyToClipboard('얼마예요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('얼마예요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('얼마예요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
                                 </div>
                             </div>
-                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
                                 <div>
-                                    <p class="text-autumn-textSub">可以刷卡嗎？</p>
-                                    <p class="font-bold text-autumn-textMain font-mono">카드 되나요? [Ka-deu doe-na-yo?]</p>
+                                    <p class="text-[11px] text-autumn-textSub">可以刷卡嗎？</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">카드 되나요? [Ka-deu doe-na-yo?]</p>
                                 </div>
-                                <div class="flex space-x-1.5 shrink-0">
-                                    <button onclick="speakKorean('카드 되나요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
-                                    <button onclick="copyToClipboard('카드 되나요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('카드 되나요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('카드 되나요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
                                 </div>
                             </div>
-                            <div class="bg-white p-3 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
                                 <div>
-                                    <p class="text-autumn-textSub">請問洗手間在哪裡？</p>
-                                    <p class="font-bold text-autumn-textMain font-mono">화장실 어디예요? [Hwa-jang-sil eo-di-ye-yo?]</p>
+                                    <p class="text-[11px] text-autumn-textSub">請問洗手間在哪裡？</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">화장실 어디예요? [Hwa-jang-sil eo-di-ye-yo?]</p>
                                 </div>
-                                <div class="flex space-x-1.5 shrink-0">
-                                    <button onclick="speakKorean('화장실 어디예요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
-                                    <button onclick="copyToClipboard('화장실 어디예요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2.5 py-1 rounded-lg text-[11px]">複製</button>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('화장실 어디예요?')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('화장실 어디예요?')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-[11px] text-autumn-textSub">謝謝</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">감사합니다. [Gam-sa-ham-ni-da]</p>
+                                </div>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('감사합니다.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('감사합니다.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-[11px] text-autumn-textSub">您好</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">안녕하세요. [An-nyeong-ha-se-yo]</p>
+                                </div>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('안녕하세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('안녕하세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-autumn-border flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-[11px] text-autumn-textSub">再會（再見）</p>
+                                    <p class="font-bold text-autumn-textMain font-mono text-xs">안녕히 가세요. [An-nyeong-hi ga-se-yo]</p>
+                                </div>
+                                <div class="flex space-x-1 shrink-0">
+                                    <button onclick="speakKorean('안녕히 가세요.')" class="bg-amber-700 hover:bg-amber-800 text-white px-2 py-1 rounded-lg text-[10px] font-medium flex items-center"><i class="fa-solid fa-volume-high mr-1"></i>播放</button>
+                                    <button onclick="copyToClipboard('안녕히 가세요.')" class="autumn-badge hover:opacity-90 text-autumn-primary px-2 py-1 rounded-lg text-[10px]">複製</button>
                                 </div>
                             </div>
                         </div>
@@ -622,93 +657,93 @@
             </div>
         </section>
 
-        <section id="snacks" class="space-y-6 pt-4">
-            <div class="autumn-card p-6 md:p-8 space-y-6">
+        <!-- SNACKS SECTION -->
+        <section id="snacks" class="space-y-6 pt-2">
+            <div class="autumn-card p-5 md:p-6 space-y-5">
                 <div>
-                    <h3 class="text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-basket-shopping text-autumn-primary mr-2.5"></i>零食、伴手禮與戰利品採購指南</h3>
-                    <p class="text-xs text-autumn-textSub mt-1">上方為網路上釜山熱門推薦參考區（含 EPT 鞋款、SCENTICA 與 ADoR 香水、文創小店、All Sunday Bagel 及藥局必買好物），下方則為您專屬的購物清單（可自行新增與打勾記錄）！</p>
+                    <h3 class="text-base md:text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-basket-shopping text-autumn-primary mr-2"></i>零食、伴手禮與戰利品採購指南</h3>
+                    <p class="text-xs text-autumn-textSub mt-1">上方為網路熱門推薦參考區（含 EPT 鞋款、SCENTICA 與 ADoR 香水、文創小店、All Sunday Bagel 及藥局必買好物），下方則為您專屬的購物清單（可自行新增與打勾記錄）！</p>
                 </div>
 
                 <!-- 1. 網路熱門推薦參考區 (純參考) -->
-                <div class="bg-autumn-soft p-5 rounded-2xl border border-autumn-border space-y-3">
-                    <h4 class="text-xs font-bold text-autumn-primary uppercase tracking-wider flex items-center">
-                        <i class="fa-solid fa-star mr-1.5 text-amber-600"></i> 網路上熱門戰利品推薦參考 (釜山當地有店面)
+                <div class="bg-autumn-soft p-4 rounded-2xl border border-autumn-border space-y-2.5 text-xs">
+                    <h4 class="font-bold text-autumn-primary uppercase tracking-wider flex items-center">
+                        <i class="fa-solid fa-star mr-1.5 text-amber-600"></i> 網路熱門戰利品推薦參考 (釜山當地有店面)
                     </h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 text-xs">
-                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                        <div class="bg-white p-2.5 rounded-xl border border-autumn-border shadow-sm">
                             <span class="font-bold text-autumn-primary block mb-0.5">👗 潮流服飾</span>
-                            <span class="text-autumn-textSub">Covernat / Sio (西面與南浦洞商圈皆有實體店)</span>
+                            <span class="text-autumn-textSub text-[11px]">Covernat / Sio (西面與南浦洞商圈皆有實體店)</span>
                         </div>
-                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                        <div class="bg-white p-2.5 rounded-xl border border-autumn-border shadow-sm">
                             <span class="font-bold text-autumn-primary block mb-0.5">👟 流行鞋款 / EPT</span>
-                            <span class="text-autumn-textSub">EPT (East Pacific Trading)、Salomon、韓國限定 Converse (光復路 ABC-Mart)</span>
+                            <span class="text-autumn-textSub text-[11px]">EPT (East Pacific Trading)、Salomon、韓國限定 Converse (光復路 ABC-Mart)</span>
                         </div>
-                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                        <div class="bg-white p-2.5 rounded-xl border border-autumn-border shadow-sm">
                             <span class="font-bold text-autumn-primary block mb-0.5">🧴 熱銷保養</span>
-                            <span class="text-autumn-textSub">Biodance 膠原蛋白深層面膜 (南浦/西面 Olive Young)</span>
+                            <span class="text-autumn-textSub text-[11px]">Biodance 膠原蛋白深層面膜 (南浦/西面 Olive Young)</span>
                         </div>
-                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                        <div class="bg-white p-2.5 rounded-xl border border-autumn-border shadow-sm">
                             <span class="font-bold text-autumn-primary block mb-0.5">💄 精緻彩妝</span>
-                            <span class="text-autumn-textSub">Olive Young 熱銷唇釉、眼影與氣墊 (南浦站周邊多間)</span>
+                            <span class="text-autumn-textSub text-[11px]">Olive Young 熱銷唇釉、眼影與氣墊 (南浦站周邊多間)</span>
                         </div>
-                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                        <div class="bg-white p-2.5 rounded-xl border border-autumn-border shadow-sm">
                             <span class="font-bold text-autumn-primary block mb-0.5">🌿 高級香水</span>
-                            <span class="text-autumn-textSub">Tamburins (樂天百貨光復店) / SCENTICA / ADoR Perfume (廣安里)</span>
+                            <span class="text-autumn-textSub text-[11px]">Tamburins (樂天百貨光復店有專櫃) / SCENTICA / ADoR Perfume (廣安里)</span>
                         </div>
-                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                        <div class="bg-white p-2.5 rounded-xl border border-autumn-border shadow-sm">
                             <span class="font-bold text-autumn-primary block mb-0.5">💊 藥局必買好物</span>
-                            <span class="text-autumn-textSub">解酒液 (Condition/Morning Care)、去疤膏 (NoScarna)、Bepanthen 萬用膏、B-Complex 維他命</span>
+                            <span class="text-autumn-textSub text-[11px]">解酒液 (Condition/Morning Care)、去疤膏 (NoScarna)、Bepanthen 萬用膏、B-Complex 維他命</span>
                         </div>
-                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                        <div class="bg-white p-2.5 rounded-xl border border-autumn-border shadow-sm">
                             <span class="font-bold text-autumn-primary block mb-0.5">🥯 文創與貝果</span>
-                            <span class="text-autumn-textSub">All Sunday Bagel 與廣安里質感文創小店</span>
+                            <span class="text-autumn-textSub text-[11px]">All Sunday Bagel 與廣安里質感文創小店</span>
                         </div>
-                        <div class="bg-white p-3 rounded-xl border border-autumn-border shadow-sm">
+                        <div class="bg-white p-2.5 rounded-xl border border-autumn-border shadow-sm">
                             <span class="font-bold text-autumn-primary block mb-0.5">🍎 當季水果</span>
-                            <span class="text-autumn-textSub">釜田市場新鮮水蜜桃、草莓、秋季甜柿子</span>
+                            <span class="text-autumn-textSub text-[11px]">釜田市場新鮮水蜜桃、草莓、秋季甜柿子</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- 2. 我們實際想買的採購清單 (完全空白，讓您自訂) -->
-                <div class="space-y-4 pt-2">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                        <h4 class="text-sm font-bold text-autumn-textMain flex items-center">
+                <div class="space-y-3 pt-2">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <h4 class="text-xs font-bold text-autumn-textMain flex items-center">
                             <i class="fa-solid fa-list-check mr-2 text-autumn-primary"></i> 我們實際想買的採購清單 (請自行輸入)
                         </h4>
                         <div class="flex space-x-2 w-full sm:w-auto">
-                            <input type="text" id="new-snack-input" placeholder="輸入想買的戰利品..." class="flex-grow sm:flex-grow-0 px-3.5 py-2 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
-                            <button onclick="addSnackItem()" class="autumn-btn px-4 py-2 text-sm font-medium transition shadow-sm"><i class="fa-solid fa-plus mr-1"></i>新增</button>
+                            <input type="text" id="new-snack-input" placeholder="輸入想買的戰利品..." class="flex-grow sm:flex-grow-0 px-3 py-1.5 text-xs border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
+                            <button onclick="addSnackItem()" class="autumn-btn px-3.5 py-1.5 text-xs font-medium transition shadow-sm"><i class="fa-solid fa-plus mr-1"></i>新增</button>
                         </div>
                     </div>
 
-                    <div id="snacks-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div id="snacks-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
                         <!-- Dynamic Snacks -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="checklist" class="space-y-6 pt-4">
-            <div class="autumn-card p-6 md:p-8 space-y-6">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-autumn-border pb-4">
-                    <h3 class="text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-list-check text-autumn-primary mr-2.5"></i>秋季行李與隨身物品清單 (長榮行李 去23kg / 回46kg)</h3>
+        <!-- CHECKLIST SECTION -->
+        <section id="checklist" class="space-y-6 pt-2">
+            <div class="autumn-card p-5 md:p-6 space-y-5">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-autumn-border pb-3">
+                    <h3 class="text-base md:text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-list-check text-autumn-primary mr-2"></i>秋季行李清單 (長榮去23kg / 回46kg)</h3>
                     <div class="flex space-x-2 w-full sm:w-auto">
-                        <input type="text" id="new-item-input" placeholder="新增行李項目..." class="flex-grow sm:flex-grow-0 px-3.5 py-2 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
-                        <button onclick="addChecklistItem()" class="autumn-btn px-4 py-2 text-sm font-medium transition shadow-sm"><i class="fa-solid fa-plus mr-1"></i>新增</button>
+                        <input type="text" id="new-item-input" placeholder="新增行李項目..." class="flex-grow sm:flex-grow-0 px-3 py-1.5 text-xs border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
+                        <button onclick="addChecklistItem()" class="autumn-btn px-3.5 py-1.5 text-xs font-medium transition shadow-sm"><i class="fa-solid fa-plus mr-1"></i>新增</button>
                     </div>
                 </div>
-                <div id="checklist-container" class="space-y-3">
+                <div id="checklist-container" class="space-y-2 text-xs">
                     <!-- Dynamic Checklist -->
                 </div>
 
-                <div class="border-t border-autumn-border pt-6 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-bold text-autumn-textMain text-base flex items-center"><i class="fa-solid fa-note-sticky text-autumn-primary mr-2"></i>個人備忘錄 (網址自動轉為點擊按鈕)</h4>
-                    </div>
+                <div class="border-t border-autumn-border pt-5 space-y-3 text-xs">
+                    <h4 class="font-bold text-autumn-textMain text-sm flex items-center"><i class="fa-solid fa-note-sticky text-autumn-primary mr-2"></i>個人備忘錄 (網址自動轉為點擊按鈕)</h4>
                     <div class="flex space-x-2">
-                        <input type="text" id="memo-input" placeholder="輸入備忘事項或網址 (例如: https://naver.com)..." class="flex-grow px-3.5 py-2 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
-                        <button onclick="addMemoItem()" class="autumn-btn px-4 py-2 text-sm font-medium transition shadow-sm">新增備忘</button>
+                        <input type="text" id="memo-input" placeholder="輸入備忘事項或網址 (例如: https://naver.com)..." class="flex-grow px-3 py-1.5 text-xs border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
+                        <button onclick="addMemoItem()" class="autumn-btn px-3.5 py-1.5 text-xs font-medium transition shadow-sm">新增備忘</button>
                     </div>
                     <div id="memos-container" class="space-y-2">
                         <!-- Dynamic Memos -->
@@ -717,56 +752,58 @@
             </div>
         </section>
 
-        <section id="budget" class="space-y-6 pt-4">
+        <!-- BUDGET SECTION -->
+        <section id="budget" class="space-y-6 pt-2">
             <!-- Currency Calculator -->
-            <div class="autumn-card p-6 md:p-8 space-y-4">
-                <h3 class="text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-calculator text-autumn-primary mr-2.5"></i>即時匯率計算機 (KRW ➔ TWD)</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
-                    <input type="text" id="calc-input" placeholder="輸入算式 (例如: 5000+2000*3)" class="px-4 py-3 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary font-mono bg-autumn-soft text-autumn-textMain shadow-sm">
-                    <button onclick="calculateExpression()" class="autumn-btn py-3 text-sm font-medium transition shadow-sm">計算並換算</button>
-                    <div id="calc-result" class="text-sm font-bold text-autumn-primary autumn-badge p-3 rounded-xl text-center border border-autumn-border font-mono">
+            <div class="autumn-card p-5 md:p-6 space-y-3">
+                <h3 class="text-base md:text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-calculator text-autumn-primary mr-2"></i>即時匯率計算機 (KRW ➔ TWD)</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 items-center text-xs">
+                    <input type="text" id="calc-input" placeholder="輸入算式 (例如: 5000+2000*3)" class="px-3 py-2.5 border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary font-mono bg-autumn-soft text-autumn-textMain shadow-sm">
+                    <button onclick="calculateExpression()" class="autumn-btn py-2.5 font-medium transition shadow-sm">計算並換算</button>
+                    <div id="calc-result" class="font-bold text-autumn-primary autumn-badge p-2.5 rounded-xl text-center border border-autumn-border font-mono">
                         結果：₩ 0 ≒ NT$ 0
                     </div>
                 </div>
             </div>
 
             <!-- Expense Form with Photo Upload -->
-            <div class="autumn-card p-6 md:p-8 space-y-4">
-                <div class="flex justify-between items-center border-b border-autumn-border pb-3">
-                    <h3 class="text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-wallet text-autumn-primary mr-2.5"></i>新增花費記帳與照片上傳</h3>
-                    <div class="text-right">
-                        <span class="text-xs text-autumn-textSub">已記錄總花費：</span>
-                        <span class="text-base font-bold text-autumn-primary font-mono" id="total-spent-display">₩ 0</span>
+            <div class="autumn-card p-5 md:p-6 space-y-3">
+                <div class="flex justify-between items-center border-b border-autumn-border pb-2.5">
+                    <h3 class="text-base md:text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-wallet text-autumn-primary mr-2"></i>新增花費記帳與照片上傳</h3>
+                    <div class="text-right text-xs">
+                        <span class="text-autumn-textSub">已記錄總花費：</span>
+                        <span class="font-bold text-autumn-primary font-mono text-sm" id="total-spent-display">₩ 0</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
-                    <input type="text" id="expense-title" placeholder="品名稱 (例如: 弘小豬腳)" class="px-4 py-3 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
-                    <input type="number" id="expense-amount" placeholder="金額 (KRW)" class="px-4 py-3 text-sm border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary font-mono bg-autumn-soft text-autumn-textMain shadow-sm">
-                    <input type="file" id="expense-photo" accept="image/*" class="text-xs file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-autumn-soft file:text-autumn-primary hover:file:bg-stone-200 self-center">
-                    <button onclick="addExpense()" class="autumn-btn py-3 text-sm font-medium transition shadow-sm">新增記帳</button>
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2.5 text-xs">
+                    <input type="text" id="expense-title" placeholder="品名稱 (例如: 弘小豬腳)" class="px-3 py-2.5 border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary bg-autumn-soft text-autumn-textMain shadow-sm">
+                    <input type="number" id="expense-amount" placeholder="金額 (KRW)" class="px-3 py-2.5 border border-autumn-border rounded-xl focus:outline-none focus:border-autumn-primary font-mono bg-autumn-soft text-autumn-textMain shadow-sm">
+                    <input type="file" id="expense-photo" accept="image/*" class="text-[11px] file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-[11px] file:font-semibold file:bg-autumn-soft file:text-autumn-primary hover:file:bg-stone-200 self-center">
+                    <button onclick="addExpense()" class="autumn-btn py-2.5 font-medium transition shadow-sm">新增記帳</button>
                 </div>
             </div>
 
             <!-- Expense List -->
-            <div class="autumn-card p-6 md:p-8">
-                <h3 class="text-lg font-bold text-autumn-textMain mb-4">花費明細列表</h3>
+            <div class="autumn-card p-5 md:p-6">
+                <h3 class="text-base font-bold text-autumn-textMain mb-3">花費明細列表</h3>
                 <div id="expense-list-container" class="divide-y divide-autumn-border">
                     <!-- Dynamic expenses -->
                 </div>
             </div>
         </section>
 
-        <section id="info" class="space-y-6 pt-4 pb-8">
-            <div class="autumn-card p-6 md:p-8 space-y-6">
+        <!-- INFO SECTION -->
+        <section id="info" class="space-y-6 pt-2 pb-6">
+            <div class="autumn-card p-5 md:p-6 space-y-4">
                 <div>
-                    <h3 class="text-xl font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-circle-info text-autumn-primary mr-2.5"></i>韓國旅遊實用資訊與緊急聯絡</h3>
-                    <p class="text-xs text-autumn-textSub mt-1">包含當地天氣預報、緊急救援電話以及出入境注意事項。</p>
+                    <h3 class="text-base md:text-lg font-bold text-autumn-primary flex items-center"><i class="fa-solid fa-circle-info text-autumn-primary mr-2"></i>韓國旅遊實用資訊與緊急聯絡</h3>
+                    <p class="text-xs text-autumn-textSub mt-0.5">包含當地天氣預報、緊急救援電話以及出入境注意事項。</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="border border-autumn-border rounded-3xl p-5 space-y-3 bg-autumn-soft">
-                        <h4 class="font-bold text-autumn-textMain text-sm flex items-center"><i class="fa-solid fa-phone text-autumn-primary mr-2"></i>韓國緊急聯絡電話</h4>
-                        <ul class="text-xs text-autumn-textSub space-y-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div class="border border-autumn-border rounded-2xl p-4 space-y-2.5 bg-autumn-soft">
+                        <h4 class="font-bold text-autumn-textMain text-xs flex items-center"><i class="fa-solid fa-phone text-autumn-primary mr-1.5"></i>韓國緊急聯絡電話</h4>
+                        <ul class="text-autumn-textSub space-y-1.5 text-[11px]">
                             <li><strong>警察局：</strong> 112</li>
                             <li><strong>救護車與消防：</strong> 119</li>
                             <li><strong>韓國旅遊諮詢熱線：</strong> 1330 (可通中文)</li>
@@ -774,12 +811,12 @@
                         </ul>
                     </div>
 
-                    <div class="border border-autumn-border rounded-3xl p-5 space-y-3 bg-autumn-soft">
-                        <h4 class="font-bold text-autumn-textMain text-sm flex items-center"><i class="fa-solid fa-cloud-sun text-autumn-primary mr-2"></i>當地天氣與氣象查詢</h4>
-                        <p class="text-xs text-autumn-textSub leading-relaxed">
+                    <div class="border border-autumn-border rounded-2xl p-4 space-y-2.5 bg-autumn-soft">
+                        <h4 class="font-bold text-autumn-textMain text-xs flex items-center"><i class="fa-solid fa-cloud-sun text-autumn-primary mr-1.5"></i>當地天氣與氣象查詢</h4>
+                        <p class="text-[11px] text-autumn-textSub leading-relaxed">
                             釜山與慶州 10 月份秋高氣爽，平均氣溫約在 12°C 至 22°C 之間，早晚溫差較大，建議攜帶防風保暖外套。
                         </p>
-                        <a href="https://www.weather.go.kr/" target="_blank" class="inline-block autumn-btn text-xs px-4 py-2.5 font-medium transition shadow-sm mt-2 text-white">
+                        <a href="https://www.weather.go.kr/" target="_blank" class="inline-block autumn-btn text-[11px] px-3.5 py-2 font-medium transition shadow-sm mt-1 text-white">
                             <i class="fa-solid fa-globe mr-1"></i> 查詢韓國氣象廳 (KMA)
                         </a>
                     </div>
@@ -859,7 +896,7 @@
                 ]
             },
             2: {
-                title: "10/11 (日) 24~18度 冬柏島海景、尾浦與 Emart 採購",
+                title: "10/11 (日) 24~18度 海雲台冬柏島、尾浦與 Emart 採購",
                 items: [
                     { time: "08:00", title: "CU 餐包(飯捲) / 香蕉牛奶", desc: "飯店內輕鬆享用早餐", ko: "CU 편의점", naver: "https://map.naver.com/v5/search/CU" },
                     { time: "09:20", title: "Aventree 飯店辦理退房", desc: "辦理退房手續", ko: "아벤트리 호텔 부산" },
