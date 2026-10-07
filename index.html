@@ -211,6 +211,7 @@
             </div>
         </section>
 
+        <!-- ITINERARY SECTION -->
         <section id="itinerary" class="space-y-6 pt-2">
             <div class="border-b border-autumn-border pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                 <h3 class="text-lg font-bold text-autumn-textMain flex items-center"><i class="fa-solid fa-map-location-dot text-autumn-primary mr-2"></i>每日行程總覽</h3>
@@ -229,6 +230,7 @@
             </div>
         </section>
 
+        <!-- GUIDE SECTION -->
         <section id="guide" class="space-y-6 pt-2">
             <div class="autumn-card p-5 md:p-8 space-y-6">
                 <div class="border-b border-autumn-border pb-4">
@@ -464,6 +466,7 @@
             </div>
         </section>
 
+        <!-- ACCOMMODATION SECTION -->
         <section id="accommodation" class="space-y-6 pt-2">
             <div class="autumn-card p-5 md:p-6 space-y-4">
                 <div>
@@ -513,6 +516,7 @@
             </div>
         </section>
 
+        <!-- TRANSLATION SECTION -->
         <section id="translation" class="space-y-6 pt-2">
             <div class="autumn-card p-5 md:p-6 space-y-5">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-autumn-border pb-3">
@@ -623,6 +627,7 @@
             </div>
         </section>
 
+        <!-- SNACKS SECTION -->
         <section id="snacks" class="space-y-6 pt-2">
             <div class="autumn-card p-5 md:p-6 space-y-5">
                 <div>
@@ -690,6 +695,7 @@
             </div>
         </section>
 
+        <!-- CHECKLIST SECTION -->
         <section id="checklist" class="space-y-6 pt-2">
             <div class="autumn-card p-5 md:p-6 space-y-5">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-autumn-border pb-3">
@@ -716,6 +722,7 @@
             </div>
         </section>
 
+        <!-- BUDGET SECTION -->
         <section id="budget" class="space-y-6 pt-2">
             <!-- Currency Calculator -->
             <div class="autumn-card p-5 md:p-6 space-y-3">
@@ -755,6 +762,7 @@
             </div>
         </section>
 
+        <!-- INFO SECTION -->
         <section id="info" class="space-y-6 pt-2 pb-6">
             <div class="autumn-card p-5 md:p-6 space-y-4">
                 <div>
@@ -826,7 +834,7 @@
 
         const itineraryData = {
             1: {
-                title: "10/10 (六) 廣安里海景與無人機秀",
+                title: "10/10 (六) 24~18度 廣安里海景與無人機秀",
                 items: [
                     { time: "04:00", title: "小7集合", desc: "小7集合，出發前往機場", ko: "" },
                     { time: "05:00", title: "機場報到", desc: "機場報到，長榮櫃檯辦理登機與託運（去程 23kg）", ko: "" },
@@ -858,47 +866,45 @@
                 ]
             },
             2: {
-                title: "10/11 (日) 冬柏島海景、尾浦散策與海雲台點心",
+                title: "10/11 (日) 24~18度 海雲台冬柏島、尾浦與 Emart 採購",
                 items: [
-                    { time: "08:40", title: "Aventree 飯店辦理退房", desc: "辦理退房手續", ko: "아벤트리 호텔 부산" },
-                    { time: "09:00", title: "換飯店並寄放行李", desc: "寄放行李於 NewCZ Nampo Hotel", ko: "뉴씨즈호텔 남포", naver: "https://map.naver.com/v5/search/%EB%89%B4%EC%94%A8%EC%A6%88%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" },
-                    { time: "09:30", title: "飯店門口搭乘 Uber 前往海雲台冬柏島", desc: "搭車前往冬柏島", ko: "동백섬" },
-                    { time: "10:00", title: "【景點】冬柏島海岸步道散步、參觀 APEC 世峰樓", desc: "冬柏島海岸步道散步、參觀 APEC 世峰樓", ko: "동백섬", naver: "https://map.naver.com/v5/search/%EB%8F%99%EB%B0%B1%EC%84%AC" },
-                    { time: "11:30", title: "沙灘海景拍照，沿路步行前往尾浦", desc: "沿海濱步道步行至尾浦", ko: "미포" },
-                    { time: "12:00", title: "慢逛尾浦在地文創選物小店", desc: "逛特色文創選物", ko: "미포" },
-                    { time: "13:00", title: "【排隊甜點】老虎冰淇淋大福", desc: "品嚐人氣Q彈老虎冰淇淋大福", ko: "호랑이젤라떡" },
-                    { time: "13:30", title: "【午餐】極東豬肉湯飯 (尾浦店)", desc: "享用美味豬肉湯飯", ko: "극동돼지국밥", naver: "https://map.naver.com/v5/search/%EA%B7%B9%EB%8F%99%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5" },
-                    { time: "14:45", title: "店門口搭乘 Uber 前往 Emart 海雲台店", desc: "搭車前往超市", ko: "이마트 해운대점" },
-                    { time: "15:00", title: "【超市大採購】Emart 購物", desc: "Emart 採購零食紀念品", ko: "이마트 해운대점", naver: "https://map.naver.com/v5/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%20%ED%95%94%EA%9A%B4%EB%8C%80%EC%A0%90" },
-                    { time: "17:00", title: "搭乘 Uber 返回南浦洞飯店", desc: "搭車返回南浦洞", ko: "" },
-                    { time: "17:30", title: "NewCZ Nampo Hotel 辦理入住、提領行李", desc: "正式入住新飯店", ko: "뉴씨즈호텔 남포" },
-                    { time: "18:00", title: "【晚餐】勝畜畜產南浦分店", desc: "熟成烤豬五花肉、頂級韓牛", ko: "승축축산" },
-                    { time: "20:00", title: "逛 BIFF 廣場、光復路時尚街", desc: "漫步南浦洞商圈", ko: "BIFF광장" },
-                    { time: "宵夜", title: "【宵夜】橋村炸雞", desc: "帶回飯店享用美味橋村炸雞", ko: "교촌치킨 남포점" }
+                    { time: "08:00", title: "CU 餐包(飯捲) / 香蕉牛奶", desc: "飯店內輕鬆享用早餐", ko: "CU 편의점", naver: "https://map.naver.com/v5/search/CU" },
+                    { time: "09:20", title: "Aventree 飯店辦理退房", desc: "辦理退房手續", ko: "아벤트리 호텔 부산" },
+                    { time: "09:40", title: "換飯店並寄放行李", desc: "前往 NewCZ 南浦飯店寄放行李", ko: "뉴씨즈호텔 남포", naver: "https://map.naver.com/v5/search/%EB%89%B4%EC%94%A8%EC%A6%88%ED%98%B8%ED%85%94%20%EB%B6%80%EC%82%B0" },
+                    { time: "10:00", title: "搭乘 Uber(分2台車) 前往冬柏島", desc: "搭車前往冬柏島", ko: "동백섬" },
+                    { time: "10:30", title: "【景點】冬柏島 + APEC 世峰樓", desc: "海岸步道散步、參觀 APEC 世峰樓", ko: "동백섬", naver: "https://map.naver.com/v5/search/%EB%8F%99%EB%B0%B1%EC%84%AC" },
+                    { time: "12:00", title: "沙灘海景拍照，沿路步行到尾浦", desc: "沿海濱步道步行至尾浦", ko: "미포" },
+                    { time: "12:30", title: "逛文創小店", desc: "慢逛尾浦在地文創選物小店", ko: "미포" },
+                    { time: "13:30", title: "【排隊甜點】老虎冰淇淋大福", desc: "品嚐人氣Q彈老虎冰淇淋大福", ko: "호랑이젤라떡" },
+                    { time: "14:00", title: "【午餐】極東豬肉湯飯", desc: "享用美味極東豬肉湯飯", ko: "극동돼지국밥", naver: "https://map.naver.com/v5/search/%EA%B7%B9%EB%8F%99%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5" },
+                    { time: "15:15", title: "搭乘 Uber(分2台車) 前往 Emart 海雲台店", desc: "搭車前往超市", ko: "이마트 해운대점" },
+                    { time: "15:30", title: "【超市大採購】Emart 購物", desc: "Emart 採購零食紀念品", ko: "이마트 해운대점", naver: "https://map.naver.com/v5/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%20%ED%95%94%EA%9A%B4%EB%8C%80%EC%A0%90" },
+                    { time: "17:30", title: "搭乘 Uber(分2台車) 回南浦洞", desc: "搭車返回南浦洞", ko: "" },
+                    { time: "18:10", title: "飯店入住 + 領行李 + 休息", desc: "NewCZ 南浦飯店正式入住與放行李", ko: "뉴씨즈호텔 남포" },
+                    { time: "18:50", title: "步行到豆田裡", desc: "步行前往餐廳", ko: "" },
+                    { time: "19:00", title: "【晚餐】豆田裡 (韓式家常小菜自助餐)", desc: "享用豐富韓式大醬湯與定食吃到飽", ko: "콩밭" },
+                    { time: "20:30", title: "逛 BIFF 廣場 / 光復路時尚街", desc: "漫步南浦洞商圈血拼", ko: "BIFF광장" },
+                    { time: "宵夜", title: "【宵夜】Puradak 炸雞", desc: "帶回飯店享用美味 Puradak 炸雞", ko: "푸라닭치킨" }
                 ]
             },
             3: {
-                title: "10/12 (一) 傳統市場與 ARTE 美術館",
+                title: "10/12 (一) 24~18度 釜田市場、三五亭蔘雞湯與 ARTE 美術館",
                 items: [
-                    { time: "07:50", title: "步行前往 EGG DROP 南浦店", desc: "步行前往早餐店", ko: "" },
-                    { time: "08:00", title: "【早餐】EGG DROP 南浦店", desc: "享用美味招牌吐司", ko: "에그드랍 남포점", naver: "https://map.naver.com/v5/search/%EC%97%90%EA%B7%B8%EB%93%9c%EB%A0%89%20%EB%82%A8%ED%8F%AC%EC%90%90" },
-                    { time: "08:30", title: "步行前往 Mega Coffee", desc: "前往買咖啡", ko: "" },
-                    { time: "08:40", title: "Mega Coffee 買咖啡", desc: "買香濃冰美式", ko: "메가커피" },
-                    { time: "08:50", title: "回飯店房間內用餐、準備出發", desc: "回房享用早餐", ko: "" },
-                    { time: "09:30", title: "搭乘 Uber(分2台車) 前往釜田市場", desc: "搭車前往釜田市場", ko: "부전시장" },
-                    { time: "10:00", title: "【早餐】釜田市場", desc: "手工排骨豬肉餅、炭烤燻鴨、明卵紫菜包飯、大王鯛魚燒、買水果", ko: "부전시장", naver: "https://map.naver.com/v5/search/%EB%부%전%시%장" },
-                    { time: "12:00", title: "步行前往西面地下街 (釜田段)", desc: "步行逛西面地下街", ko: "서면지하상가" },
-                    { time: "12:30", title: "【午餐】三五亭蔘雞湯", desc: "品嚐滋補暖身的蔘雞湯", ko: "삼오정", naver: "https://map.naver.com/v5/search/%EC%82%BC%EC%98%A4%EC%A0%95" },
-                    { time: "14:00", title: "搭乘 Uber 前往影島 ARTE MUSEUM", desc: "搭車前往影島沉浸式美術館", ko: "아르떼뮤지엄 부산" },
-                    { time: "14:30", title: "【景點】ARTE MUSEUM BUSAN", desc: "沉浸式光影美術館視覺饗宴", ko: "아르떼뮤지엄 부산", naver: "https://map.naver.com/v5/search/%EC%95%84%EB%B8%70%EB%AE%A4%EC%A7%80%EC%97%84%20%EB%B6%80%EC%82%B0" },
-                    { time: "17:00", title: "搭乘 Uber 返回南浦洞", desc: "搭車返回南浦洞", ko: "" },
-                    { time: "18:00", title: "【晚餐】豆田裡 韓式吃到飽", desc: "享用豐富韓式大醬湯與定食吃到飽", ko: "콩밭" },
-                    { time: "20:00", title: "續逛 BIFF 廣場、光復路時尚街", desc: "夜晚散步血拼", ko: "BIFF광장" },
-                    { time: "宵夜", title: "【宵夜】Puradak 炸雞", desc: "外帶 Puradak 質感炸雞回飯店享用", ko: "푸라닭치킨" }
+                    { time: "09:20", title: "搭乘 Uber(分2台車) 到釜田市場", desc: "搭車前往釜田市場", ko: "부전시장" },
+                    { time: "09:50", title: "【早餐/逛街】釜田市場", desc: "手工排骨豬肉餅、炭烤燻鴨、明卵紫菜包飯、大王鯛魚燒、買水果...", ko: "부전시장", naver: "https://map.naver.com/v5/search/%EB%부%전%시%장" },
+                    { time: "12:00", title: "步行到三五亭蔘雞湯", desc: "途經西面地下街 (釜田段) 步行前往", ko: "서면지하상가" },
+                    { time: "12:30", title: "【午餐】三五亭蔘雞湯", desc: "品嚐滋補暖身的美味蔘雞湯", ko: "삼오정", naver: "https://map.naver.com/v5/search/%EC%82%BC%EC%98%A4%EC%A0%95" },
+                    { time: "14:00", title: "搭乘 Uber(分2台車) 到 ARTE MUSEUM", desc: "搭車前往影島沉浸式美術館", ko: "아르떼뮤지엄 부산" },
+                    { time: "14:30", title: "【景點】ARTE MUSEUM BUSAN", desc: "沉浸式數位藝術光影美術館饗宴", ko: "아르떼뮤지엄 부산", naver: "https://map.naver.com/v5/search/%EC%95%84%EB%B8%70%EB%AE%A4%EC%A7%80%EC%97%84%20%EB%B6%80%EC%82%B0" },
+                    { time: "17:00", title: "搭乘 Uber(分2台車) 回南浦洞", desc: "搭車返回南浦洞", ko: "" },
+                    { time: "17:30", title: "飯店休息", desc: "回房稍作休息、整理戰利品", ko: "뉴씨즈호텔 남포" },
+                    { time: "18:00", title: "【晚餐】勝畜畜產南浦分店", desc: "享用頂級熟成烤豬五花、韓牛", ko: "승축축산" },
+                    { time: "20:00", title: "逛 BIFF 廣場 / 光復路時尚街", desc: "夜晚散步血拼南浦洞商圈", ko: "BIFF광장" },
+                    { time: "宵夜", title: "【宵夜】橋村炸雞", desc: "外帶經典橋村炸雞回飯店享用", ko: "교촌치킨 남포점" }
                 ]
             },
             4: {
-                title: "10/13 (二) 慶州古都秋季花海與韓屋一日遊",
+                title: "10/13 (二) 24~18度 慶州古都秋季花海與韓屋一日遊",
                 items: [
                     { time: "07:40", title: "飯店出發，搭乘 Uber 前往釜山車站", desc: "搭車前往釜山站搭高鐵", ko: "부산역" },
                     { time: "08:39", title: "【搭車】搭乘 KTX 018 前往慶州站", desc: "搭乘 KTX 高鐵前往新慶州站", ko: "신경주역" },
@@ -921,7 +927,7 @@
                 ]
             },
             5: {
-                title: "10/14 (三) 土豆豬骨湯、樂天超市、松葉蟹與披薩夜市大滿貫",
+                title: "10/14 (三) 24~18度 土豆豬骨湯、樂天超市、松葉蟹與披薩夜市大滿貫",
                 items: [
                     { time: "08:20", title: "步行前往世界村莊土豆湯", desc: "步行前往早餐店", ko: "" },
                     { time: "08:30", title: "【早餐】世界村莊土豆湯 (札嘎其店)", desc: "享用濃郁暖胃的土豆豬骨湯", ko: "세계마을감자탕", naver: "https://map.naver.com/v5/search/%EC%84%B8%EA%B3%84%EB%A7%88%EC%9D%84%EA%B0%90%EC%9E%90%ED%83%85" },
@@ -940,7 +946,7 @@
                 ]
             },
             6: {
-                title: "10/15 (四) 龜浦麵條、釜山塔散策、味讚王烤肉 ➡️ 溫暖的家",
+                title: "10/15 (四) 24~18度 龜浦麵條、釜山塔散策、味讚王烤肉 ➡️ 溫暖的家",
                 items: [
                     { time: "09:00", title: "飯店 退房，行李寄放櫃檯", desc: "辦理退房並寄放行李", ko: "뉴씨즈호텔 남포" },
                     { time: "09:10", title: "步行前往 153 龜浦麵條南浦店", desc: "步行前往早餐店", ko: "" },
